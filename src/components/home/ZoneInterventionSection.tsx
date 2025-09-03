@@ -2,68 +2,43 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Clock, Phone } from 'lucide-react';
 import SecurePhone from '../SecurePhone';
+import { cityData } from '../../data/cities';
 
 const ZoneInterventionSection: React.FC = () => {
-  const cities = [
-    { name: 'Magny les hameaux', slug: 'magny-les-hameaux' },
-    { name: 'Voisins le bretonneux', slug: 'voisins-le-bretonneux' },
-    { name: 'Milon la chapelle', slug: 'milon-la-chapelle' },
-    { name: 'St lambert', slug: 'st-lambert' },
-    { name: 'Chevreuse', slug: 'chevreuse' },
-    { name: 'Guyancourt', slug: 'guyancourt' },
-    { name: 'Montigny le bretonneux', slug: 'montigny-le-bretonneux' },
-    { name: 'Trappes', slug: 'trappes' },
-    { name: 'Elancourt', slug: 'elancourt' },
-    { name: 'Choisel', slug: 'choisel' },
-    { name: 'Châteaufort', slug: 'chateaufort' },
-    { name: 'Toussus le noble', slug: 'toussus-le-noble' },
-    { name: 'St cyr l ecole', slug: 'st-cyr-l-ecole' },
-    { name: 'Bois d arcy', slug: 'bois-d-arcy' },
-    { name: 'Fontenay le fleury', slug: 'fontenay-le-fleury' },
-    { name: 'Buc', slug: 'buc' },
-    { name: 'St aubin', slug: 'st-aubin' },
-    { name: 'Gif sur yvette', slug: 'gif-sur-yvette' },
-    { name: 'Villiers le bacle', slug: 'villiers-le-bacle' },
-    { name: 'Versailles', slug: 'versailles' },
-    { name: 'Bailly', slug: 'bailly' },
-    { name: 'La verriere', slug: 'la-verriere' },
-    { name: 'Levis st nom', slug: 'levis-st-nom' },
-    { name: 'Le mesnil st denis', slug: 'le-mesnil-st-denis' },
-    { name: 'Noisy le roi', slug: 'noisy-le-roi' },
-    { name: 'Rennemoulin', slug: 'rennemoulin' },
-    { name: 'Les clayes sous bois', slug: 'les-clayes-sous-bois' },
-    { name: 'Forges les bains', slug: 'forges-les-bains' },
-    { name: 'Limours', slug: 'limours' },
-    { name: 'Angervilliers', slug: 'angervilliers' },
-    { name: 'Les molieres', slug: 'les-molieres' },
-    { name: 'Gometz le chatel', slug: 'gometz-le-chatel' },
-    { name: 'Pecqueuse', slug: 'pecqueuse' },
-    { name: 'Saclay', slug: 'saclay' },
-    { name: 'Orsay', slug: 'orsay' },
-    { name: 'Gometz la ville', slug: 'gometz-la-ville' },
-    { name: 'Chavenay', slug: 'chavenay' },
-    { name: 'Jouy en josas', slug: 'jouy-en-josas' },
-    { name: 'Les loges en josas', slug: 'les-loges-en-josas' },
-    { name: 'Le chesnay', slug: 'le-chesnay' },
-    { name: 'Rocquencourt', slug: 'rocquencourt' },
-    { name: 'Dampierre en yvelines', slug: 'dampierre-en-yvelines' },
-    { name: 'La celle les bordes', slug: 'la-celle-les-bordes' },
-    { name: 'Les essarts le roi', slug: 'les-essarts-le-roi' },
-    { name: 'St forget', slug: 'st-forget' },
-    { name: 'Senlisse', slug: 'senlisse' },
-    { name: 'Dures sur yvette', slug: 'dures-sur-yvette' },
-    { name: 'L etang la ville', slug: 'l-etang-la-ville' },
-    { name: 'St nom la breteche', slug: 'st-nom-la-breteche' },
-    { name: 'Plaisir', slug: 'plaisir' },
-    { name: 'Bonnelles', slug: 'bonnelles' },
-    { name: 'Bullion', slug: 'bullion' },
-    { name: 'Mareil le roi', slug: 'mareil-le-roi' },
-    { name: 'St jean de beauregard', slug: 'st-jean-de-beauregard' },
-    { name: 'Coignieres', slug: 'coignieres' },
-    { name: 'Maurepas', slug: 'maurepas' },
-    { name: 'Viroflay', slug: 'viroflay' },
-    { name: 'La celle st cloud', slug: 'la-celle-st-cloud' }
-  ];
+  // Récupérer les villes depuis les données avec fallback
+  const getCitiesFromData = () => {
+    try {
+      // Combiner les données du localStorage et les données statiques
+      const stored = localStorage.getItem('admin_cities');
+      const localStorageCities = stored ? JSON.parse(stored) : [];
+      const storedCities = Array.isArray(localStorageCities) ? localStorageCities : [];
+      const staticCities = Array.isArray(cityData) ? cityData : [];
+      const allCities = [...storedCities, ...staticCities];
+      
+      // Filtrer les villes actives et prendre les 54 premières
+      return allCities
+        .filter(city => city.status === 'active')
+        .slice(0, 54)
+        .map(city => ({
+          name: city.name,
+          slug: city.slug
+        }));
+    } catch (error) {
+      console.error('Error loading cities:', error);
+      // Fallback avec quelques villes principales
+      return [
+        { name: 'Magny-les-Hameaux', slug: 'magny-les-hameaux' },
+        { name: 'Versailles', slug: 'versailles' },
+        { name: 'Voisins-le-Bretonneux', slug: 'voisins-le-bretonneux' },
+        { name: 'Guyancourt', slug: 'guyancourt' },
+        { name: 'Montigny-le-Bretonneux', slug: 'montigny-le-bretonneux' },
+        { name: 'Trappes', slug: 'trappes' },
+        { name: 'Plaisir', slug: 'plaisir' }
+      ];
+    }
+  };
+
+  const cities = getCitiesFromData();
 
   return (
     <section className="py-20 bg-gray-900 text-white">
@@ -140,10 +115,6 @@ const ZoneInterventionSection: React.FC = () => {
                   key={index} 
                   to={`/electricien/${city.slug}`}
                   className="bg-gray-700 hover:bg-blue-600 px-3 py-2 rounded-lg text-center transition-colors cursor-pointer group block"
-                  onClick={() => {
-                    console.log('Clicking on city:', city.name, 'slug:', city.slug);
-                    // Scroll vers le haut sera géré par le composant CityTemplate
-                  }}
                 >
                   <span className="text-sm font-medium group-hover:text-white transition-colors">
                     {city.name}
@@ -155,7 +126,7 @@ const ZoneInterventionSection: React.FC = () => {
             {/* Additional Info */}
             <div className="mt-6 pt-6 border-t border-gray-700">
               <p className="text-center text-gray-400 text-sm">
-                <span className="font-medium text-blue-400">60+ villes</span> couvertes en Île-de-France
+                <span className="font-medium text-blue-400">{cities.length}+ villes</span> couvertes en Île-de-France
                 <br />
                 <span className="text-xs">Et de nombreuses autres communes</span>
               </p>

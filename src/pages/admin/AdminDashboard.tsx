@@ -1081,3 +1081,344 @@ const AdminDashboard: React.FC = () => {
                           }`}>
                             {city.status === 'active' ? 'Active' : 'Inactive'}
                           </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-900">{city.distanceFromBase || 0} km</div>
+                          <div className="text-sm text-gray-500">{city.depannagePrice || 110}€ HT</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-900">{city.visits} visites</div>
+                          <div className="text-sm text-green-600">{city.leads} leads</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <div className="flex items-center space-x-2">
+                            <Link
+                              to={`/ville/${city.slug}`}
+                              className="text-blue-600 hover:text-blue-900"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </Link>
+                            <button
+                              onClick={() => handleEditCity(city)}
+                              className="text-indigo-600 hover:text-indigo-900"
+                            >
+                              <Edit className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={() => handleToggleStatus(city.id)}
+                              className={`${
+                                city.status === 'active' 
+                                  ? 'text-red-600 hover:text-red-900' 
+                                  : 'text-green-600 hover:text-green-900'
+                              }`}
+                            >
+                              {city.status === 'active' ? <X className="h-4 w-4" /> : <CheckCircle className="h-4 w-4" />}
+                            </button>
+                            <button
+                              onClick={() => handleDeleteCity(city.id)}
+                              className="text-red-600 hover:text-red-900"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Analytics */}
+          {activeTab === 'analytics' && (
+            <div className="space-y-6">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Analytiques</h1>
+                <p className="text-gray-600">Analyse detaillee des performances</p>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-6">
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                  <h2 className="text-lg font-semibold text-gray-900 mb-4">Performance par zone</h2>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium text-gray-600">Zone proximité (110€)</span>
+                      <span className="text-sm text-gray-900">
+                        {cityPages.filter(c => c.depannagePrice === 110).reduce((sum, c) => sum + c.visits, 0)} visites
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium text-gray-600">Zone intermédiaire (130€)</span>
+                      <span className="text-sm text-gray-900">
+                        {cityPages.filter(c => c.depannagePrice === 130).reduce((sum, c) => sum + c.visits, 0)} visites
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium text-gray-600">Zone étendue (150€)</span>
+                      <span className="text-sm text-gray-900">
+                        {cityPages.filter(c => c.depannagePrice === 150).reduce((sum, c) => sum + c.visits, 0)} visites
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                  <h2 className="text-lg font-semibold text-gray-900 mb-4">Taux de conversion par zone</h2>
+                  <div className="space-y-4">
+                    {[110, 130, 150].map(price => {
+                      const zoneCities = cityPages.filter(c => c.depannagePrice === price);
+                      const totalVisits = zoneCities.reduce((sum, c) => sum + c.visits, 0);
+                      const totalLeads = zoneCities.reduce((sum, c) => sum + c.leads, 0);
+                      const conversionRate = totalVisits > 0 ? (totalLeads / totalVisits) * 100 : 0;
+                      
+                      return (
+                        <div key={price} className="flex justify-between items-center">
+                          <span className="text-sm font-medium text-gray-600">
+                            Zone {price === 110 ? 'proximité' : price === 130 ? 'intermédiaire' : 'étendue'}
+                          </span>
+                          <span className="text-sm text-gray-900">{conversionRate.toFixed(1)}%</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Settings */}
+          {activeTab === 'settings' && (
+            <div className="space-y-6">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Paramètres</h1>
+                <p className="text-gray-600">Configuration du système</p>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">Paramètres généraux</h2>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Nom de l'entreprise</label>
+                    <input
+                      type="text"
+                      defaultValue="LS COM"
+                      className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Email de contact</label>
+                    <input
+                      type="email"
+                      defaultValue="contact@lscom.fr"
+                      className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Téléphone</label>
+                    <input
+                      type="tel"
+                      defaultValue="01 23 45 67 89"
+                      className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                    Sauvegarder
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </main>
+
+        {/* Modal Ajouter/Modifier ville */}
+        {showAddCity && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex justify-between items-center">
+                  <h2 className="text-xl font-semibold text-gray-900">
+                    {editingCity ? 'Modifier la ville' : 'Ajouter une nouvelle ville'}
+                  </h2>
+                  <button
+                    onClick={() => {
+                      setShowAddCity(false);
+                      setEditingCity(null);
+                      resetNewCityForm();
+                    }}
+                    className="text-gray-400 hover:text-gray-600"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="p-6 space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Nom de la ville *
+                    </label>
+                    <input
+                      type="text"
+                      value={newCity.name}
+                      onChange={(e) => {
+                        setNewCity({ ...newCity, name: e.target.value });
+                        if (!editingCity) {
+                          setNewCity(prev => ({ ...prev, slug: generateSlug(e.target.value) }));
+                        }
+                      }}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Ex: Versailles"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Slug URL *
+                    </label>
+                    <input
+                      type="text"
+                      value={newCity.slug}
+                      onChange={(e) => setNewCity({ ...newCity, slug: e.target.value })}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Ex: versailles"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Code postal
+                    </label>
+                    <input
+                      type="text"
+                      value={newCity.codePostal}
+                      onChange={(e) => setNewCity({ ...newCity, codePostal: e.target.value })}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Ex: 78000"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Population
+                    </label>
+                    <input
+                      type="text"
+                      value={newCity.population}
+                      onChange={(e) => setNewCity({ ...newCity, population: e.target.value })}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Ex: 85 000"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Distance de la base (km)
+                    </label>
+                    <input
+                      type="number"
+                      value={newCity.distanceFromBase}
+                      onChange={(e) => setNewCity({ ...newCity, distanceFromBase: parseInt(e.target.value) || 0 })}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Ex: 8"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Prix dépannage (€ HT)
+                    </label>
+                    <select
+                      value={newCity.depannagePrice}
+                      onChange={(e) => setNewCity({ ...newCity, depannagePrice: parseInt(e.target.value) })}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value={110}>110€ HT (Zone proximité)</option>
+                      <option value={130}>130€ HT (Zone intermédiaire)</option>
+                      <option value={150}>150€ HT (Zone étendue)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Titre de la page
+                  </label>
+                  <input
+                    type="text"
+                    value={newCity.title}
+                    onChange={(e) => setNewCity({ ...newCity, title: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Ex: Électricien à Versailles - LS COM"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Meta description
+                  </label>
+                  <textarea
+                    value={newCity.metaDescription}
+                    onChange={(e) => setNewCity({ ...newCity, metaDescription: e.target.value })}
+                    rows={3}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Description pour les moteurs de recherche..."
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Titre hero
+                  </label>
+                  <input
+                    type="text"
+                    value={newCity.heroTitle}
+                    onChange={(e) => setNewCity({ ...newCity, heroTitle: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Ex: Électricien à Versailles"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Sous-titre hero
+                  </label>
+                  <input
+                    type="text"
+                    value={newCity.heroSubtitle}
+                    onChange={(e) => setNewCity({ ...newCity, heroSubtitle: e.target.value })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Ex: Votre électricien professionnel de confiance"
+                  />
+                </div>
+              </div>
+
+              <div className="p-6 border-t border-gray-200 flex justify-end space-x-3">
+                <button
+                  onClick={() => {
+                    setShowAddCity(false);
+                    setEditingCity(null);
+                    resetNewCityForm();
+                  }}
+                  className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors"
+                >
+                  Annuler
+                </button>
+                <button
+                  onClick={editingCity ? handleUpdateCity : handleAddCity}
+                  className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                >
+                  <Save className="h-4 w-4" />
+                  <span>{editingCity ? 'Mettre à jour' : 'Ajouter'}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </ProtectedRoute>
+  );
+};
+
+export default AdminDashboard;

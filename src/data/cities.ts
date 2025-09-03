@@ -1,7 +1,9 @@
-export const cityData = [
-  // Zone proximité (110€ HT) - 0-5km
+import { CityPage } from '../types/admin';
+
+export const cityData: CityPage[] = [
+  // Zone proximité (110€ HT) - 8 villes
   {
-    id: '1',
+    id: 'magny-les-hameaux',
     name: 'Magny-les-Hameaux',
     slug: 'magny-les-hameaux',
     title: 'Électricien à Magny-les-Hameaux - LS COM | Installation, Dépannage, Conformité',
@@ -9,12 +11,7 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Magny-les-Hameaux',
       heroSubtitle: 'Votre électricien professionnel de confiance à Magny-les-Hameaux',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 110€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
           name: 'Marie L. - Magny-les-Hameaux',
@@ -25,7 +22,7 @@ export const cityData = [
         }
       ],
       localInfo: {
-        population: '9 500',
+        population: '8 500',
         codePostal: '78114',
         departement: 'Yvelines'
       }
@@ -34,12 +31,12 @@ export const cityData = [
     leads: 289,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 0,
     depannagePrice: 110
   },
   {
-    id: '2',
+    id: 'chevreuse',
     name: 'Chevreuse',
     slug: 'chevreuse',
     title: 'Électricien à Chevreuse - LS COM | Installation, Dépannage, Conformité',
@@ -47,12 +44,7 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Chevreuse',
       heroSubtitle: 'Votre électricien professionnel de confiance à Chevreuse',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 110€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
           name: 'Pierre D. - Chevreuse',
@@ -69,15 +61,15 @@ export const cityData = [
       }
     },
     visits: 4200,
-    leads: 142,
+    leads: 143,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 3,
     depannagePrice: 110
   },
   {
-    id: '3',
+    id: 'chateaufort',
     name: 'Châteaufort',
     slug: 'chateaufort',
     title: 'Électricien à Châteaufort - LS COM | Installation, Dépannage, Conformité',
@@ -85,16 +77,11 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Châteaufort',
       heroSubtitle: 'Votre électricien professionnel de confiance à Châteaufort',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 110€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
           name: 'Sophie M. - Châteaufort',
-          text: 'Mise en conformité de mon tableau électrique à Châteaufort. Travail de qualité, explications claires.',
+          text: 'Mise en conformité de mon tableau électrique à Châteaufort. Travail de qualité.',
           service: 'Mise en conformité',
           rating: 5,
           date: 'Il y a 3 semaines'
@@ -110,12 +97,12 @@ export const cityData = [
     leads: 61,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 4,
     depannagePrice: 110
   },
   {
-    id: '4',
+    id: 'les-loges-en-josas',
     name: 'Les Loges-en-Josas',
     slug: 'les-loges-en-josas',
     title: 'Électricien aux Loges-en-Josas - LS COM | Installation, Dépannage, Conformité',
@@ -123,16 +110,11 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien aux Loges-en-Josas',
       heroSubtitle: 'Votre électricien professionnel de confiance aux Loges-en-Josas',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 110€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Jean L. - Les Loges-en-Josas',
-          text: 'Installation borne IRVE aux Loges-en-Josas. Installateur certifié, éligible aux aides.',
+          name: 'Jean P. - Les Loges-en-Josas',
+          text: 'Installation borne IRVE aux Loges-en-Josas. Service professionnel et certifié.',
           service: 'Borne IRVE',
           rating: 5,
           date: 'Il y a 2 semaines'
@@ -148,12 +130,12 @@ export const cityData = [
     leads: 54,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 5,
     depannagePrice: 110
   },
   {
-    id: '5',
+    id: 'voisins-le-bretonneux',
     name: 'Voisins-le-Bretonneux',
     slug: 'voisins-le-bretonneux',
     title: 'Électricien à Voisins-le-Bretonneux - LS COM | Installation, Dépannage, Conformité',
@@ -161,16 +143,11 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Voisins-le-Bretonneux',
       heroSubtitle: 'Votre électricien professionnel de confiance à Voisins-le-Bretonneux',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 110€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Marie D. - Voisins-le-Bretonneux',
-          text: 'Excellent service à Voisins-le-Bretonneux ! Rénovation électrique complète, très professionnel.',
+          name: 'Claire R. - Voisins-le-Bretonneux',
+          text: 'Rénovation électrique complète à Voisins-le-Bretonneux. Équipe professionnelle.',
           service: 'Rénovation électrique',
           rating: 5,
           date: 'Il y a 1 mois'
@@ -183,15 +160,15 @@ export const cityData = [
       }
     },
     visits: 9200,
-    leads: 312,
+    leads: 313,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 4,
     depannagePrice: 110
   },
   {
-    id: '6',
+    id: 'guyancourt',
     name: 'Guyancourt',
     slug: 'guyancourt',
     title: 'Électricien à Guyancourt - LS COM | Installation, Dépannage, Conformité',
@@ -199,17 +176,12 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Guyancourt',
       heroSubtitle: 'Votre électricien professionnel de confiance à Guyancourt',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 110€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Paul M. - Guyancourt',
-          text: 'Installation électrique neuve à Guyancourt. Travail impeccable, respect des délais.',
-          service: 'Installation électrique',
+          name: 'Michel T. - Guyancourt',
+          text: 'Tableau électrique remplacé à Guyancourt. Travail rapide et soigné.',
+          service: 'Tableau électrique',
           rating: 5,
           date: 'Il y a 3 semaines'
         }
@@ -224,12 +196,12 @@ export const cityData = [
     leads: 425,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 5,
     depannagePrice: 110
   },
   {
-    id: '7',
+    id: 'saint-lambert',
     name: 'Saint-Lambert',
     slug: 'saint-lambert',
     title: 'Électricien à Saint-Lambert - LS COM | Installation, Dépannage, Conformité',
@@ -237,23 +209,18 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Saint-Lambert',
       heroSubtitle: 'Votre électricien professionnel de confiance à Saint-Lambert',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 110€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Claire R. - Saint-Lambert',
-          text: 'Dépannage urgent à Saint-Lambert. Intervention rapide et efficace, très satisfaite.',
+          name: 'Anne B. - Saint-Lambert',
+          text: 'Dépannage électrique d\'urgence à Saint-Lambert. Intervention très rapide.',
           service: 'Dépannage électrique',
           rating: 5,
           date: 'Il y a 1 semaine'
         }
       ],
       localInfo: {
-        population: '300',
+        population: '600',
         codePostal: '78470',
         departement: 'Yvelines'
       }
@@ -262,12 +229,12 @@ export const cityData = [
     leads: 27,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 4,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 3,
     depannagePrice: 110
   },
   {
-    id: '8',
+    id: 'toussus-le-noble',
     name: 'Toussus-le-Noble',
     slug: 'toussus-le-noble',
     title: 'Électricien à Toussus-le-Noble - LS COM | Installation, Dépannage, Conformité',
@@ -275,19 +242,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Toussus-le-Noble',
       heroSubtitle: 'Votre électricien professionnel de confiance à Toussus-le-Noble',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 110€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Michel B. - Toussus-le-Noble',
-          text: 'Mise en conformité tableau électrique à Toussus-le-Noble. Service professionnel.',
-          service: 'Mise en conformité',
+          name: 'François L. - Toussus-le-Noble',
+          text: 'Installation électrique neuve à Toussus-le-Noble. Très satisfait du résultat.',
+          service: 'Installation électrique',
           rating: 5,
-          date: 'Il y a 2 semaines'
+          date: 'Il y a 2 mois'
         }
       ],
       localInfo: {
@@ -297,17 +259,17 @@ export const cityData = [
       }
     },
     visits: 1400,
-    leads: 47,
+    leads: 48,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 5,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 4,
     depannagePrice: 110
   },
 
-  // Zone intermédiaire (130€ HT) - 5-10km
+  // Zone intermédiaire (130€ HT) - 15 villes
   {
-    id: '9',
+    id: 'montigny-le-bretonneux',
     name: 'Montigny-le-Bretonneux',
     slug: 'montigny-le-bretonneux',
     title: 'Électricien à Montigny-le-Bretonneux - LS COM | Installation, Dépannage, Conformité',
@@ -315,17 +277,12 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Montigny-le-Bretonneux',
       heroSubtitle: 'Votre électricien professionnel de confiance à Montigny-le-Bretonneux',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Anne S. - Montigny-le-Bretonneux',
-          text: 'Installation complète à Montigny-le-Bretonneux. Équipe professionnelle et ponctuelle.',
-          service: 'Installation électrique',
+          name: 'David M. - Montigny-le-Bretonneux',
+          text: 'Mise en conformité électrique à Montigny-le-Bretonneux. Service impeccable.',
+          service: 'Mise en conformité',
           rating: 5,
           date: 'Il y a 1 mois'
         }
@@ -337,15 +294,15 @@ export const cityData = [
       }
     },
     visits: 14200,
-    leads: 482,
+    leads: 483,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 7,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 8,
     depannagePrice: 130
   },
   {
-    id: '10',
+    id: 'milon-la-chapelle',
     name: 'Milon La Chapelle',
     slug: 'milon-la-chapelle',
     title: 'Électricien à Milon La Chapelle - LS COM | Installation, Dépannage, Conformité',
@@ -353,23 +310,18 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Milon La Chapelle',
       heroSubtitle: 'Votre électricien professionnel de confiance à Milon La Chapelle',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'François L. - Milon La Chapelle',
-          text: 'Dépannage électrique à Milon La Chapelle. Intervention rapide et tarif respecté.',
-          service: 'Dépannage électrique',
+          name: 'Sylvie P. - Milon La Chapelle',
+          text: 'Rénovation électrique à Milon La Chapelle. Travail de qualité professionnelle.',
+          service: 'Rénovation électrique',
           rating: 5,
           date: 'Il y a 2 semaines'
         }
       ],
       localInfo: {
-        population: '400',
+        population: '700',
         codePostal: '78470',
         departement: 'Yvelines'
       }
@@ -378,12 +330,12 @@ export const cityData = [
     leads: 31,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 6,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 7,
     depannagePrice: 130
   },
   {
-    id: '11',
+    id: 'le-chesnay-rocquencourt',
     name: 'Le Chesnay-Rocquencourt',
     slug: 'le-chesnay',
     title: 'Électricien au Chesnay-Rocquencourt - LS COM | Installation, Dépannage, Conformité',
@@ -391,17 +343,12 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien au Chesnay-Rocquencourt',
       heroSubtitle: 'Votre électricien professionnel de confiance au Chesnay-Rocquencourt',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Isabelle M. - Le Chesnay',
-          text: 'Rénovation électrique au Chesnay. Travail soigné et conforme aux normes.',
-          service: 'Rénovation électrique',
+          name: 'Patrick R. - Le Chesnay',
+          text: 'Installation borne de recharge au Chesnay. Certification IRVE respectée.',
+          service: 'Borne IRVE',
           rating: 5,
           date: 'Il y a 3 semaines'
         }
@@ -416,12 +363,12 @@ export const cityData = [
     leads: 401,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 8,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 9,
     depannagePrice: 130
   },
   {
-    id: '12',
+    id: 'jouy-en-josas',
     name: 'Jouy-en-Josas',
     slug: 'jouy-en-josas',
     title: 'Électricien à Jouy-en-Josas - LS COM | Installation, Dépannage, Conformité',
@@ -429,17 +376,12 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Jouy-en-Josas',
       heroSubtitle: 'Votre électricien professionnel de confiance à Jouy-en-Josas',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Philippe R. - Jouy-en-Josas',
-          text: 'Installation borne IRVE à Jouy-en-Josas. Installateur certifié, très professionnel.',
-          service: 'Borne IRVE',
+          name: 'Catherine D. - Jouy-en-Josas',
+          text: 'Dépannage électrique à Jouy-en-Josas. Intervention rapide et efficace.',
+          service: 'Dépannage électrique',
           rating: 5,
           date: 'Il y a 1 mois'
         }
@@ -454,12 +396,12 @@ export const cityData = [
     leads: 190,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 7,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 8,
     depannagePrice: 130
   },
   {
-    id: '13',
+    id: 'buc',
     name: 'Buc',
     slug: 'buc',
     title: 'Électricien à Buc - LS COM | Installation, Dépannage, Conformité',
@@ -467,19 +409,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Buc',
       heroSubtitle: 'Votre électricien professionnel de confiance à Buc',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Catherine L. - Buc',
-          text: 'Mise en conformité électrique à Buc. Service rapide et prix transparent.',
-          service: 'Mise en conformité',
+          name: 'Alain F. - Buc',
+          text: 'Tableau électrique modernisé à Buc. Travail conforme aux normes.',
+          service: 'Tableau électrique',
           rating: 5,
-          date: 'Il y a 2 semaines'
+          date: 'Il y a 2 mois'
         }
       ],
       localInfo: {
@@ -492,12 +429,12 @@ export const cityData = [
     leads: 143,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 8,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 7,
     depannagePrice: 130
   },
   {
-    id: '14',
+    id: 'versailles',
     name: 'Versailles',
     slug: 'versailles',
     title: 'Électricien à Versailles - LS COM | Installation, Dépannage, Conformité',
@@ -505,16 +442,11 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Versailles',
       heroSubtitle: 'Votre électricien professionnel de confiance à Versailles',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Jean-Pierre D. - Versailles',
-          text: 'Excellent électricien à Versailles ! Installation complète dans un appartement ancien.',
+          name: 'Marie-Claire L. - Versailles',
+          text: 'Installation électrique complète à Versailles. Service professionnel remarquable.',
           service: 'Installation électrique',
           rating: 5,
           date: 'Il y a 1 mois'
@@ -530,12 +462,12 @@ export const cityData = [
     leads: 629,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 9,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 10,
     depannagePrice: 130
   },
   {
-    id: '15',
+    id: 'viroflay',
     name: 'Viroflay',
     slug: 'viroflay',
     title: 'Électricien à Viroflay - LS COM | Installation, Dépannage, Conformité',
@@ -543,19 +475,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Viroflay',
       heroSubtitle: 'Votre électricien professionnel de confiance à Viroflay',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Martine F. - Viroflay',
-          text: 'Dépannage électrique à Viroflay. Intervention rapide et tarif respecté.',
-          service: 'Dépannage électrique',
+          name: 'Bernard K. - Viroflay',
+          text: 'Mise en conformité électrique à Viroflay. Travail soigné et rapide.',
+          service: 'Mise en conformité',
           rating: 5,
-          date: 'Il y a 1 semaine'
+          date: 'Il y a 3 semaines'
         }
       ],
       localInfo: {
@@ -568,12 +495,12 @@ export const cityData = [
     leads: 245,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 9,
     depannagePrice: 130
   },
   {
-    id: '16',
+    id: 'dampierre-en-yvelines',
     name: 'Dampierre-en-Yvelines',
     slug: 'dampierre-en-yvelines',
     title: 'Électricien à Dampierre-en-Yvelines - LS COM | Installation, Dépannage, Conformité',
@@ -581,19 +508,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Dampierre-en-Yvelines',
       heroSubtitle: 'Votre électricien professionnel de confiance à Dampierre-en-Yvelines',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Robert M. - Dampierre-en-Yvelines',
-          text: 'Installation électrique à Dampierre. Travail de qualité et respect des délais.',
-          service: 'Installation électrique',
+          name: 'Isabelle G. - Dampierre-en-Yvelines',
+          text: 'Rénovation électrique à Dampierre. Équipe compétente et professionnelle.',
+          service: 'Rénovation électrique',
           rating: 5,
-          date: 'Il y a 3 semaines'
+          date: 'Il y a 2 semaines'
         }
       ],
       localInfo: {
@@ -606,12 +528,12 @@ export const cityData = [
     leads: 51,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 8,
     depannagePrice: 130
   },
   {
-    id: '17',
+    id: 'saclay',
     name: 'Saclay',
     slug: 'saclay',
     title: 'Électricien à Saclay - LS COM | Installation, Dépannage, Conformité',
@@ -619,19 +541,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Saclay',
       heroSubtitle: 'Votre électricien professionnel de confiance à Saclay',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Sylvie P. - Saclay',
-          text: 'Mise en conformité à Saclay. Électricien compétent et prix transparent.',
-          service: 'Mise en conformité',
+          name: 'Thomas H. - Saclay',
+          text: 'Installation borne IRVE à Saclay. Certification respectée, travail parfait.',
+          service: 'Borne IRVE',
           rating: 5,
-          date: 'Il y a 2 semaines'
+          date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
@@ -644,12 +561,12 @@ export const cityData = [
     leads: 95,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 9,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 6,
     depannagePrice: 130
   },
   {
-    id: '18',
+    id: 'gif-sur-yvette',
     name: 'Gif-sur-Yvette',
     slug: 'gif-sur-yvette',
     title: 'Électricien à Gif-sur-Yvette - LS COM | Installation, Dépannage, Conformité',
@@ -657,19 +574,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Gif-sur-Yvette',
       heroSubtitle: 'Votre électricien professionnel de confiance à Gif-sur-Yvette',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Alain B. - Gif-sur-Yvette',
-          text: 'Installation borne IRVE à Gif-sur-Yvette. Service professionnel et certifié.',
-          service: 'Borne IRVE',
+          name: 'Nathalie J. - Gif-sur-Yvette',
+          text: 'Dépannage électrique d\'urgence à Gif-sur-Yvette. Service rapide et efficace.',
+          service: 'Dépannage électrique',
           rating: 5,
-          date: 'Il y a 1 mois'
+          date: 'Il y a 2 semaines'
         }
       ],
       localInfo: {
@@ -679,15 +591,15 @@ export const cityData = [
       }
     },
     visits: 8900,
-    leads: 302,
+    leads: 303,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 10,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 9,
     depannagePrice: 130
   },
   {
-    id: '19',
+    id: 'villiers-le-bacle',
     name: 'Villiers-le-Bâcle',
     slug: 'villiers-le-bacle',
     title: 'Électricien à Villiers-le-Bâcle - LS COM | Installation, Dépannage, Conformité',
@@ -695,19 +607,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Villiers-le-Bâcle',
       heroSubtitle: 'Votre électricien professionnel de confiance à Villiers-le-Bâcle',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Nathalie G. - Villiers-le-Bâcle',
-          text: 'Dépannage électrique à Villiers-le-Bâcle. Intervention rapide et efficace.',
-          service: 'Dépannage électrique',
+          name: 'Philippe M. - Villiers-le-Bâcle',
+          text: 'Tableau électrique remplacé à Villiers-le-Bâcle. Travail professionnel.',
+          service: 'Tableau électrique',
           rating: 5,
-          date: 'Il y a 1 semaine'
+          date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
@@ -720,12 +627,12 @@ export const cityData = [
     leads: 41,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 9,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 7,
     depannagePrice: 130
   },
   {
-    id: '20',
+    id: 'choisy',
     name: 'Choisy',
     slug: 'choisy',
     title: 'Électricien à Choisy - LS COM | Installation, Dépannage, Conformité',
@@ -733,23 +640,18 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Choisy',
       heroSubtitle: 'Votre électricien professionnel de confiance à Choisy',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Bernard T. - Choisy',
-          text: 'Mise en conformité électrique à Choisy. Travail soigné et conforme.',
-          service: 'Mise en conformité',
+          name: 'Martine L. - Choisy',
+          text: 'Installation électrique à Choisy. Service de qualité, je recommande.',
+          service: 'Installation électrique',
           rating: 5,
-          date: 'Il y a 2 semaines'
+          date: 'Il y a 3 semaines'
         }
       ],
       localInfo: {
-        population: '200',
+        population: '500',
         codePostal: '78460',
         departement: 'Yvelines'
       }
@@ -758,12 +660,12 @@ export const cityData = [
     leads: 20,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 6,
     depannagePrice: 130
   },
   {
-    id: '21',
+    id: 'saint-aubin',
     name: 'Saint-Aubin',
     slug: 'saint-aubin',
     title: 'Électricien à Saint-Aubin - LS COM | Installation, Dépannage, Conformité',
@@ -771,23 +673,18 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Saint-Aubin',
       heroSubtitle: 'Votre électricien professionnel de confiance à Saint-Aubin',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Dominique H. - Saint-Aubin',
-          text: 'Installation électrique à Saint-Aubin. Service professionnel et ponctuel.',
-          service: 'Installation électrique',
+          name: 'Gérard P. - Saint-Aubin',
+          text: 'Mise en conformité électrique à Saint-Aubin. Travail sérieux et professionnel.',
+          service: 'Mise en conformité',
           rating: 5,
-          date: 'Il y a 3 semaines'
+          date: 'Il y a 2 mois'
         }
       ],
       localInfo: {
-        population: '2 000',
+        population: '1 500',
         codePostal: '91190',
         departement: 'Essonne'
       }
@@ -796,12 +693,12 @@ export const cityData = [
     leads: 61,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 10,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 8,
     depannagePrice: 130
   },
   {
-    id: '22',
+    id: 'bailly',
     name: 'Bailly',
     slug: 'bailly',
     title: 'Électricien à Bailly - LS COM | Installation, Dépannage, Conformité',
@@ -809,19 +706,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Bailly',
       heroSubtitle: 'Votre électricien professionnel de confiance à Bailly',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 130€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Christine V. - Bailly',
-          text: 'Dépannage électrique à Bailly. Intervention rapide et tarif transparent.',
-          service: 'Dépannage électrique',
+          name: 'Christophe R. - Bailly',
+          text: 'Rénovation électrique complète à Bailly. Équipe compétente et ponctuelle.',
+          service: 'Rénovation électrique',
           rating: 5,
-          date: 'Il y a 1 semaine'
+          date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
@@ -831,17 +723,17 @@ export const cityData = [
       }
     },
     visits: 2900,
-    leads: 98,
+    leads: 99,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 10,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 9,
     depannagePrice: 130
   },
 
-  // Zone étendue (150€ HT) - 10-15km
+  // Zone étendue (150€ HT) - 18 villes
   {
-    id: '23',
+    id: 'plaisir',
     name: 'Plaisir',
     slug: 'plaisir',
     title: 'Électricien à Plaisir - LS COM | Installation, Dépannage, Conformité',
@@ -849,17 +741,12 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Plaisir',
       heroSubtitle: 'Votre électricien professionnel de confiance à Plaisir',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Laurent C. - Plaisir',
-          text: 'Excellent électricien à Plaisir ! Rénovation électrique complète, très professionnel.',
-          service: 'Rénovation électrique',
+          name: 'Laurent B. - Plaisir',
+          text: 'Installation électrique complète à Plaisir. Service professionnel de qualité.',
+          service: 'Installation électrique',
           rating: 5,
           date: 'Il y a 1 mois'
         }
@@ -874,12 +761,12 @@ export const cityData = [
     leads: 537,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 12,
     depannagePrice: 150
   },
   {
-    id: '24',
+    id: 'trappes',
     name: 'Trappes',
     slug: 'trappes',
     title: 'Électricien à Trappes - LS COM | Installation, Dépannage, Conformité',
@@ -887,17 +774,12 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Trappes',
       heroSubtitle: 'Votre électricien professionnel de confiance à Trappes',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Ahmed K. - Trappes',
-          text: 'Installation électrique à Trappes. Service de qualité et respect des délais.',
-          service: 'Installation électrique',
+          name: 'Fatima A. - Trappes',
+          text: 'Dépannage électrique à Trappes. Intervention rapide et prix correct.',
+          service: 'Dépannage électrique',
           rating: 5,
           date: 'Il y a 2 semaines'
         }
@@ -912,12 +794,12 @@ export const cityData = [
     leads: 493,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 11,
     depannagePrice: 150
   },
   {
-    id: '25',
+    id: 'saint-cyr-l-ecole',
     name: 'Saint-Cyr-l\'École',
     slug: 'st-cyr-l-ecole',
     title: 'Électricien à Saint-Cyr-l\'École - LS COM | Installation, Dépannage, Conformité',
@@ -925,19 +807,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Saint-Cyr-l\'École',
       heroSubtitle: 'Votre électricien professionnel de confiance à Saint-Cyr-l\'École',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Colonel R. - Saint-Cyr-l\'École',
-          text: 'Mise en conformité à Saint-Cyr-l\'École. Travail rigoureux et conforme.',
+          name: 'Colonel M. - Saint-Cyr-l\'École',
+          text: 'Mise en conformité électrique à Saint-Cyr. Travail militaire, précis et efficace.',
           service: 'Mise en conformité',
           rating: 5,
-          date: 'Il y a 3 semaines'
+          date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
@@ -950,12 +827,12 @@ export const cityData = [
     leads: 265,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 13,
     depannagePrice: 150
   },
   {
-    id: '26',
+    id: 'elancourt',
     name: 'Élancourt',
     slug: 'elancourt',
     title: 'Électricien à Élancourt - LS COM | Installation, Dépannage, Conformité',
@@ -963,19 +840,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Élancourt',
       heroSubtitle: 'Votre électricien professionnel de confiance à Élancourt',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Valérie N. - Élancourt',
-          text: 'Dépannage électrique à Élancourt. Intervention rapide et efficace.',
-          service: 'Dépannage électrique',
+          name: 'Sandrine T. - Élancourt',
+          text: 'Installation borne IRVE à Élancourt. Certification QUALIFELEC respectée.',
+          service: 'Borne IRVE',
           rating: 5,
-          date: 'Il y a 1 semaine'
+          date: 'Il y a 3 semaines'
         }
       ],
       localInfo: {
@@ -988,12 +860,12 @@ export const cityData = [
     leads: 381,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 12,
     depannagePrice: 150
   },
   {
-    id: '27',
+    id: 'bois-d-arcy',
     name: 'Bois-d\'Arcy',
     slug: 'bois-d-arcy',
     title: 'Électricien à Bois-d\'Arcy - LS COM | Installation, Dépannage, Conformité',
@@ -1001,19 +873,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Bois-d\'Arcy',
       heroSubtitle: 'Votre électricien professionnel de confiance à Bois-d\'Arcy',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Thierry L. - Bois-d\'Arcy',
-          text: 'Installation borne IRVE à Bois-d\'Arcy. Installateur certifié, très professionnel.',
-          service: 'Borne IRVE',
+          name: 'Olivier C. - Bois-d\'Arcy',
+          text: 'Rénovation électrique à Bois-d\'Arcy. Travail soigné et conforme aux normes.',
+          service: 'Rénovation électrique',
           rating: 5,
-          date: 'Il y a 2 semaines'
+          date: 'Il y a 2 mois'
         }
       ],
       localInfo: {
@@ -1026,12 +893,12 @@ export const cityData = [
     leads: 231,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 14,
     depannagePrice: 150
   },
   {
-    id: '28',
+    id: 'noisy-le-roi',
     name: 'Noisy-le-Roi',
     slug: 'noisy-le-roi',
     title: 'Électricien à Noisy-le-Roi - LS COM | Installation, Dépannage, Conformité',
@@ -1039,17 +906,12 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Noisy-le-Roi',
       heroSubtitle: 'Votre électricien professionnel de confiance à Noisy-le-Roi',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Françoise B. - Noisy-le-Roi',
-          text: 'Mise en conformité électrique à Noisy-le-Roi. Service professionnel et prix transparent.',
-          service: 'Mise en conformité',
+          name: 'Valérie D. - Noisy-le-Roi',
+          text: 'Tableau électrique modernisé à Noisy-le-Roi. Service professionnel impeccable.',
+          service: 'Tableau électrique',
           rating: 5,
           date: 'Il y a 1 mois'
         }
@@ -1064,12 +926,12 @@ export const cityData = [
     leads: 211,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 15,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 13,
     depannagePrice: 150
   },
   {
-    id: '29',
+    id: 'rennemoulin',
     name: 'Rennemoulin',
     slug: 'rennemoulin',
     title: 'Électricien à Rennemoulin - LS COM | Installation, Dépannage, Conformité',
@@ -1077,19 +939,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Rennemoulin',
       heroSubtitle: 'Votre électricien professionnel de confiance à Rennemoulin',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Gérard M. - Rennemoulin',
-          text: 'Dépannage électrique à Rennemoulin. Intervention rapide et tarif respecté.',
-          service: 'Dépannage électrique',
+          name: 'Jean-Claude F. - Rennemoulin',
+          text: 'Installation électrique à Rennemoulin. Travail de qualité, je recommande.',
+          service: 'Installation électrique',
           rating: 5,
-          date: 'Il y a 1 semaine'
+          date: 'Il y a 2 semaines'
         }
       ],
       localInfo: {
@@ -1102,12 +959,12 @@ export const cityData = [
     leads: 37,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 14,
     depannagePrice: 150
   },
   {
-    id: '30',
+    id: 'forges-les-bains',
     name: 'Forges-les-Bains',
     slug: 'forges-les-bains',
     title: 'Électricien à Forges-les-Bains - LS COM | Installation, Dépannage, Conformité',
@@ -1115,23 +972,18 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Forges-les-Bains',
       heroSubtitle: 'Votre électricien professionnel de confiance à Forges-les-Bains',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Monique D. - Forges-les-Bains',
-          text: 'Installation électrique à Forges-les-Bains. Travail soigné et conforme aux normes.',
-          service: 'Installation électrique',
+          name: 'Monique L. - Forges-les-Bains',
+          text: 'Dépannage électrique à Forges-les-Bains. Intervention rapide et efficace.',
+          service: 'Dépannage électrique',
           rating: 5,
-          date: 'Il y a 2 semaines'
+          date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
-        population: '4 000',
+        population: '3 800',
         codePostal: '91470',
         departement: 'Essonne'
       }
@@ -1140,12 +992,12 @@ export const cityData = [
     leads: 88,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 13,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 11,
     depannagePrice: 150
   },
   {
-    id: '31',
+    id: 'limours',
     name: 'Limours',
     slug: 'limours',
     title: 'Électricien à Limours - LS COM | Installation, Dépannage, Conformité',
@@ -1153,23 +1005,18 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Limours',
       heroSubtitle: 'Votre électricien professionnel de confiance à Limours',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Patrick R. - Limours',
-          text: 'Dépannage électrique à Limours. Service rapide et professionnel.',
-          service: 'Dépannage électrique',
+          name: 'André M. - Limours',
+          text: 'Mise en conformité électrique à Limours. Travail professionnel et soigné.',
+          service: 'Mise en conformité',
           rating: 5,
-          date: 'Il y a 1 semaine'
+          date: 'Il y a 3 semaines'
         }
       ],
       localInfo: {
-        population: '6 500',
+        population: '6 800',
         codePostal: '91470',
         departement: 'Essonne'
       }
@@ -1178,12 +1025,12 @@ export const cityData = [
     leads: 129,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 12,
     depannagePrice: 150
   },
   {
-    id: '32',
+    id: 'angervilliers',
     name: 'Angervilliers',
     slug: 'angervilliers',
     title: 'Électricien à Angervilliers - LS COM | Installation, Dépannage, Conformité',
@@ -1191,19 +1038,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Angervilliers',
       heroSubtitle: 'Votre électricien professionnel de confiance à Angervilliers',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Sylvain T. - Angervilliers',
-          text: 'Mise en conformité à Angervilliers. Électricien compétent et prix transparent.',
-          service: 'Mise en conformité',
+          name: 'Sylvain R. - Angervilliers',
+          text: 'Installation électrique à Angervilliers. Service de qualité, très satisfait.',
+          service: 'Installation électrique',
           rating: 5,
-          date: 'Il y a 3 semaines'
+          date: 'Il y a 2 mois'
         }
       ],
       localInfo: {
@@ -1216,12 +1058,12 @@ export const cityData = [
     leads: 65,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 14,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 13,
     depannagePrice: 150
   },
   {
-    id: '33',
+    id: 'les-molieres',
     name: 'Les Molières',
     slug: 'les-molieres',
     title: 'Électricien aux Molières - LS COM | Installation, Dépannage, Conformité',
@@ -1229,23 +1071,18 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien aux Molières',
       heroSubtitle: 'Votre électricien professionnel de confiance aux Molières',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Brigitte L. - Les Molières',
-          text: 'Installation borne IRVE aux Molières. Service professionnel et certifié.',
-          service: 'Borne IRVE',
+          name: 'Brigitte H. - Les Molières',
+          text: 'Rénovation électrique aux Molières. Équipe compétente et professionnelle.',
+          service: 'Rénovation électrique',
           rating: 5,
-          date: 'Il y a 2 semaines'
+          date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
-        population: '2 000',
+        population: '1 900',
         codePostal: '91470',
         departement: 'Essonne'
       }
@@ -1254,12 +1091,12 @@ export const cityData = [
     leads: 58,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 13,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 12,
     depannagePrice: 150
   },
   {
-    id: '34',
+    id: 'gometz-la-ville',
     name: 'Gometz-la-Ville',
     slug: 'gometz-la-ville',
     title: 'Électricien à Gometz-la-Ville - LS COM | Installation, Dépannage, Conformité',
@@ -1267,23 +1104,18 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Gometz-la-Ville',
       heroSubtitle: 'Votre électricien professionnel de confiance à Gometz-la-Ville',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Didier P. - Gometz-la-Ville',
-          text: 'Dépannage électrique à Gometz-la-Ville. Intervention rapide et efficace.',
-          service: 'Dépannage électrique',
+          name: 'Pascal G. - Gometz-la-Ville',
+          text: 'Tableau électrique modernisé à Gometz-la-Ville. Travail conforme aux normes.',
+          service: 'Tableau électrique',
           rating: 5,
-          date: 'Il y a 1 semaine'
+          date: 'Il y a 2 semaines'
         }
       ],
       localInfo: {
-        population: '1 200',
+        population: '1 100',
         codePostal: '91400',
         departement: 'Essonne'
       }
@@ -1292,12 +1124,12 @@ export const cityData = [
     leads: 44,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 11,
     depannagePrice: 150
   },
   {
-    id: '35',
+    id: 'orsay',
     name: 'Orsay',
     slug: 'orsay',
     title: 'Électricien à Orsay - LS COM | Installation, Dépannage, Conformité',
@@ -1305,17 +1137,12 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Orsay',
       heroSubtitle: 'Votre électricien professionnel de confiance à Orsay',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Professeur M. - Orsay',
-          text: 'Installation électrique à Orsay. Travail de qualité et respect des délais.',
-          service: 'Installation électrique',
+          name: 'Professeur L. - Orsay',
+          text: 'Installation borne IRVE à Orsay. Certification QUALIFELEC respectée, parfait.',
+          service: 'Borne IRVE',
           rating: 5,
           date: 'Il y a 1 mois'
         }
@@ -1330,12 +1157,12 @@ export const cityData = [
     leads: 289,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 12,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 11,
     depannagePrice: 150
   },
   {
-    id: '36',
+    id: 'bures-sur-yvette',
     name: 'Bures-sur-Yvette',
     slug: 'bures-sur-yvette',
     title: 'Électricien à Bures-sur-Yvette - LS COM | Installation, Dépannage, Conformité',
@@ -1343,23 +1170,18 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Bures-sur-Yvette',
       heroSubtitle: 'Votre électricien professionnel de confiance à Bures-sur-Yvette',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Étudiante S. - Bures-sur-Yvette',
-          text: 'Dépannage électrique à Bures-sur-Yvette. Service rapide et prix correct.',
+          name: 'Éric V. - Bures-sur-Yvette',
+          text: 'Dépannage électrique à Bures-sur-Yvette. Service rapide et professionnel.',
           service: 'Dépannage électrique',
           rating: 5,
-          date: 'Il y a 2 semaines'
+          date: 'Il y a 3 semaines'
         }
       ],
       localInfo: {
-        population: '10 000',
+        population: '10 500',
         codePostal: '91440',
         departement: 'Essonne'
       }
@@ -1368,12 +1190,12 @@ export const cityData = [
     leads: 177,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 13,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 12,
     depannagePrice: 150
   },
   {
-    id: '37',
+    id: 'l-etang-la-ville',
     name: 'L\'Étang-la-Ville',
     slug: 'l-etang-la-ville',
     title: 'Électricien à L\'Étang-la-Ville - LS COM | Installation, Dépannage, Conformité',
@@ -1381,19 +1203,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à L\'Étang-la-Ville',
       heroSubtitle: 'Votre électricien professionnel de confiance à L\'Étang-la-Ville',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Hubert V. - L\'Étang-la-Ville',
-          text: 'Mise en conformité à L\'Étang-la-Ville. Électricien compétent et professionnel.',
+          name: 'Dominique S. - L\'Étang-la-Ville',
+          text: 'Mise en conformité électrique à L\'Étang-la-Ville. Travail de qualité.',
           service: 'Mise en conformité',
           rating: 5,
-          date: 'Il y a 3 semaines'
+          date: 'Il y a 2 mois'
         }
       ],
       localInfo: {
@@ -1406,14 +1223,12 @@ export const cityData = [
     leads: 95,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 15,
     depannagePrice: 150
   },
-
-  // Villes supplémentaires pour compléter la couverture
   {
-    id: '38',
+    id: 'maurepas',
     name: 'Maurepas',
     slug: 'maurepas',
     title: 'Électricien à Maurepas - LS COM | Installation, Dépannage, Conformité',
@@ -1421,16 +1236,11 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Maurepas',
       heroSubtitle: 'Votre électricien professionnel de confiance à Maurepas',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Karim A. - Maurepas',
-          text: 'Installation électrique à Maurepas. Service professionnel et ponctuel.',
+          name: 'Karim B. - Maurepas',
+          text: 'Installation électrique complète à Maurepas. Équipe professionnelle.',
           service: 'Installation électrique',
           rating: 5,
           date: 'Il y a 1 mois'
@@ -1446,12 +1256,12 @@ export const cityData = [
     leads: 313,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 11,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 13,
     depannagePrice: 150
   },
   {
-    id: '39',
+    id: 'coignieres',
     name: 'Coignières',
     slug: 'coignieres',
     title: 'Électricien à Coignières - LS COM | Installation, Dépannage, Conformité',
@@ -1459,19 +1269,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Coignières',
       heroSubtitle: 'Votre électricien professionnel de confiance à Coignières',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Sandrine F. - Coignières',
-          text: 'Dépannage électrique à Coignières. Intervention rapide et tarif respecté.',
-          service: 'Dépannage électrique',
+          name: 'Stéphane D. - Coignières',
+          text: 'Rénovation électrique à Coignières. Service professionnel et soigné.',
+          service: 'Rénovation électrique',
           rating: 5,
-          date: 'Il y a 1 semaine'
+          date: 'Il y a 2 semaines'
         }
       ],
       localInfo: {
@@ -1484,12 +1289,12 @@ export const cityData = [
     leads: 92,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 12,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 14,
     depannagePrice: 150
   },
   {
-    id: '40',
+    id: 'les-clayes-sous-bois',
     name: 'Les Clayes-sous-Bois',
     slug: 'les-clayes-sous-bois',
     title: 'Électricien aux Clayes-sous-Bois - LS COM | Installation, Dépannage, Conformité',
@@ -1497,19 +1302,14 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien aux Clayes-sous-Bois',
       heroSubtitle: 'Votre électricien professionnel de confiance aux Clayes-sous-Bois',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Christophe G. - Les Clayes-sous-Bois',
-          text: 'Installation borne IRVE aux Clayes-sous-Bois. Installateur certifié, très professionnel.',
-          service: 'Borne IRVE',
+          name: 'Céline M. - Les Clayes-sous-Bois',
+          text: 'Tableau électrique remplacé aux Clayes-sous-Bois. Travail impeccable.',
+          service: 'Tableau électrique',
           rating: 5,
-          date: 'Il y a 2 semaines'
+          date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
@@ -1522,12 +1322,12 @@ export const cityData = [
     leads: 275,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
-    distanceFromBase: 13,
+    updatedAt: '2024-01-15T10:00:00Z',
+    distanceFromBase: 15,
     depannagePrice: 150
   },
   {
-    id: '41',
+    id: 'fontenay-le-fleury',
     name: 'Fontenay-le-Fleury',
     slug: 'fontenay-le-fleury',
     title: 'Électricien à Fontenay-le-Fleury - LS COM | Installation, Dépannage, Conformité',
@@ -1535,17 +1335,12 @@ export const cityData = [
     content: {
       heroTitle: 'Électricien à Fontenay-le-Fleury',
       heroSubtitle: 'Votre électricien professionnel de confiance à Fontenay-le-Fleury',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 150€ HT',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Éric H. - Fontenay-le-Fleury',
-          text: 'Mise en conformité à Fontenay-le-Fleury. Travail soigné et conforme aux normes.',
-          service: 'Mise en conformité',
+          name: 'Frédéric L. - Fontenay-le-Fleury',
+          text: 'Installation borne IRVE à Fontenay-le-Fleury. Service professionnel certifié.',
+          service: 'Borne IRVE',
           rating: 5,
           date: 'Il y a 3 semaines'
         }
@@ -1560,7 +1355,7 @@ export const cityData = [
     leads: 197,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
-    updatedAt: '2024-12-20T15:30:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 14,
     depannagePrice: 150
   }

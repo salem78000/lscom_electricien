@@ -44,7 +44,23 @@ const ZoneInterventionSection: React.FC = () => {
         { name: 'Maurepas', slug: 'maurepas' },
         { name: 'Coignières', slug: 'coignieres' },
         { name: 'Les Clayes-sous-bois', slug: 'les-clayes-sous-bois' },
-        { name: 'Orsay', slug: 'orsay' }
+        { name: 'Orsay', slug: 'orsay' },
+        { name: 'Saint-Lambert', slug: 'saint-lambert' },
+        { name: 'Milon La Chapelle', slug: 'milon-la-chapelle' },
+        { name: 'Choisy', slug: 'choisy' },
+        { name: 'Toussus-le-Noble', slug: 'toussus-le-noble' },
+        { name: 'Saint-Aubin', slug: 'saint-aubin' },
+        { name: 'Villiers-le-Bâcle', slug: 'villiers-le-bacle' },
+        { name: 'Bailly', slug: 'bailly' },
+        { name: 'Noisy-le-Roi', slug: 'noisy-le-roi' },
+        { name: 'Rennemoulin', slug: 'rennemoulin' },
+        { name: 'Forges-les-Bains', slug: 'forges-les-bains' },
+        { name: 'Limours', slug: 'limours' },
+        { name: 'Angervilliers', slug: 'angervilliers' },
+        { name: 'Les Molières', slug: 'les-molieres' },
+        { name: 'Gometz-la-Ville', slug: 'gometz-la-ville' },
+        { name: 'Bures-sur-Yvette', slug: 'bures-sur-yvette' },
+        { name: 'L\'Étang-la-Ville', slug: 'l-etang-la-ville' }
       ];
     }
   };

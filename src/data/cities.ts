@@ -2539,6 +2539,3 @@ const additionalCities: CityPage[] = [
 ];
 
 // Combiner toutes les villes
-const allCities = [...cityData, ...additionalCities];
-
-export { allCities as cityData };

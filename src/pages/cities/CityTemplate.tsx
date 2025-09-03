@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MapPin, Clock, Shield, Star, CheckCircle, Phone, Award, Zap, Users } from 'lucide-react';
 import SecurePhone from '../../components/SecurePhone';
+import { cityData } from '../../data/cities';
 
 // Liste des villes supportées avec informations détaillées
 const supportedCities = {
@@ -176,10 +177,12 @@ const CityTemplate: React.FC = () => {
     try {
       const stored = localStorage.getItem('admin_cities');
       const pages = stored ? JSON.parse(stored) : [];
-      setCityPages(pages);
+      // Combiner les données du localStorage avec les données statiques
+      const combinedPages = [...pages, ...cityData];
+      setCityPages(combinedPages);
     } catch (error) {
       console.error('Error loading city pages:', error);
-      setCityPages([]);
+      setCityPages(cityData);
     }
   }, []);
   

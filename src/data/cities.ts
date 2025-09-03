@@ -1292,7 +1292,7 @@ export const cityData: CityPage[] = [
     updatedAt: '2024-01-15T10:00:00Z',
     distanceFromBase: 14,
     depannagePrice: 150
-  }
+  },
   {
     id: 'trappes',
     name: 'Trappes',

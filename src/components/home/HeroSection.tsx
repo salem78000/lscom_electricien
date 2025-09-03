@@ -90,8 +90,8 @@ const HeroSection: React.FC = () => {
           {/* Image */}
           <div className="relative">
             <div className="relative z-10">
-              src="https://stackblitz.com/storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCSnhEMWdFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--6ce275ffe5425587a81c9059eb16af4093404be0//Lscom-%20e%CC%81lectricien.webp"
-                src="/lscom-electricien.webp" 
+              <img
+                src="https://stackblitz.com/storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCSnhEMWdFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--6ce275ffe5425587a81c9059eb16af4093404be0//Lscom-%20e%CC%81lectricien.webp"
                 alt="Électricien professionnel LS COM au travail - Installation électrique"
                 className="rounded-2xl shadow-2xl w-full h-96 lg:h-[500px] object-cover"
                 loading="eager"

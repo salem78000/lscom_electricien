@@ -756,8 +756,17 @@ const CityTemplate: React.FC = () => {
               >
                 Demander un devis à {cityName}
               </Link>
-              <p className="text-gray-400 text-sm">
-                className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-lg font-bold text-sm sm:text-base lg:text-lg transition-all flex items-center justify-center space-x-2"
+              <div className="flex justify-center">
+                <SecurePhone 
+                  className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-lg font-bold text-sm sm:text-base lg:text-lg transition-all flex items-center justify-center space-x-2"
+                  variant="button"
+                  showIcon={true}
+                >
+                  06 22 52 39 02
+                </SecurePhone>
+              </div>
+              <p className="text-gray-400 text-sm text-center">
+                Réponse sous 24h • Devis gratuit • Électricien certifié
               </p>
             </div>
           </div>

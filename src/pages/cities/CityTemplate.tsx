@@ -444,12 +444,12 @@ const CityTemplate: React.FC = () => {
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link 
                   to="/contact" 
-                  className="bg-[#b32a29] hover:bg-[#9a2426] text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors text-center shadow-lg"
+                  className="bg-[#b32a29] hover:bg-[#9a2426] text-white px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-lg font-bold text-xs sm:text-sm lg:text-base transition-colors text-center shadow-lg"
                 >
                   Devis gratuit à {cityName}
                 </Link>
                 <SecurePhone 
-                  className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center space-x-2"
+                  className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 text-white px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-lg font-bold text-xs sm:text-sm lg:text-base transition-all flex items-center justify-center space-x-1 sm:space-x-2"
                   variant="button"
                   showIcon={true}
                 >
@@ -747,7 +747,7 @@ const CityTemplate: React.FC = () => {
             <div className="space-y-4">
               <Link 
                 to="/contact" 
-                className="inline-block bg-[#b32a29] hover:bg-[#9a2426] text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-lg font-bold text-sm sm:text-base lg:text-lg transition-colors shadow-lg"
+                className="inline-block bg-[#b32a29] hover:bg-[#9a2426] text-white px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-lg font-bold text-xs sm:text-sm lg:text-base transition-colors shadow-lg"
               >
                 Demander un devis à {cityName}
               </Link>

@@ -696,7 +696,7 @@ const CityTemplate: React.FC = () => {
                   <div>
                     <h3 className="font-semibold text-gray-900 text-lg">Intervention rapide</h3>
                     <p className="text-gray-600">
-                      Dépannage électrique à ${cityName} ${depannagePrice}€ HT. 
+                      Dépannage électrique à {cityName} {depannagePrice}€ HT. 
                       Déplacement rapide dans tout le secteur {cityInfo.codePostal}.
                     </p>
                   </div>

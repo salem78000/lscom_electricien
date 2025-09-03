@@ -27,8 +27,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 8500,
-    leads: 289,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -60,8 +60,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 4200,
-    leads: 143,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -93,8 +93,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 1800,
-    leads: 61,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -126,8 +126,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 1600,
-    leads: 54,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -159,8 +159,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 9200,
-    leads: 313,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -192,8 +192,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 12500,
-    leads: 425,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -225,8 +225,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 800,
-    leads: 27,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -258,8 +258,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 1400,
-    leads: 48,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -293,8 +293,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 14200,
-    leads: 483,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -326,8 +326,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 900,
-    leads: 31,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -359,8 +359,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 11800,
-    leads: 401,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -392,8 +392,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 5600,
-    leads: 190,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -425,8 +425,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 4200,
-    leads: 143,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -458,8 +458,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 18500,
-    leads: 629,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -491,8 +491,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 7200,
-    leads: 245,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -524,8 +524,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 1500,
-    leads: 51,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -557,8 +557,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 2800,
-    leads: 95,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -590,8 +590,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 8900,
-    leads: 303,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -623,8 +623,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 1200,
-    leads: 41,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -656,8 +656,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 600,
-    leads: 20,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -689,8 +689,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 1800,
-    leads: 61,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -722,8 +722,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 2900,
-    leads: 99,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -757,8 +757,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 15800,
-    leads: 537,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -790,8 +790,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 14500,
-    leads: 493,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -823,8 +823,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 7800,
-    leads: 265,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -856,8 +856,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 11200,
-    leads: 381,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -889,8 +889,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 6800,
-    leads: 231,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -922,8 +922,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 6200,
-    leads: 211,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -955,8 +955,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 1100,
-    leads: 37,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -988,8 +988,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 2600,
-    leads: 88,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1021,8 +1021,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 3800,
-    leads: 129,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1054,8 +1054,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 1900,
-    leads: 65,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1087,8 +1087,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 1700,
-    leads: 58,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1120,8 +1120,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 1300,
-    leads: 44,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1153,8 +1153,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 8500,
-    leads: 289,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1186,8 +1186,8 @@ export const cityData: CityPage[] = [
         departement: 'Essonne'
       }
     },
-    visits: 5200,
-    leads: 177,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1219,8 +1219,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 2800,
-    leads: 95,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1252,8 +1252,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 9200,
-    leads: 313,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1285,8 +1285,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 2700,
-    leads: 92,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1318,8 +1318,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 8100,
-    leads: 275,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',
@@ -1351,8 +1351,8 @@ export const cityData: CityPage[] = [
         departement: 'Yvelines'
       }
     },
-    visits: 5800,
-    leads: 197,
+    visits: 0,
+    leads: 0,
     status: 'active',
     createdAt: '2024-01-15T10:00:00Z',
     updatedAt: '2024-01-15T10:00:00Z',

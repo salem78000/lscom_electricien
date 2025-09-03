@@ -11,7 +11,6 @@ import {
   Search,
   Filter,
   BarChart3,
-  Settings,
   LogOut,
   Save,
   X,
@@ -39,35 +38,37 @@ const AdminDashboard: React.FC = () => {
     conversionRate: 0,
     topCities: []
   });
+  const [isLoading, setIsLoading] = useState(true);
+  const [saveMessage, setSaveMessage] = useState('');
 
   const citiesPerPage = 10;
 
-  // Initialiser les données
+  // Initialiser les données au chargement
   useEffect(() => {
-    try {
-      // Charger depuis localStorage ou utiliser les données par défaut
-      const stored = localStorage.getItem('admin_cities');
-      let loadedCities: CityPage[] = [];
-      
-      if (stored) {
-        const parsedData = JSON.parse(stored);
-        loadedCities = Array.isArray(parsedData) ? parsedData : [];
+    const initializeData = () => {
+      try {
+        console.log('Initialisation des données...');
+        
+        // Forcer l'utilisation des données complètes
+        const allCities = [...cityData];
+        console.log(`${allCities.length} villes chargées depuis cityData`);
+        
+        // Sauvegarder en localStorage
+        localStorage.setItem('admin_cities', JSON.stringify(allCities));
+        
+        // Mettre à jour l'état
+        setCities(allCities);
+        calculateStats(allCities);
+        
+        console.log('Données initialisées avec succès');
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Erreur lors de l\'initialisation:', error);
+        setIsLoading(false);
       }
-      
-      // Si pas de données en localStorage, utiliser cityData
-      if (loadedCities.length === 0) {
-        loadedCities = [...cityData];
-        localStorage.setItem('admin_cities', JSON.stringify(loadedCities));
-      }
-      
-      setCities(loadedCities);
-      calculateStats(loadedCities);
-    } catch (error) {
-      console.error('Erreur lors du chargement des villes:', error);
-      // Fallback vers cityData
-      setCities([...cityData]);
-      calculateStats([...cityData]);
-    }
+    };
+
+    initializeData();
   }, []);
 
   // Calculer les statistiques
@@ -121,10 +122,12 @@ const AdminDashboard: React.FC = () => {
     try {
       localStorage.setItem('admin_cities', JSON.stringify(cities));
       calculateStats(cities);
-      alert('Données sauvegardées avec succès !');
+      setSaveMessage('✅ Données sauvegardées avec succès !');
+      setTimeout(() => setSaveMessage(''), 3000);
     } catch (error) {
       console.error('Erreur lors de la sauvegarde:', error);
-      alert('Erreur lors de la sauvegarde');
+      setSaveMessage('❌ Erreur lors de la sauvegarde');
+      setTimeout(() => setSaveMessage(''), 3000);
     }
   };
 
@@ -199,6 +202,19 @@ const AdminDashboard: React.FC = () => {
   const startIndex = (currentPage - 1) * citiesPerPage;
   const currentCities = filteredCities.slice(startIndex, startIndex + citiesPerPage);
 
+  if (isLoading) {
+    return (
+      <ProtectedRoute>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Chargement du dashboard...</p>
+          </div>
+        </div>
+      </ProtectedRoute>
+    );
+  }
+
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50">
@@ -214,6 +230,9 @@ const AdminDashboard: React.FC = () => {
               </div>
               <div className="flex items-center space-x-4">
                 <span className="text-gray-600">Bonjour, {user?.username}</span>
+                {saveMessage && (
+                  <span className="text-sm font-medium text-green-600">{saveMessage}</span>
+                )}
                 <button
                   onClick={saveData}
                   className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
@@ -289,7 +308,7 @@ const AdminDashboard: React.FC = () => {
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
             <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
               <BarChart3 className="h-5 w-5 mr-2" />
-              Top 5 Villes
+              Top 5 Villes par Visites
             </h3>
             <div className="space-y-3">
               {stats.topCities.map((city, index) => (
@@ -303,6 +322,9 @@ const AdminDashboard: React.FC = () => {
                   <div className="flex items-center space-x-4 text-sm text-gray-600">
                     <span>{city.visits.toLocaleString()} visites</span>
                     <span>{city.leads} leads</span>
+                    <span className="text-green-600 font-medium">
+                      {((city.leads / city.visits) * 100).toFixed(1)}%
+                    </span>
                   </div>
                 </div>
               ))}
@@ -313,7 +335,12 @@ const AdminDashboard: React.FC = () => {
           <div className="bg-white rounded-lg shadow-sm border border-gray-200">
             <div className="p-6 border-b border-gray-200">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
-                <h2 className="text-xl font-semibold text-gray-900">Gestion des Villes</h2>
+                <div>
+                  <h2 className="text-xl font-semibold text-gray-900">Gestion des Villes</h2>
+                  <p className="text-sm text-gray-600 mt-1">
+                    {cities.length} villes au total • {stats.activeCities} actives
+                  </p>
+                </div>
                 <button
                   onClick={() => setShowCreateModal(true)}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
@@ -329,7 +356,7 @@ const AdminDashboard: React.FC = () => {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <input
                     type="text"
-                    placeholder="Rechercher une ville..."
+                    placeholder="Rechercher une ville ou code postal..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -369,6 +396,9 @@ const AdminDashboard: React.FC = () => {
                       Leads
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Conversion
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Tarif
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -400,7 +430,20 @@ const AdminDashboard: React.FC = () => {
                         {city.leads}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {city.depannagePrice}€ HT
+                        <span className="text-green-600 font-medium">
+                          {((city.leads / city.visits) * 100).toFixed(1)}%
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                          city.depannagePrice === 110 
+                            ? 'bg-green-100 text-green-800'
+                            : city.depannagePrice === 130
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : 'bg-red-100 text-red-800'
+                        }`}>
+                          {city.depannagePrice}€ HT
+                        </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
@@ -418,12 +461,14 @@ const AdminDashboard: React.FC = () => {
                           <button
                             onClick={() => setEditingCity(city)}
                             className="text-blue-600 hover:text-blue-900 p-1 rounded"
+                            title="Modifier"
                           >
                             <Edit className="h-4 w-4" />
                           </button>
                           <button
                             onClick={() => deleteCity(city.id)}
                             className="text-red-600 hover:text-red-900 p-1 rounded"
+                            title="Supprimer"
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
@@ -517,6 +562,9 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
       const updatedCity: CityPage = {
         ...city,
         name: formData.name,
+        slug: formData.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+        title: `Électricien à ${formData.name} - LS COM | Installation, Dépannage, Conformité`,
+        metaDescription: `LS COM, électricien professionnel à ${formData.name} (${formData.codePostal}). Installation électrique, dépannage ${formData.depannagePrice}€ HT, mise en conformité, bornes IRVE. Devis gratuit.`,
         content: {
           ...city.content,
           heroTitle: `Électricien à ${formData.name}`,
@@ -552,7 +600,7 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+      <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
           <button
@@ -566,7 +614,7 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Nom de la ville
+              Nom de la ville *
             </label>
             <input
               type="text"
@@ -574,12 +622,13 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Ex: Versailles"
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Code postal
+              Code postal *
             </label>
             <input
               type="text"
@@ -587,6 +636,7 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
               value={formData.codePostal}
               onChange={(e) => setFormData({ ...formData, codePostal: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Ex: 78000"
             />
           </div>
 
@@ -599,6 +649,7 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
               value={formData.population}
               onChange={(e) => setFormData({ ...formData, population: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Ex: 85 000"
             />
           </div>
 
@@ -611,10 +662,12 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
               onChange={(e) => setFormData({ ...formData, departement: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value="Yvelines">Yvelines</option>
-              <option value="Essonne">Essonne</option>
-              <option value="Hauts-de-Seine">Hauts-de-Seine</option>
-              <option value="Val-d'Oise">Val-d'Oise</option>
+              <option value="Yvelines">Yvelines (78)</option>
+              <option value="Essonne">Essonne (91)</option>
+              <option value="Hauts-de-Seine">Hauts-de-Seine (92)</option>
+              <option value="Val-d'Oise">Val-d'Oise (95)</option>
+              <option value="Seine-et-Marne">Seine-et-Marne (77)</option>
+              <option value="Val-de-Marne">Val-de-Marne (94)</option>
             </select>
           </div>
 
@@ -627,7 +680,7 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
               min="0"
               max="50"
               value={formData.distanceFromBase}
-              onChange={(e) => setFormData({ ...formData, distanceFromBase: parseInt(e.target.value) })}
+              onChange={(e) => setFormData({ ...formData, distanceFromBase: parseInt(e.target.value) || 0 })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -641,9 +694,9 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
               onChange={(e) => setFormData({ ...formData, depannagePrice: parseInt(e.target.value) })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              <option value={110}>110€ HT (Zone proximité)</option>
-              <option value={130}>130€ HT (Zone intermédiaire)</option>
-              <option value={150}>150€ HT (Zone étendue)</option>
+              <option value={110}>110€ HT (Zone proximité 0-5km)</option>
+              <option value={130}>130€ HT (Zone intermédiaire 5-10km)</option>
+              <option value={150}>150€ HT (Zone étendue 10-15km)</option>
             </select>
           </div>
 

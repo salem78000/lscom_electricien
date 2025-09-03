@@ -553,7 +553,7 @@ const CityTemplate: React.FC = () => {
               <div className="space-y-4">
                 <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
                   {heroTitle}
-                  <span className="block text-orange-400">LS COM</span>
+                  <span className="block text-[#b32a29]">LS COM</span>
                 </h1>
                 <p className="text-xl text-blue-100">
                   {heroSubtitle}

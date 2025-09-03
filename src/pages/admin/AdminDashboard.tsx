@@ -1,615 +1,678 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { 
   Users, 
   MapPin, 
   TrendingUp, 
-  Settings, 
-  Plus, 
+  Eye, 
   Edit, 
   Trash2, 
-  Eye,
-  BarChart3,
-  Globe,
-  Phone,
-  Mail,
-  Calendar,
-  Activity,
-  AlertCircle,
-  CheckCircle,
-  Clock,
-  LogOut,
-  Save,
-  X,
+  Plus, 
   Search,
   Filter,
   Download,
-  Upload,
-  RefreshCw
+  BarChart3,
+  Settings,
+  LogOut,
+  Euro,
+  Clock,
+  Star
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import ProtectedRoute from '../../components/admin/ProtectedRoute';
-import type { CityPage, AdminStats } from '../../types/admin';
+import type { CityPage, AdminStats, DistancePricing } from '../../types/admin';
+
+// Données initiales complètes avec toutes les villes
+const initialCities: CityPage[] = [
+  // Zone proximité (0-5km) - 110€ HT
+  {
+    id: '1',
+    name: 'Magny-les-Hameaux',
+    slug: 'magny-les-hameaux',
+    title: 'Électricien à Magny-les-Hameaux - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Magny-les-Hameaux (78114). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Magny-les-Hameaux',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Magny-les-Hameaux',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '9 500',
+        codePostal: '78114',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 2850,
+    leads: 98,
+    status: 'active',
+    createdAt: '2024-01-15',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 0,
+    depannagePrice: 110
+  },
+  {
+    id: '2',
+    name: 'Voisins-le-Bretonneux',
+    slug: 'voisins-le-bretonneux',
+    title: 'Électricien à Voisins-le-Bretonneux - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Voisins-le-Bretonneux (78960). Installation électrique, dépannage 110€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Voisins-le-Bretonneux',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Voisins-le-Bretonneux',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '13 500',
+        codePostal: '78960',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 1890,
+    leads: 67,
+    status: 'active',
+    createdAt: '2024-01-20',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 3,
+    depannagePrice: 110
+  },
+  {
+    id: '3',
+    name: 'Milion La Chapelle',
+    slug: 'milion-la-chapelle',
+    title: 'Électricien à Milion La Chapelle - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Milion La Chapelle (78470). Installation électrique, dépannage 110€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Milion La Chapelle',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Milion La Chapelle',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '2 800',
+        codePostal: '78470',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 420,
+    leads: 15,
+    status: 'active',
+    createdAt: '2024-01-25',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 4,
+    depannagePrice: 110
+  },
+  {
+    id: '4',
+    name: 'Chevreuse',
+    slug: 'chevreuse',
+    title: 'Électricien à Chevreuse - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Chevreuse (78460). Installation électrique, dépannage 110€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Chevreuse',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Chevreuse',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '5 500',
+        codePostal: '78460',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 780,
+    leads: 28,
+    status: 'active',
+    createdAt: '2024-02-01',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 5,
+    depannagePrice: 110
+  },
+  {
+    id: '5',
+    name: 'Guyancourt',
+    slug: 'guyancourt',
+    title: 'Électricien à Guyancourt - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Guyancourt (78280). Installation électrique, dépannage 110€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Guyancourt',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Guyancourt',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '30 000',
+        codePostal: '78280',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 4200,
+    leads: 145,
+    status: 'active',
+    createdAt: '2024-02-05',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 4,
+    depannagePrice: 110
+  },
+  {
+    id: '6',
+    name: 'Châteaufort',
+    slug: 'chateaufort',
+    title: 'Électricien à Châteaufort - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Châteaufort (78117). Installation électrique, dépannage 110€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Châteaufort',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Châteaufort',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '1 400',
+        codePostal: '78117',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 210,
+    leads: 8,
+    status: 'active',
+    createdAt: '2024-02-10',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 3,
+    depannagePrice: 110
+  },
+  {
+    id: '7',
+    name: 'Toussus-le-Noble',
+    slug: 'toussus-le-noble',
+    title: 'Électricien à Toussus-le-Noble - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Toussus-le-Noble (78117). Installation électrique, dépannage 110€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Toussus-le-Noble',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Toussus-le-Noble',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '1 200',
+        codePostal: '78117',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 180,
+    leads: 6,
+    status: 'active',
+    createdAt: '2024-02-15',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 5,
+    depannagePrice: 110
+  },
+  {
+    id: '8',
+    name: 'Les Loges-en-Josas',
+    slug: 'les-loges-en-josas',
+    title: 'Électricien aux Loges-en-Josas - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel aux Loges-en-Josas (78350). Installation électrique, dépannage 110€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien aux Loges-en-Josas',
+      heroSubtitle: 'Votre électricien professionnel de confiance aux Loges-en-Josas',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '1 500',
+        codePostal: '78350',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 225,
+    leads: 9,
+    status: 'active',
+    createdAt: '2024-02-20',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 4,
+    depannagePrice: 110
+  },
+
+  // Zone intermédiaire (5-10km) - 130€ HT
+  {
+    id: '9',
+    name: 'Montigny-le-Bretonneux',
+    slug: 'montigny-le-bretonneux',
+    title: 'Électricien à Montigny-le-Bretonneux - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Montigny-le-Bretonneux (78180). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Montigny-le-Bretonneux',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Montigny-le-Bretonneux',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '35 000',
+        codePostal: '78180',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 4900,
+    leads: 168,
+    status: 'active',
+    createdAt: '2024-02-25',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 7,
+    depannagePrice: 130
+  },
+  {
+    id: '10',
+    name: 'Élancourt',
+    slug: 'elancourt',
+    title: 'Électricien à Élancourt - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Élancourt (78990). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Élancourt',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Élancourt',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '26 000',
+        codePostal: '78990',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 3640,
+    leads: 125,
+    status: 'active',
+    createdAt: '2024-03-01',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 8,
+    depannagePrice: 130
+  },
+  {
+    id: '11',
+    name: 'Le Chesnay',
+    slug: 'le-chesnay',
+    title: 'Électricien au Chesnay - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel au Chesnay (78150). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien au Chesnay',
+      heroSubtitle: 'Votre électricien professionnel de confiance au Chesnay',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '30 000',
+        codePostal: '78150',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 4200,
+    leads: 144,
+    status: 'active',
+    createdAt: '2024-03-05',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 9,
+    depannagePrice: 130
+  },
+  {
+    id: '12',
+    name: 'Jouy-en-Josas',
+    slug: 'jouy-en-josas',
+    title: 'Électricien à Jouy-en-Josas - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Jouy-en-Josas (78350). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Jouy-en-Josas',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Jouy-en-Josas',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '8 000',
+        codePostal: '78350',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 1120,
+    leads: 38,
+    status: 'active',
+    createdAt: '2024-03-10',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 6,
+    depannagePrice: 130
+  },
+  {
+    id: '13',
+    name: 'Buc',
+    slug: 'buc',
+    title: 'Électricien à Buc - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Buc (78530). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Buc',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Buc',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '6 000',
+        codePostal: '78530',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 840,
+    leads: 29,
+    status: 'active',
+    createdAt: '2024-03-15',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 7,
+    depannagePrice: 130
+  },
+  {
+    id: '14',
+    name: 'Gif-sur-Yvette',
+    slug: 'gif-sur-yvette',
+    title: 'Électricien à Gif-sur-Yvette - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Gif-sur-Yvette (91190). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Gif-sur-Yvette',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Gif-sur-Yvette',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '21 000',
+        codePostal: '91190',
+        departement: 'Essonne'
+      }
+    },
+    visits: 2940,
+    leads: 101,
+    status: 'active',
+    createdAt: '2024-03-20',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 8,
+    depannagePrice: 130
+  },
+  {
+    id: '15',
+    name: 'Saclay',
+    slug: 'saclay',
+    title: 'Électricien à Saclay - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Saclay (91400). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Saclay',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Saclay',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '4 000',
+        codePostal: '91400',
+        departement: 'Essonne'
+      }
+    },
+    visits: 560,
+    leads: 19,
+    status: 'active',
+    createdAt: '2024-03-25',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 9,
+    depannagePrice: 130
+  },
+  {
+    id: '16',
+    name: 'Viroflay',
+    slug: 'viroflay',
+    title: 'Électricien à Viroflay - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Viroflay (78220). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Viroflay',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Viroflay',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '16 000',
+        codePostal: '78220',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 2240,
+    leads: 77,
+    status: 'active',
+    createdAt: '2024-03-30',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 10,
+    depannagePrice: 130
+  },
+  {
+    id: '17',
+    name: 'Dampierre-en-Yvelines',
+    slug: 'dampierre-en-yvelines',
+    title: 'Électricien à Dampierre-en-Yvelines - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Dampierre-en-Yvelines (78720). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Dampierre-en-Yvelines',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Dampierre-en-Yvelines',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '1 100',
+        codePostal: '78720',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 154,
+    leads: 5,
+    status: 'active',
+    createdAt: '2024-04-01',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 8,
+    depannagePrice: 130
+  },
+
+  // Zone étendue (10-15km) - 150€ HT
+  {
+    id: '18',
+    name: 'Versailles',
+    slug: 'versailles',
+    title: 'Électricien à Versailles - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Versailles (78000). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Versailles',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Versailles',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '85 000',
+        codePostal: '78000',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 11900,
+    leads: 408,
+    status: 'active',
+    createdAt: '2024-04-05',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 12,
+    depannagePrice: 150
+  },
+  {
+    id: '19',
+    name: 'Trappes',
+    slug: 'trappes',
+    title: 'Électricien à Trappes - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Trappes (78190). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Trappes',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Trappes',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '30 000',
+        codePostal: '78190',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 4200,
+    leads: 144,
+    status: 'active',
+    createdAt: '2024-04-10',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 11,
+    depannagePrice: 150
+  },
+  {
+    id: '20',
+    name: 'Plaisir',
+    slug: 'plaisir',
+    title: 'Électricien à Plaisir - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Plaisir (78370). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Plaisir',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Plaisir',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '31 000',
+        codePostal: '78370',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 4340,
+    leads: 149,
+    status: 'active',
+    createdAt: '2024-04-15',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 13,
+    depannagePrice: 150
+  },
+  {
+    id: '21',
+    name: 'Bois d\'Arcy',
+    slug: 'bois-d-arcy',
+    title: 'Électricien à Bois d\'Arcy - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Bois d\'Arcy (78390). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Bois d\'Arcy',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Bois d\'Arcy',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '14 000',
+        codePostal: '78390',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 1960,
+    leads: 67,
+    status: 'active',
+    createdAt: '2024-04-20',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 14,
+    depannagePrice: 150
+  },
+  {
+    id: '22',
+    name: 'Maurepas',
+    slug: 'maurepas',
+    title: 'Électricien à Maurepas - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Maurepas (78310). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Maurepas',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Maurepas',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '20 000',
+        codePostal: '78310',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 2800,
+    leads: 96,
+    status: 'active',
+    createdAt: '2024-04-25',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 12,
+    depannagePrice: 150
+  },
+  {
+    id: '23',
+    name: 'Coignières',
+    slug: 'coignieres',
+    title: 'Électricien à Coignières - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Coignières (78310). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Coignières',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Coignières',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '4 500',
+        codePostal: '78310',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 630,
+    leads: 22,
+    status: 'active',
+    createdAt: '2024-04-30',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 13,
+    depannagePrice: 150
+  },
+  {
+    id: '24',
+    name: 'Les Clayes-sous-Bois',
+    slug: 'les-clayes-sous-bois',
+    title: 'Électricien aux Clayes-sous-Bois - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel aux Clayes-sous-Bois (78340). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien aux Clayes-sous-Bois',
+      heroSubtitle: 'Votre électricien professionnel de confiance aux Clayes-sous-Bois',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '18 000',
+        codePostal: '78340',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 2520,
+    leads: 86,
+    status: 'active',
+    createdAt: '2024-05-01',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 15,
+    depannagePrice: 150
+  },
+  {
+    id: '25',
+    name: 'Orsay',
+    slug: 'orsay',
+    title: 'Électricien à Orsay - LS COM | Installation, Dépannage',
+    metaDescription: 'LS COM, électricien professionnel à Orsay (91400). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Orsay',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Orsay',
+      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
+      testimonials: [],
+      localInfo: {
+        population: '17 000',
+        codePostal: '91400',
+        departement: 'Essonne'
+      }
+    },
+    visits: 2380,
+    leads: 82,
+    status: 'active',
+    createdAt: '2024-05-05',
+    updatedAt: '2024-12-20',
+    distanceFromBase: 14,
+    depannagePrice: 150
+  }
+];
 
 const AdminDashboard: React.FC = () => {
   const { logout, user } = useAuth();
-  const [cityPages, setCityPages] = useLocalStorage<CityPage[]>('admin_cities', []);
-  const [activeTab, setActiveTab] = useState<'overview' | 'cities' | 'settings' | 'analytics'>('overview');
-  const [showAddCity, setShowAddCity] = useState(false);
-  const [editingCity, setEditingCity] = useState<CityPage | null>(null);
+  const [cities, setCities] = useLocalStorage<CityPage[]>('admin_cities', initialCities);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive'>('all');
+  const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'draft' | 'inactive'>('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [editingCity, setEditingCity] = useState<CityPage | null>(null);
+  const itemsPerPage = 10;
 
-  // Formulaire nouvelle ville
-  const [newCity, setNewCity] = useState({
-    name: '',
-    slug: '',
-    title: '',
-    metaDescription: '',
-    heroTitle: '',
-    heroSubtitle: '',
-    population: '',
-    codePostal: '',
-    departement: 'Yvelines',
-    distanceFromBase: 0,
-    depannagePrice: 110
-  });
-
-  // Initialiser avec les villes existantes si le localStorage est vide
-  useEffect(() => {
-    if (cityPages.length === 0) {
-      const defaultCities: CityPage[] = [
-        {
-          id: 'versailles-001',
-          name: 'Versailles',
-          slug: 'versailles',
-          title: 'Electricien a Versailles - LS COM | Installation, Depannage, Conformite',
-          metaDescription: 'LS COM, electricien professionnel a Versailles (78000). Installation electrique, depannage 110€ HT, mise en conformite, bornes IRVE. Devis gratuit.',
-          content: {
-            heroTitle: 'Electricien a Versailles',
-            heroSubtitle: 'Votre electricien professionnel de confiance a Versailles',
-            services: [
-              'Installation electrique',
-              'Depannage electrique',
-              'Mise en conformite',
-              'Bornes de recharge IRVE'
-            ],
-            testimonials: [
-              {
-                name: 'Marie L. - Versailles',
-                text: 'Excellent electricien a Versailles ! Installation electrique complete de ma maison, travail soigne et dans les delais. Je recommande LS COM.',
-                service: 'Installation electrique',
-                rating: 5,
-                date: 'Il y a 2 mois'
-              },
-              {
-                name: 'Pierre D. - Versailles',
-                text: 'Depannage electrique rapide a Versailles. Panne resolue en 1h avec le forfait 110€. Electricien professionnel et competent.',
-                service: 'Depannage electrique',
-                rating: 5,
-                date: 'Il y a 1 mois'
-              }
-            ],
-            localInfo: {
-              population: '85 000',
-              codePostal: '78000',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 1250,
-          leads: 45,
-          status: 'active',
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-          distanceFromBase: 8,
-          depannagePrice: 130
-        },
-        {
-          id: 'magny-les-hameaux-001',
-          name: 'Magny-les-Hameaux',
-          slug: 'magny-les-hameaux',
-          title: 'Electricien a Magny-les-Hameaux - LS COM | Installation, Depannage, Conformite',
-          metaDescription: 'LS COM, electricien professionnel a Magny-les-Hameaux (78114). Installation electrique, depannage 110€ HT, mise en conformite, bornes IRVE. Devis gratuit.',
-          content: {
-            heroTitle: 'Electricien a Magny-les-Hameaux',
-            heroSubtitle: 'Votre electricien professionnel de confiance a Magny-les-Hameaux',
-            services: [
-              'Installation electrique',
-              'Depannage electrique',
-              'Mise en conformite',
-              'Bornes de recharge IRVE'
-            ],
-            testimonials: [
-              {
-                name: 'Sophie M. - Magny-les-Hameaux',
-                text: 'Mise en conformite de mon tableau electrique a Magny-les-Hameaux. Travail de qualite, explications claires. Tres satisfaite du service LS COM.',
-                service: 'Mise en conformite',
-                rating: 5,
-                date: 'Il y a 3 semaines'
-              }
-            ],
-            localInfo: {
-              population: '9 500',
-              codePostal: '78114',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 890,
-          leads: 32,
-          status: 'active',
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-          distanceFromBase: 0,
-          depannagePrice: 110
-        },
-        // Nouvelles villes - Zone proximité (110€ HT)
-        {
-          id: 'voisins-le-bretonneux',
-          name: 'Voisins-le-Bretonneux',
-          slug: 'voisins-le-bretonneux',
-          title: 'Électricien Voisins-le-Bretonneux - Dépannage électrique 78960',
-          metaDescription: 'Électricien expert à Voisins-le-Bretonneux (78960). Service de dépannage électrique rapide et professionnel. Tarif 110€ HT zone proximité.',
-          content: {
-            heroTitle: 'Électricien à Voisins-le-Bretonneux',
-            heroSubtitle: 'Dépannage électrique rapide - Tarif 110€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '13500',
-              codePostal: '78960',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 1180,
-          leads: 42,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 3,
-          depannagePrice: 110
-        },
-        {
-          id: 'milion-la-chapelle',
-          name: 'Milion La Chapelle',
-          slug: 'milion-la-chapelle',
-          title: 'Électricien Milion La Chapelle - Service électrique 78470',
-          metaDescription: 'Électricien professionnel à Milion La Chapelle (78470). Interventions électriques rapides et sécurisées. Tarif 110€ HT.',
-          content: {
-            heroTitle: 'Électricien à Milion La Chapelle',
-            heroSubtitle: 'Service électrique de qualité - Tarif 110€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '1200',
-              codePostal: '78470',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 320,
-          leads: 11,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 4,
-          depannagePrice: 110
-        },
-        {
-          id: 'saint-lambert',
-          name: 'St Lambert',
-          slug: 'saint-lambert',
-          title: 'Électricien St Lambert - Réparation électrique 78470',
-          metaDescription: 'Électricien à St Lambert (78470) pour tous vos besoins électriques. Intervention sous 2h en zone proximité. Tarif 110€ HT.',
-          content: {
-            heroTitle: 'Électricien à St Lambert',
-            heroSubtitle: 'Réparation électrique professionnelle - Tarif 110€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '800',
-              codePostal: '78470',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 280,
-          leads: 9,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 4,
-          depannagePrice: 110
-        },
-        {
-          id: 'le-chesnay',
-          name: 'Le Chesnay',
-          slug: 'le-chesnay',
-          title: 'Électricien Le Chesnay - Dépannage électrique 78150',
-          metaDescription: 'Électricien Le Chesnay (78150). Service de dépannage électrique professionnel. Installation et réparation. Tarif 110€ HT.',
-          content: {
-            heroTitle: 'Électricien au Chesnay',
-            heroSubtitle: 'Dépannage électrique 24h/24 - Tarif 110€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '29000',
-              codePostal: '78150',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 1350,
-          leads: 48,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 5,
-          depannagePrice: 110
-        },
-        {
-          id: 'guyancourt',
-          name: 'Guyancourt',
-          slug: 'guyancourt',
-          title: 'Électricien Guyancourt - Installation électrique 78280',
-          metaDescription: 'Électricien professionnel à Guyancourt (78280). Installation et dépannage électrique. Intervention rapide. Tarif 110€ HT.',
-          content: {
-            heroTitle: 'Électricien à Guyancourt',
-            heroSubtitle: 'Installation électrique professionnelle - Tarif 110€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '29000',
-              codePostal: '78280',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 1320,
-          leads: 46,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 5,
-          depannagePrice: 110
-        },
-        // Zone intermédiaire (130€ HT)
-        {
-          id: 'montigny-le-bretonneux',
-          name: 'Montigny-le-Bretonneux',
-          slug: 'montigny-le-bretonneux',
-          title: 'Électricien Montigny-le-Bretonneux - Dépannage 78180',
-          metaDescription: 'Électricien professionnel à Montigny-le-Bretonneux (78180). Dépannage électrique rapide et efficace. Tarif 130€ HT.',
-          content: {
-            heroTitle: 'Électricien à Montigny-le-Bretonneux',
-            heroSubtitle: 'Dépannage électrique efficace - Tarif 130€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '34000',
-              codePostal: '78180',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 1450,
-          leads: 52,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 6,
-          depannagePrice: 130
-        },
-        {
-          id: 'elancourt',
-          name: 'Élancourt',
-          slug: 'elancourt',
-          title: 'Électricien Élancourt - Installation électrique 78990',
-          metaDescription: 'Électricien à Élancourt (78990). Installation et rénovation électrique. Service professionnel. Tarif 130€ HT.',
-          content: {
-            heroTitle: 'Électricien à Élancourt',
-            heroSubtitle: 'Installation électrique moderne - Tarif 130€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '26000',
-              codePostal: '78990',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 1180,
-          leads: 41,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 8,
-          depannagePrice: 130
-        },
-        {
-          id: 'buc',
-          name: 'Buc',
-          slug: 'buc',
-          title: 'Électricien Buc - Dépannage électrique 78530',
-          metaDescription: 'Électricien à Buc (78530). Dépannage électrique rapide et professionnel. Service 24h/24. Tarif 130€ HT.',
-          content: {
-            heroTitle: 'Électricien à Buc',
-            heroSubtitle: 'Dépannage électrique 24h/24 - Tarif 130€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '6000',
-              codePostal: '78530',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 520,
-          leads: 18,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 8,
-          depannagePrice: 130
-        },
-        {
-          id: 'gif-sur-yvette',
-          name: 'Gif-sur-Yvette',
-          slug: 'gif-sur-yvette',
-          title: 'Électricien Gif-sur-Yvette - Dépannage 91190',
-          metaDescription: 'Électricien Gif-sur-Yvette (91190). Dépannage et maintenance électrique experte. Tarif zone intermédiaire 130€ HT.',
-          content: {
-            heroTitle: 'Électricien à Gif-sur-Yvette',
-            heroSubtitle: 'Dépannage électrique expert - Tarif 130€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '21000',
-              codePostal: '91190',
-              departement: 'Essonne'
-            }
-          },
-          visits: 980,
-          leads: 34,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 9,
-          depannagePrice: 130
-        },
-        {
-          id: 'saclay',
-          name: 'Saclay',
-          slug: 'saclay',
-          title: 'Électricien Saclay - Dépannage électrique 91400',
-          metaDescription: 'Électricien professionnel à Saclay (91400). Dépannage électrique pour particuliers et entreprises. Tarif 130€ HT.',
-          content: {
-            heroTitle: 'Électricien à Saclay',
-            heroSubtitle: 'Dépannage électrique pro - Tarif 130€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '4000',
-              codePostal: '91400',
-              departement: 'Essonne'
-            }
-          },
-          visits: 420,
-          leads: 15,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 8,
-          depannagePrice: 130
-        },
-        {
-          id: 'viroflay',
-          name: 'Viroflay',
-          slug: 'viroflay',
-          title: 'Électricien Viroflay - Service électrique 78220',
-          metaDescription: 'Électricien Viroflay (78220). Service électrique professionnel et de confiance. Tarif zone intermédiaire 130€ HT.',
-          content: {
-            heroTitle: 'Électricien à Viroflay',
-            heroSubtitle: 'Service électrique confiance - Tarif 130€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '15500',
-              codePostal: '78220',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 780,
-          leads: 27,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 9,
-          depannagePrice: 130
-        },
-        // Zone étendue (150€ HT)
-        {
-          id: 'trappes',
-          name: 'Trappes',
-          slug: 'trappes',
-          title: 'Électricien Trappes - Service électrique 78190',
-          metaDescription: 'Électricien professionnel à Trappes (78190). Service électrique complet et fiable. Zone étendue tarif 150€ HT.',
-          content: {
-            heroTitle: 'Électricien à Trappes',
-            heroSubtitle: 'Service électrique fiable - Tarif 150€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '31000',
-              codePostal: '78190',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 1280,
-          leads: 44,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 12,
-          depannagePrice: 150
-        },
-        {
-          id: 'plaisir',
-          name: 'Plaisir',
-          slug: 'plaisir',
-          title: 'Électricien Plaisir - Dépannage électrique 78370',
-          metaDescription: 'Électricien professionnel à Plaisir (78370). Dépannage électrique rapide et efficace. Tarif zone étendue 150€ HT.',
-          content: {
-            heroTitle: 'Électricien à Plaisir',
-            heroSubtitle: 'Dépannage électrique Plaisir - Tarif 150€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '31000',
-              codePostal: '78370',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 1290,
-          leads: 45,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 15,
-          depannagePrice: 150
-        },
-        {
-          id: 'bois-d-arcy',
-          name: 'Bois d\'Arcy',
-          slug: 'bois-d-arcy',
-          title: 'Électricien Bois d\'Arcy - Installation électrique 78390',
-          metaDescription: 'Électricien Bois d\'Arcy (78390). Installation et rénovation électrique professionnelle. Tarif 150€ HT zone étendue.',
-          content: {
-            heroTitle: 'Électricien à Bois d\'Arcy',
-            heroSubtitle: 'Installation électrique sur mesure - Tarif 150€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '13500',
-              codePostal: '78390',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 720,
-          leads: 25,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 13,
-          depannagePrice: 150
-        },
-        {
-          id: 'maurepas',
-          name: 'Maurepas',
-          slug: 'maurepas',
-          title: 'Électricien Maurepas - Dépannage électrique 78310',
-          metaDescription: 'Électricien Maurepas (78310). Dépannage électrique 24h/24 et service d\'urgence. Tarif 150€ HT.',
-          content: {
-            heroTitle: 'Électricien à Maurepas',
-            heroSubtitle: 'Dépannage électrique 24h/24 - Tarif 150€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '19500',
-              codePostal: '78310',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 890,
-          leads: 31,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 13,
-          depannagePrice: 150
-        },
-        {
-          id: 'coignieres',
-          name: 'Coignières',
-          slug: 'coignieres',
-          title: 'Électricien Coignières - Installation électrique 78310',
-          metaDescription: 'Électricien Coignières (78310). Installation et rénovation électrique professionnelle. Tarif 150€ HT.',
-          content: {
-            heroTitle: 'Électricien à Coignières',
-            heroSubtitle: 'Rénovation électrique pro - Tarif 150€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '4500',
-              codePostal: '78310',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 420,
-          leads: 14,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 14,
-          depannagePrice: 150
-        },
-        {
-          id: 'les-clayes-sous-bois',
-          name: 'Les Clayes-sous-bois',
-          slug: 'les-clayes-sous-bois',
-          title: 'Électricien Les Clayes-sous-bois - Installation 78340',
-          metaDescription: 'Électricien Les Clayes-sous-bois (78340). Installation et maintenance électrique professionnelle. Tarif 150€ HT.',
-          content: {
-            heroTitle: 'Électricien aux Clayes-sous-bois',
-            heroSubtitle: 'Installation électrique pro - Tarif 150€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '17500',
-              codePostal: '78340',
-              departement: 'Yvelines'
-            }
-          },
-          visits: 820,
-          leads: 28,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 15,
-          depannagePrice: 150
-        },
-        {
-          id: 'orsay',
-          name: 'Orsay',
-          slug: 'orsay',
-          title: 'Électricien Orsay - Service électrique 91400',
-          metaDescription: 'Électricien Orsay (91400). Service électrique complet pour résidentiel et tertiaire. Tarif 150€ HT.',
-          content: {
-            heroTitle: 'Électricien à Orsay',
-            heroSubtitle: 'Service électrique résidentiel - Tarif 150€ HT',
-            services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-            testimonials: [],
-            localInfo: {
-              population: '16000',
-              codePostal: '91400',
-              departement: 'Essonne'
-            }
-          },
-          visits: 780,
-          leads: 27,
-          status: 'active' as const,
-          createdAt: '2025-01-27T10:00:00Z',
-          updatedAt: '2025-01-27T10:00:00Z',
-          distanceFromBase: 12,
-          depannagePrice: 150
-        }
-      ];
-      setCityPages(defaultCities);
-    }
-  }, [cityPages.length, setCityPages]);
-
-  // Statistiques calculees
+  // Calcul des statistiques
   const stats: AdminStats = {
-    totalVisits: cityPages.reduce((sum, city) => sum + city.visits, 0),
-    totalLeads: cityPages.reduce((sum, city) => sum + city.leads, 0),
-    activeCities: cityPages.filter(city => city.status === 'active').length,
-    conversionRate: cityPages.reduce((sum, city) => sum + city.visits, 0) > 0 
-      ? (cityPages.reduce((sum, city) => sum + city.leads, 0) / cityPages.reduce((sum, city) => sum + city.visits, 0)) * 100 
-      : 0,
-    topCities: cityPages
+    totalVisits: cities.reduce((sum, city) => sum + city.visits, 0),
+    totalLeads: cities.reduce((sum, city) => sum + city.leads, 0),
+    activeCities: cities.filter(city => city.status === 'active').length,
+    conversionRate: cities.reduce((sum, city) => sum + city.leads, 0) / cities.reduce((sum, city) => sum + city.visits, 0) * 100,
+    topCities: cities
       .sort((a, b) => b.visits - a.visits)
       .slice(0, 5)
       .map(city => ({
@@ -619,165 +682,39 @@ const AdminDashboard: React.FC = () => {
       }))
   };
 
-  // Filtrer les villes
-  const filteredCities = cityPages.filter(city => {
+  // Filtrage et recherche
+  const filteredCities = cities.filter(city => {
     const matchesSearch = city.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          city.slug.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = filterStatus === 'all' || city.status === filterStatus;
     return matchesSearch && matchesFilter;
   });
 
-  const handleAddCity = () => {
-    if (!newCity.name || !newCity.slug) return;
+  // Pagination
+  const totalPages = Math.ceil(filteredCities.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedCities = filteredCities.slice(startIndex, startIndex + itemsPerPage);
 
-    const city: CityPage = {
-      id: Date.now().toString(),
-      name: newCity.name,
-      slug: newCity.slug,
-      title: newCity.title || `Electricien a ${newCity.name} - LS COM`,
-      metaDescription: newCity.metaDescription || `LS COM, electricien professionnel a ${newCity.name}. Installation, depannage, conformite electrique.`,
-      content: {
-        heroTitle: newCity.heroTitle || `Electricien a ${newCity.name}`,
-        heroSubtitle: newCity.heroSubtitle || `Votre electricien professionnel de confiance a ${newCity.name}`,
-        services: [
-          'Installation electrique',
-          'Depannage electrique',
-          'Mise en conformite',
-          'Bornes de recharge IRVE'
-        ],
-        testimonials: [
-          {
-            name: `Client satisfait - ${newCity.name}`,
-            text: `Excellent service d'electricien a ${newCity.name}. Travail professionnel et dans les delais.`,
-            service: 'Installation electrique',
-            rating: 5,
-            date: 'Il y a 1 mois'
-          }
-        ],
-        localInfo: {
-          population: newCity.population,
-          codePostal: newCity.codePostal,
-          departement: newCity.departement
-        }
-      },
-      visits: 0,
-      leads: 0,
-      status: 'active',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      distanceFromBase: newCity.distanceFromBase,
-      depannagePrice: newCity.depannagePrice
-    };
-
-    setCityPages([...cityPages, city]);
-    setShowAddCity(false);
-    resetNewCityForm();
+  const handleDeleteCity = (id: string) => {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette ville ?')) {
+      setCities(cities.filter(city => city.id !== id));
+    }
   };
 
   const handleEditCity = (city: CityPage) => {
     setEditingCity(city);
-    setNewCity({
-      name: city.name,
-      slug: city.slug,
-      title: city.title,
-      metaDescription: city.metaDescription,
-      heroTitle: city.content.heroTitle,
-      heroSubtitle: city.content.heroSubtitle,
-      population: city.content.localInfo.population,
-      codePostal: city.content.localInfo.codePostal,
-      departement: city.content.localInfo.departement,
-      distanceFromBase: city.distanceFromBase || 0,
-      depannagePrice: city.depannagePrice || 110
-    });
-    setShowAddCity(true);
+    setShowCreateModal(true);
   };
 
-  const handleUpdateCity = () => {
-    if (!editingCity || !newCity.name || !newCity.slug) return;
-
-    const updatedCity: CityPage = {
-      ...editingCity,
-      name: newCity.name,
-      slug: newCity.slug,
-      title: newCity.title,
-      metaDescription: newCity.metaDescription,
-      content: {
-        ...editingCity.content,
-        heroTitle: newCity.heroTitle,
-        heroSubtitle: newCity.heroSubtitle,
-        localInfo: {
-          population: newCity.population,
-          codePostal: newCity.codePostal,
-          departement: newCity.departement
-        }
-      },
-      distanceFromBase: newCity.distanceFromBase,
-      depannagePrice: newCity.depannagePrice,
-      updatedAt: new Date().toISOString()
-    };
-
-    setCityPages(cityPages.map(city => 
-      city.id === editingCity.id ? updatedCity : city
-    ));
-    
-    setShowAddCity(false);
+  const handleCreateCity = () => {
     setEditingCity(null);
-    resetNewCityForm();
+    setShowCreateModal(true);
   };
 
-  const handleDeleteCity = (id: string) => {
-    if (confirm('Etes-vous sur de vouloir supprimer cette ville ?')) {
-      setCityPages(cityPages.filter(city => city.id !== id));
-    }
-  };
-
-  const handleToggleStatus = (id: string) => {
-    setCityPages(cityPages.map(city => 
-      city.id === id 
-        ? { ...city, status: city.status === 'active' ? 'inactive' : 'active', updatedAt: new Date().toISOString() }
-        : city
-    ));
-  };
-
-  const resetNewCityForm = () => {
-    setNewCity({
-      name: '',
-      slug: '',
-      title: '',
-      metaDescription: '',
-      heroTitle: '',
-      heroSubtitle: '',
-      population: '',
-      codePostal: '',
-      departement: 'Yvelines',
-      distanceFromBase: 0,
-      depannagePrice: 110
-    });
-  };
-
-  const generateSlug = (name: string) => {
-    return name
-      .toLowerCase()
-      .replace(/[eee]/g, 'e')
-      .replace(/[aaa]/g, 'a')
-      .replace(/[ii]/g, 'i')
-      .replace(/[oo]/g, 'o')
-      .replace(/[uuu]/g, 'u')
-      .replace(/c/g, 'c')
-      .replace(/[^a-z0-9]/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '');
-  };
-
-  const exportData = () => {
-    const dataStr = JSON.stringify(cityPages, null, 2);
-    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-    const exportFileDefaultName = `lscom-cities-${new Date().toISOString().split('T')[0]}.json`;
-    
-    const linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
-    linkElement.setAttribute('download', exportFileDefaultName);
-    linkElement.click();
+  const getZoneInfo = (distance: number) => {
+    if (distance <= 5) return { zone: 'Proximité', color: 'text-green-600', bg: 'bg-green-100' };
+    if (distance <= 10) return { zone: 'Intermédiaire', color: 'text-orange-600', bg: 'bg-orange-100' };
+    return { zone: 'Étendue', color: 'text-red-600', bg: 'bg-red-100' };
   };
 
   return (
@@ -788,634 +725,248 @@ const AdminDashboard: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
               <div className="flex items-center space-x-4">
-                <Link to="/" className="flex items-center space-x-2">
-                  <img 
-                    src="https://stackblitz.com/storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCT08xMVFFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c933664d226cd248d5b30317ed10cf915092de91/-Lscom.png"
-                    alt="LS COM"
-                    className="h-8 w-auto"
-                  />
-                  <span className="text-xl font-bold text-gray-900">Admin Dashboard</span>
-                </Link>
+                <h1 className="text-2xl font-bold text-gray-900">Dashboard Admin</h1>
+                <span className="text-sm text-gray-500">LS COM Électricien</span>
               </div>
-              
               <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-600">
-                  Connecte en tant que <strong>{user?.username}</strong>
-                </span>
+                <span className="text-sm text-gray-600">Connecté en tant que {user?.username}</span>
                 <button
                   onClick={logout}
                   className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   <LogOut className="h-4 w-4" />
-                  <span>Deconnexion</span>
+                  <span>Déconnexion</span>
                 </button>
               </div>
             </div>
           </div>
         </header>
 
-        {/* Navigation */}
-        <nav className="bg-white border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex space-x-8">
-              {[
-                { id: 'overview', label: 'Vue d\'ensemble', icon: BarChart3 },
-                { id: 'cities', label: 'Gestion des villes', icon: MapPin },
-                { id: 'analytics', label: 'Analytiques', icon: TrendingUp },
-                { id: 'settings', label: 'Parametres', icon: Settings }
-              ].map((tab) => {
-                const IconComponent = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id as any)}
-                    className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                      activeTab === tab.id
-                        ? 'border-blue-500 text-blue-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                    }`}
-                  >
-                    <IconComponent className="h-4 w-4" />
-                    <span>{tab.label}</span>
-                  </button>
-                );
-              })}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          
+          {/* Statistiques */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="flex items-center">
+                <div className="bg-blue-100 p-3 rounded-lg">
+                  <Eye className="h-6 w-6 text-blue-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Visites totales</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats.totalVisits.toLocaleString()}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="flex items-center">
+                <div className="bg-green-100 p-3 rounded-lg">
+                  <Users className="h-6 w-6 text-green-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Leads générés</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats.totalLeads}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="flex items-center">
+                <div className="bg-purple-100 p-3 rounded-lg">
+                  <MapPin className="h-6 w-6 text-purple-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Villes actives</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats.activeCities}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="flex items-center">
+                <div className="bg-orange-100 p-3 rounded-lg">
+                  <TrendingUp className="h-6 w-6 text-orange-600" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Taux de conversion</p>
+                  <p className="text-2xl font-bold text-gray-900">{stats.conversionRate.toFixed(1)}%</p>
+                </div>
+              </div>
             </div>
           </div>
-        </nav>
 
-        {/* Content */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          
-          {/* Vue d'ensemble */}
-          {activeTab === 'overview' && (
-            <div className="space-y-8">
-              <div className="flex justify-between items-center">
-                <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Vue d'ensemble</h1>
-                  <p className="text-gray-600">Statistiques et performance du site LS COM</p>
-                </div>
-                <button
-                  onClick={() => window.location.reload()}
-                  className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                >
-                  <RefreshCw className="h-4 w-4" />
-                  <span>Actualiser</span>
-                </button>
-              </div>
-
-              {/* Stats Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                  <div className="flex items-center">
-                    <div className="bg-blue-100 p-3 rounded-lg">
-                      <Eye className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-600">Visites totales</p>
-                      <p className="text-2xl font-bold text-gray-900">{stats.totalVisits.toLocaleString()}</p>
-                      <p className="text-xs text-green-600">+12% ce mois</p>
-                    </div>
+          {/* Top villes */}
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Top 5 des villes</h3>
+            <div className="space-y-3">
+              {stats.topCities.map((city, index) => (
+                <div key={index} className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-sm font-medium text-gray-500">#{index + 1}</span>
+                    <span className="font-medium text-gray-900">{city.name}</span>
+                  </div>
+                  <div className="flex items-center space-x-4 text-sm">
+                    <span className="text-gray-600">{city.visits} visites</span>
+                    <span className="text-green-600 font-medium">{city.leads} leads</span>
                   </div>
                 </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                  <div className="flex items-center">
-                    <div className="bg-green-100 p-3 rounded-lg">
-                      <Phone className="h-6 w-6 text-green-600" />
-                    </div>
-                    <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-600">Leads generes</p>
-                      <p className="text-2xl font-bold text-gray-900">{stats.totalLeads.toLocaleString()}</p>
-                      <p className="text-xs text-green-600">+8% ce mois</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                  <div className="flex items-center">
-                    <div className="bg-purple-100 p-3 rounded-lg">
-                      <MapPin className="h-6 w-6 text-purple-600" />
-                    </div>
-                    <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-600">Villes actives</p>
-                      <p className="text-2xl font-bold text-gray-900">{stats.activeCities}</p>
-                      <p className="text-xs text-blue-600">+2 cette semaine</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                  <div className="flex items-center">
-                    <div className="bg-orange-100 p-3 rounded-lg">
-                      <TrendingUp className="h-6 w-6 text-orange-600" />
-                    </div>
-                    <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-600">Taux de conversion</p>
-                      <p className="text-2xl font-bold text-gray-900">{stats.conversionRate.toFixed(1)}%</p>
-                      <p className="text-xs text-green-600">+0.5% ce mois</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Top Cities */}
-              <div className="grid lg:grid-cols-2 gap-8">
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-                  <div className="p-6 border-b border-gray-200">
-                    <h2 className="text-lg font-semibold text-gray-900">Top 5 des villes</h2>
-                  </div>
-                  <div className="p-6">
-                    <div className="space-y-4">
-                      {stats.topCities.map((city, index) => (
-                        <div key={city.name} className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <span className="flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
-                              {index + 1}
-                            </span>
-                            <span className="font-medium text-gray-900">{city.name}</span>
-                          </div>
-                          <div className="flex items-center space-x-6 text-sm text-gray-600">
-                            <span>{city.visits} visites</span>
-                            <span className="text-green-600 font-medium">{city.leads} leads</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-                  <div className="p-6 border-b border-gray-200">
-                    <h2 className="text-lg font-semibold text-gray-900">Activite recente</h2>
-                  </div>
-                  <div className="p-6">
-                    <div className="space-y-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="bg-green-100 p-2 rounded-full">
-                          <Plus className="h-4 w-4 text-green-600" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">Nouvelle ville ajoutee</p>
-                          <p className="text-xs text-gray-500">Il y a 2 heures</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="bg-blue-100 p-2 rounded-full">
-                          <Edit className="h-4 w-4 text-blue-600" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">Page Versailles mise a jour</p>
-                          <p className="text-xs text-gray-500">Il y a 1 jour</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="bg-orange-100 p-2 rounded-full">
-                          <TrendingUp className="h-4 w-4 text-orange-600" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">Pic de trafic detecte</p>
-                          <p className="text-xs text-gray-500">Il y a 3 jours</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
-          )}
+          </div>
 
           {/* Gestion des villes */}
-          {activeTab === 'cities' && (
-            <div className="space-y-6">
-              <div className="flex justify-between items-center">
-                <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Gestion des villes</h1>
-                  <p className="text-gray-600">Gerez les pages ville de votre site</p>
-                </div>
-                <div className="flex space-x-3">
-                  <button
-                    onClick={exportData}
-                    className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                  >
-                    <Download className="h-4 w-4" />
-                    <span>Exporter</span>
-                  </button>
-                  <button
-                    onClick={() => setShowAddCity(true)}
-                    className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                  >
-                    <Plus className="h-4 w-4" />
-                    <span>Ajouter une ville</span>
-                  </button>
-                </div>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+            <div className="px-6 py-4 border-b border-gray-200">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+                <h2 className="text-xl font-semibold text-gray-900">Gestion des pages villes</h2>
+                <button
+                  onClick={handleCreateCity}
+                  className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                >
+                  <Plus className="h-4 w-4" />
+                  <span>Nouvelle ville</span>
+                </button>
               </div>
-
+              
               {/* Filtres et recherche */}
-              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                  <div className="flex-1">
-                    <div className="relative">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      <input
-                        type="text"
-                        placeholder="Rechercher une ville..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Filter className="h-4 w-4 text-gray-400" />
-                    <select
-                      value={filterStatus}
-                      onChange={(e) => setFilterStatus(e.target.value as any)}
-                      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      <option value="all">Toutes</option>
-                      <option value="active">Actives</option>
-                      <option value="inactive">Inactives</option>
-                    </select>
-                  </div>
+              <div className="mt-4 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Rechercher une ville..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
                 </div>
+                <select
+                  value={filterStatus}
+                  onChange={(e) => setFilterStatus(e.target.value as any)}
+                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="all">Tous les statuts</option>
+                  <option value="active">Actif</option>
+                  <option value="draft">Brouillon</option>
+                  <option value="inactive">Inactif</option>
+                </select>
               </div>
+            </div>
 
-              {/* Liste des villes */}
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Ville
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Statut
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Distance/Prix
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Performance
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {filteredCities.map((city) => (
+            {/* Tableau des villes */}
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Ville
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Statut
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Distance / Prix
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Performance
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {paginatedCities.map((city) => {
+                    const zoneInfo = getZoneInfo(city.distanceFromBase || 0);
+                    return (
                       <tr key={city.id} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div>
                             <div className="text-sm font-medium text-gray-900">{city.name}</div>
-                            <div className="text-sm text-gray-500">/{city.slug}</div>
-                            <div className="text-xs text-gray-400">{city.content.localInfo.codePostal}</div>
+                            <div className="text-sm text-gray-500">{city.content.localInfo.codePostal}</div>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                             city.status === 'active' 
                               ? 'bg-green-100 text-green-800' 
+                              : city.status === 'draft'
+                              ? 'bg-yellow-100 text-yellow-800'
                               : 'bg-red-100 text-red-800'
                           }`}>
-                            {city.status === 'active' ? 'Active' : 'Inactive'}
+                            {city.status === 'active' ? 'Actif' : city.status === 'draft' ? 'Brouillon' : 'Inactif'}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">{city.distanceFromBase || 0} km</div>
-                          <div className="text-sm text-gray-500">{city.depannagePrice || 110}€ HT</div>
+                          <div>
+                            <div className={`text-sm font-medium ${zoneInfo.color}`}>
+                              Zone {zoneInfo.zone}
+                            </div>
+                            <div className="text-sm text-gray-500">
+                              {city.distanceFromBase}km - {city.depannagePrice}€ HT
+                            </div>
+                          </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">{city.visits} visites</div>
-                          <div className="text-sm text-green-600">{city.leads} leads</div>
+                          <div>
+                            <div className="text-sm text-gray-900">{city.visits} visites</div>
+                            <div className="text-sm text-green-600 font-medium">{city.leads} leads</div>
+                          </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <div className="flex items-center space-x-2">
-                            <Link
-                              to={`/ville/${city.slug}`}
-                              className="text-blue-600 hover:text-blue-900"
-                            >
-                              <Eye className="h-4 w-4" />
-                            </Link>
                             <button
                               onClick={() => handleEditCity(city)}
-                              className="text-indigo-600 hover:text-indigo-900"
+                              className="text-blue-600 hover:text-blue-900 transition-colors"
                             >
                               <Edit className="h-4 w-4" />
                             </button>
                             <button
-                              onClick={() => handleToggleStatus(city.id)}
-                              className={`${
-                                city.status === 'active' 
-                                  ? 'text-red-600 hover:text-red-900' 
-                                  : 'text-green-600 hover:text-green-900'
-                              }`}
-                            >
-                              {city.status === 'active' ? <X className="h-4 w-4" /> : <CheckCircle className="h-4 w-4" />}
-                            </button>
-                            <button
                               onClick={() => handleDeleteCity(city.id)}
-                              className="text-red-600 hover:text-red-900"
+                              className="text-red-600 hover:text-red-900 transition-colors"
                             >
                               <Trash2 className="h-4 w-4" />
                             </button>
                           </div>
                         </td>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
-          )}
 
-          {/* Analytics */}
-          {activeTab === 'analytics' && (
-            <div className="space-y-6">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Analytiques</h1>
-                <p className="text-gray-600">Analyse detaillee des performances</p>
-              </div>
-
-              <div className="grid lg:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                  <h2 className="text-lg font-semibold text-gray-900 mb-4">Performance par zone</h2>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-gray-600">Zone proximité (110€)</span>
-                      <span className="text-sm text-gray-900">
-                        {cityPages.filter(c => c.depannagePrice === 110).reduce((sum, c) => sum + c.visits, 0)} visites
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-gray-600">Zone intermédiaire (130€)</span>
-                      <span className="text-sm text-gray-900">
-                        {cityPages.filter(c => c.depannagePrice === 130).reduce((sum, c) => sum + c.visits, 0)} visites
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-gray-600">Zone étendue (150€)</span>
-                      <span className="text-sm text-gray-900">
-                        {cityPages.filter(c => c.depannagePrice === 150).reduce((sum, c) => sum + c.visits, 0)} visites
-                      </span>
-                    </div>
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="px-6 py-4 border-t border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm text-gray-700">
+                    Affichage de {startIndex + 1} à {Math.min(startIndex + itemsPerPage, filteredCities.length)} sur {filteredCities.length} villes
                   </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                  <h2 className="text-lg font-semibold text-gray-900 mb-4">Taux de conversion par zone</h2>
-                  <div className="space-y-4">
-                    {[110, 130, 150].map(price => {
-                      const zoneCities = cityPages.filter(c => c.depannagePrice === price);
-                      const totalVisits = zoneCities.reduce((sum, c) => sum + c.visits, 0);
-                      const totalLeads = zoneCities.reduce((sum, c) => sum + c.leads, 0);
-                      const conversionRate = totalVisits > 0 ? (totalLeads / totalVisits) * 100 : 0;
-                      
-                      return (
-                        <div key={price} className="flex justify-between items-center">
-                          <span className="text-sm font-medium text-gray-600">
-                            Zone {price === 110 ? 'proximité' : price === 130 ? 'intermédiaire' : 'étendue'}
-                          </span>
-                          <span className="text-sm text-gray-900">{conversionRate.toFixed(1)}%</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Settings */}
-          {activeTab === 'settings' && (
-            <div className="space-y-6">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Paramètres</h1>
-                <p className="text-gray-600">Configuration du système</p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Paramètres généraux</h2>
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Nom de l'entreprise</label>
-                    <input
-                      type="text"
-                      defaultValue="LS COM"
-                      className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Email de contact</label>
-                    <input
-                      type="email"
-                      defaultValue="contact@lscom.fr"
-                      className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Téléphone</label>
-                    <input
-                      type="tel"
-                      defaultValue="01 23 45 67 89"
-                      className="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-                    Sauvegarder
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-        </main>
-
-        {/* Modal Ajouter/Modifier ville */}
-        {showAddCity && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-6 border-b border-gray-200">
-                <div className="flex justify-between items-center">
-                  <h2 className="text-xl font-semibold text-gray-900">
-                    {editingCity ? 'Modifier la ville' : 'Ajouter une nouvelle ville'}
-                  </h2>
-                  <button
-                    onClick={() => {
-                      setShowAddCity(false);
-                      setEditingCity(null);
-                      resetNewCityForm();
-                    }}
-                    className="text-gray-400 hover:text-gray-600"
-                  >
-                    <X className="h-6 w-6" />
-                  </button>
-                </div>
-              </div>
-
-              <div className="p-6 space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Nom de la ville *
-                    </label>
-                    <input
-                      type="text"
-                      value={newCity.name}
-                      onChange={(e) => {
-                        setNewCity({ ...newCity, name: e.target.value });
-                        if (!editingCity) {
-                          setNewCity(prev => ({ ...prev, slug: generateSlug(e.target.value) }));
-                        }
-                      }}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Ex: Versailles"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Slug URL *
-                    </label>
-                    <input
-                      type="text"
-                      value={newCity.slug}
-                      onChange={(e) => setNewCity({ ...newCity, slug: e.target.value })}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Ex: versailles"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Code postal
-                    </label>
-                    <input
-                      type="text"
-                      value={newCity.codePostal}
-                      onChange={(e) => setNewCity({ ...newCity, codePostal: e.target.value })}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Ex: 78000"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Population
-                    </label>
-                    <input
-                      type="text"
-                      value={newCity.population}
-                      onChange={(e) => setNewCity({ ...newCity, population: e.target.value })}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Ex: 85 000"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Distance de la base (km)
-                    </label>
-                    <input
-                      type="number"
-                      value={newCity.distanceFromBase}
-                      onChange={(e) => setNewCity({ ...newCity, distanceFromBase: parseInt(e.target.value) || 0 })}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Ex: 8"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Prix dépannage (€ HT)
-                    </label>
-                    <select
-                      value={newCity.depannagePrice}
-                      onChange={(e) => setNewCity({ ...newCity, depannagePrice: parseInt(e.target.value) })}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                      disabled={currentPage === 1}
+                      className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <option value={110}>110€ HT (Zone proximité)</option>
-                      <option value={130}>130€ HT (Zone intermédiaire)</option>
-                      <option value={150}>150€ HT (Zone étendue)</option>
-                    </select>
+                      Précédent
+                    </button>
+                    <span className="text-sm text-gray-700">
+                      Page {currentPage} sur {totalPages}
+                    </span>
+                    <button
+                      onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                      disabled={currentPage === totalPages}
+                      className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Suivant
+                    </button>
                   </div>
                 </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Titre de la page
-                  </label>
-                  <input
-                    type="text"
-                    value={newCity.title}
-                    onChange={(e) => setNewCity({ ...newCity, title: e.target.value })}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Ex: Électricien à Versailles - LS COM"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Meta description
-                  </label>
-                  <textarea
-                    value={newCity.metaDescription}
-                    onChange={(e) => setNewCity({ ...newCity, metaDescription: e.target.value })}
-                    rows={3}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Description pour les moteurs de recherche..."
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Titre hero
-                  </label>
-                  <input
-                    type="text"
-                    value={newCity.heroTitle}
-                    onChange={(e) => setNewCity({ ...newCity, heroTitle: e.target.value })}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Ex: Électricien à Versailles"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Sous-titre hero
-                  </label>
-                  <input
-                    type="text"
-                    value={newCity.heroSubtitle}
-                    onChange={(e) => setNewCity({ ...newCity, heroSubtitle: e.target.value })}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Ex: Votre électricien professionnel de confiance"
-                  />
-                </div>
               </div>
-
-              <div className="p-6 border-t border-gray-200 flex justify-end space-x-3">
-                <button
-                  onClick={() => {
-                    setShowAddCity(false);
-                    setEditingCity(null);
-                    resetNewCityForm();
-                  }}
-                  className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors"
-                >
-                  Annuler
-                </button>
-                <button
-                  onClick={editingCity ? handleUpdateCity : handleAddCity}
-                  className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                >
-                  <Save className="h-4 w-4" />
-                  <span>{editingCity ? 'Mettre à jour' : 'Ajouter'}</span>
-                </button>
-              </div>
-            </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </ProtectedRoute>
   );

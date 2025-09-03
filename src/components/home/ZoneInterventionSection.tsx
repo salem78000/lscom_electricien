@@ -77,12 +77,12 @@ const ZoneInterventionSection: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <MapPin className="h-8 w-8 text-blue-400" />
                 <h2 className="text-3xl lg:text-4xl font-bold">
-                  Zone d intervention
+                  Zone d'intervention
                 </h2>
               </div>
               
               <p className="text-xl text-gray-300">
-                LS COM intervient dans toute l Ile-de-France, avec une expertise 
+                LS COM intervient dans toute l'Île-de-France, avec une expertise 
                 particulière dans les Yvelines et les communes limitrophes.
               </p>
             </div>
@@ -93,7 +93,7 @@ const ZoneInterventionSection: React.FC = () => {
                 <Clock className="h-6 w-6 text-blue-400 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-lg">Intervention rapide</h3>
-                  <p className="text-gray-300">Deplacement sous 2h en urgence dans toute notre zone</p>
+                  <p className="text-gray-300">Déplacement sous 2h en urgence dans toute notre zone</p>
                 </div>
               </div>
               
@@ -101,7 +101,7 @@ const ZoneInterventionSection: React.FC = () => {
                 <Phone className="h-6 w-6 text-blue-400 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-lg">Service de dépannage</h3>
-                  <p className="text-gray-300">Depannage electrique a partir de 110€ HT selon zone</p>
+                  <p className="text-gray-300">Dépannage électrique à partir de 110€ HT selon zone</p>
                 </div>
               </div>
               
@@ -109,17 +109,17 @@ const ZoneInterventionSection: React.FC = () => {
                 <MapPin className="h-6 w-6 text-blue-400 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-lg">Connaissance locale</h3>
-                  <p className="text-gray-300">Plus de 15 ans d experience sur le territoire francilien</p>
+                  <p className="text-gray-300">Plus de 15 ans d'expérience sur le territoire francilien</p>
                 </div>
               </div>
             </div>
 
             {/* CTA */}
             <div className="bg-blue-800 p-6 rounded-lg border border-blue-700">
-              <h3 className="text-lg font-semibold mb-3">Votre ville n apparait pas ?</h3>
+              <h3 className="text-lg font-semibold mb-3">Votre ville n'apparaît pas ?</h3>
               <p className="text-gray-300 mb-4">
-                Contactez-nous pour verifier si nous intervenons dans votre secteur. 
-                Notre zone d intervention s etend regulierement.
+                Contactez-nous pour vérifier si nous intervenons dans votre secteur. 
+                Notre zone d'intervention s'étend régulièrement.
               </p>
               <SecurePhone 
                 className="inline-flex items-center space-x-2 bg-[#b32a29] hover:bg-[#9a2426] text-white px-6 py-3 rounded-lg font-medium transition-colors"

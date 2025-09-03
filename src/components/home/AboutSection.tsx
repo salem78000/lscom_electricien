@@ -12,8 +12,8 @@ const AboutSection: React.FC = () => {
     {
       icon: Award,
       number: '15+',
-      label: 'Annees d experience',
-      description: 'Dans l electricite'
+      label: 'Années d\'expérience',
+      description: 'Dans l\'électricité'
     },
     {
       icon: Shield,
@@ -39,14 +39,14 @@ const AboutSection: React.FC = () => {
             <div className="space-y-4">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
                 LS COM, votre expert électricien
-                <span className="block" style={{ color: '#b32a29' }}>de confiance</span>
+                <span className="block text-blue-700">de confiance</span>
               </h2>
               
               <p className="text-lg text-gray-600 leading-relaxed">
                 Depuis plus de 15 ans, LS COM accompagne les particuliers et professionnels 
-                d Ile-de-France dans tous leurs projets electriques. Notre expertise reconnue 
-                et notre approche qualitative font de nous le partenaire ideal pour vos installations, 
-                depannages et mises en conformite.
+                d'Île-de-France dans tous leurs projets électriques. Notre expertise reconnue 
+                et notre approche qualitative font de nous le partenaire idéal pour vos installations, 
+                dépannages et mises en conformité.
               </p>
             </div>
 
@@ -56,8 +56,8 @@ const AboutSection: React.FC = () => {
                 <li className="flex items-start space-x-3">
                   <Shield className="h-6 w-6 text-blue-700 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-gray-900">Electriciens certifies et formes</p>
-                    <p className="text-gray-600">Respect strict des normes electriques en vigueur</p>
+                    <p className="font-medium text-gray-900">Électriciens certifiés et formés</p>
+                    <p className="text-gray-600">Respect strict des normes électriques en vigueur</p>
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
@@ -70,8 +70,8 @@ const AboutSection: React.FC = () => {
                 <li className="flex items-start space-x-3">
                   <Users className="h-6 w-6 text-blue-700 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-gray-900">Service client personnalise</p>
-                    <p className="text-gray-600">Ecoute, conseil et suivi de vos projets</p>
+                    <p className="font-medium text-gray-900">Service client personnalisé</p>
+                    <p className="text-gray-600">Écoute, conseil et suivi de vos projets</p>
                   </div>
                 </li>
               </ul>

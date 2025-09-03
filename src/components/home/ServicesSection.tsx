@@ -7,32 +7,32 @@ const ServicesSection: React.FC = () => {
     {
       icon: Car,
       title: 'Bornes de recharge IRVE',
-      description: 'Installation de bornes de recharge et prises Green UP pour vehicules electriques. Installateur certifie QUALIFELEC IRVE.',
-      features: ['Certification QUALIFELEC IRVE', 'Bornes et prises Green UP', 'Aide aux subventions'],
+      description: 'Installation de bornes de recharge et prises Green\'UP pour véhicules électriques. Installateur certifié QUALIFELEC IRVE.',
+      features: ['Certification QUALIFELEC IRVE', 'Bornes et prises Green\'UP', 'Aide aux subventions'],
       link: '/services/borne-recharge-irve',
       color: 'green',
       featured: true
     },
     {
       icon: Zap,
-      title: 'Installation electrique complete',
-      description: 'Conception et realisation d installations electriques neuves ou en renovation, adaptees a vos besoins specifiques.',
-      features: ['Etude personnalisee', 'Materiel certifie', 'Mise aux normes'],
+      title: 'Installation électrique complète',
+      description: 'Conception et réalisation d\'installations électriques neuves ou en rénovation, adaptées à vos besoins spécifiques.',
+      features: ['Étude personnalisée', 'Matériel certifié', 'Mise aux normes'],
       link: '/services/installation-electrique',
       color: 'blue'
     },
     {
       icon: Shield,
-      title: 'Mise en conformite tableau electrique',
-      description: 'Modernisation et mise aux normes de vos tableaux electriques pour garantir securite et performance.',
+      title: 'Mise en conformité tableau électrique',
+      description: 'Modernisation et mise aux normes de vos tableaux électriques pour garantir sécurité et performance.',
       features: ['Diagnostic complet', 'Respect des normes', 'Certification'],
       link: '/services/mise-en-conformite',
       color: 'green'
     },
     {
       icon: AlertTriangle,
-      title: 'Depannage electrique d urgence',
-      description: 'Intervention rapide 24h/24 et 7j/7 pour resoudre tous vos problemes electriques en urgence.',
+      title: 'Dépannage électrique d\'urgence',
+      description: 'Intervention rapide 24h/24 et 7j/7 pour résoudre tous vos problèmes électriques en urgence.',
       features: ['24h/24 - 7j/7', 'Intervention rapide', 'Diagnostic gratuit'],
       link: '/services/depannage-urgence',
       color: 'orange'
@@ -59,8 +59,8 @@ const ServicesSection: React.FC = () => {
             Nos services électriques
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            De l installation complete au depannage d urgence, LS COM vous accompagne 
-            dans tous vos projets electriques avec expertise et professionnalisme.
+            De l'installation complète au dépannage d'urgence, LS COM vous accompagne 
+            dans tous vos projets électriques avec expertise et professionnalisme.
           </p>
         </div>
 

@@ -30,21 +30,21 @@ const supportedCities = {
   'guyancourt': {
     name: 'Guyancourt',
     codePostal: '78280',
-    population: '30 000',
+    population: '29 000',
     departement: 'Yvelines',
     description: 'commune moderne de Saint-Quentin-en-Yvelines'
   },
   'montigny-le-bretonneux': {
     name: 'Montigny-le-Bretonneux',
     codePostal: '78180',
-    population: '35 000',
+    population: '34 000',
     departement: 'Yvelines',
     description: 'ville nouvelle active de Saint-Quentin-en-Yvelines'
   },
   'trappes': {
     name: 'Trappes',
     codePostal: '78190',
-    population: '30 000',
+    population: '31 000',
     departement: 'Yvelines',
     description: 'commune urbaine des Yvelines'
   },
@@ -79,7 +79,7 @@ const supportedCities = {
   'orsay': {
     name: 'Orsay',
     codePostal: '91400',
-    population: '17 000',
+    population: '16 000',
     departement: 'Essonne',
     description: 'ville universitaire et scientifique'
   },
@@ -100,14 +100,14 @@ const supportedCities = {
   'les-clayes-sous-bois': {
     name: 'Les Clayes-sous-Bois',
     codePostal: '78340',
-    population: '18 000',
+    population: '17 500',
     departement: 'Yvelines',
     description: 'commune résidentielle des Yvelines'
   },
   'maurepas': {
     name: 'Maurepas',
     codePostal: '78310',
-    population: '20 000',
+    population: '19 500',
     departement: 'Yvelines',
     description: 'ville nouvelle de Saint-Quentin-en-Yvelines'
   },
@@ -121,14 +121,14 @@ const supportedCities = {
   'viroflay': {
     name: 'Viroflay',
     codePostal: '78220',
-    population: '16 000',
+    population: '15 500',
     departement: 'Yvelines',
     description: 'commune limitrophe de Versailles'
   },
   'le-chesnay': {
     name: 'Le Chesnay-Rocquencourt',
     codePostal: '78150',
-    population: '30 000',
+    population: '29 000',
     departement: 'Yvelines',
     description: 'commune proche du château de Versailles'
   },
@@ -142,7 +142,7 @@ const supportedCities = {
   'bois-d-arcy': {
     name: 'Bois-d\'Arcy',
     codePostal: '78390',
-    population: '14 000',
+    population: '13 500',
     departement: 'Yvelines',
     description: 'commune résidentielle des Yvelines'
   },
@@ -156,7 +156,7 @@ const supportedCities = {
   'jouy-en-josas': {
     name: 'Jouy-en-Josas',
     codePostal: '78350',
-    population: '8 000',
+    population: '8 100',
     departement: 'Yvelines',
     description: 'commune historique de la vallée de Bièvre'
   }

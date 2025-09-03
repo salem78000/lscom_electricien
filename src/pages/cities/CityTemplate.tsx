@@ -202,6 +202,9 @@ const CityTemplate: React.FC = () => {
   // Déterminer les données à utiliser
   const currentCityData = dynamicCity || staticCityData;
   const cityName = dynamicCity ? dynamicCity.name : staticCityData?.name;
+  
+  // Récupérer le tarif de dépannage selon la zone
+  const depannagePrice = dynamicCity?.depannagePrice || 110;
 
   // Construire les informations de la ville
   const cityInfo = dynamicCity ? {
@@ -345,8 +348,6 @@ const CityTemplate: React.FC = () => {
     );
   }
   
-  const depannagePrice = 110;
-
   // Contenu SEO optimisé pour chaque ville
   const services = [
     {
@@ -373,12 +374,12 @@ const CityTemplate: React.FC = () => {
     },
     {
       title: `Dépannage électrique à ${cityName}`,
-      description: `Service de dépannage électrique à partir de ${depannagePrice}€ HT selon zone à ${cityName}. Intervention rapide pour tous vos problèmes électriques.`,
+      description: `Service de dépannage électrique ${depannagePrice}€ HT à ${cityName}. Intervention rapide pour tous vos problèmes électriques.`,
       icon: Clock,
       details: [
-        `À partir de ${depannagePrice}€ HT selon zone pour 1h`,
+        `${depannagePrice}€ HT pour 1h`,
         'Diagnostic et réparation inclus',
-        'Déplacement dans ${cityName}',
+        `Déplacement à ${cityName}`,
         'Devis gratuit pour travaux complémentaires'
       ]
     },
@@ -479,7 +480,7 @@ const CityTemplate: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Clock className="h-6 w-6 text-green-400" />
-                  <span className="text-blue-100">Dépannage à partir de 110€ HT</span>
+                  <span className="text-blue-100">Dépannage ${depannagePrice}€ HT</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Award className="h-6 w-6 text-green-400" />
@@ -695,7 +696,7 @@ const CityTemplate: React.FC = () => {
                   <div>
                     <h3 className="font-semibold text-gray-900 text-lg">Intervention rapide</h3>
                     <p className="text-gray-600">
-                      Dépannage électrique à {cityName} à partir de 110€ HT selon zone. 
+                      Dépannage électrique à ${cityName} ${depannagePrice}€ HT. 
                       Déplacement rapide dans tout le secteur {cityInfo.codePostal}.
                     </p>
                   </div>
@@ -774,7 +775,7 @@ const CityTemplate: React.FC = () => {
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="space-y-2">
                   <Phone className="h-8 w-8 text-blue-400 mx-auto" />
-                  <h3 className="font-semibold">Dépannage à partir de 110€ HT</h3>
+                  <h3 className="font-semibold">Dépannage ${depannagePrice}€ HT</h3>
                   <p className="text-gray-300 text-sm">Selon zone - 1h à {cityName}</p>
                 </div>
                 <div className="space-y-2">

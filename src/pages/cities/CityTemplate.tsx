@@ -191,7 +191,7 @@ const CityTemplate: React.FC = () => {
       setCityPages(Array.isArray(cityData) ? cityData : []);
       setIsLoading(false);
     }
-  }, []);
+  }, [city]);
   
   // Chercher d'abord dans les pages créées via le dashboard
   const dynamicCity = cityPages.find((c: any) => c.slug === city && c.status === 'active');
@@ -202,6 +202,90 @@ const CityTemplate: React.FC = () => {
   // Déterminer les données à utiliser
   const currentCityData = dynamicCity || staticCityData;
   const cityName = dynamicCity ? dynamicCity.name : staticCityData?.name;
+
+  // Construire les informations de la ville
+  const cityInfo = dynamicCity ? {
+    name: dynamicCity.name,
+    codePostal: dynamicCity.content?.localInfo?.codePostal || '',
+    population: dynamicCity.content?.localInfo?.population || '',
+    departement: dynamicCity.content?.localInfo?.departement || 'Yvelines',
+    description: `${dynamicCity.name.toLowerCase()}, votre ville de confiance`
+  } : staticCityData;
+
+  const pageTitle = dynamicCity?.title || `Électricien à ${cityName} - LS COM | Installation, Dépannage, Conformité`;
+  const metaDescription = dynamicCity?.metaDescription || `LS COM, électricien professionnel à ${cityName} (${cityInfo?.codePostal}). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.`;
+
+  // SEO local optimisé - HOOK DÉPLACÉ AVANT LES RETOURS CONDITIONNELS
+  React.useEffect(() => {
+    if (!cityName || !cityInfo) return;
+    
+    // Mise à jour dynamique des meta tags pour le SEO local
+    document.title = pageTitle;
+    
+    // Meta description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', metaDescription);
+    
+    // Keywords locaux
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.setAttribute('name', 'keywords');
+      document.head.appendChild(metaKeywords);
+    }
+    const keywords = `électricien ${cityName}, installation électrique ${cityName}, dépannage électrique ${cityName}, ${cityInfo.codePostal}, ${cityInfo.departement}, LS COM`;
+    metaKeywords.setAttribute('content', keywords);
+    
+    // Données structurées JSON-LD pour le SEO local
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": `LS COM - Électricien à ${cityName}`,
+      "description": metaDescription,
+      "url": window.location.href,
+      "telephone": "+33622523902",
+      "email": "contact@lscom.fr",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "24 Avenue de Chevincourt",
+        "addressLocality": "Magny-les-Hameaux",
+        "postalCode": "78114",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "48.7167",
+        "longitude": "2.0833"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": cityName,
+        "addressRegion": cityInfo.departement
+      },
+      "serviceType": ["Installation électrique", "Dépannage électrique", "Mise en conformité", "Bornes IRVE"],
+      "priceRange": "110€-150€",
+      "openingHours": "Mo-Fr 08:00-18:00, Sa 08:00-12:00",
+      "sameAs": [
+        "https://www.google.com/search?q=LS+COM+électricien"
+      ]
+    };
+    
+    // Injection du JSON-LD
+    let jsonLd = document.querySelector('#local-business-schema');
+    if (!jsonLd) {
+      jsonLd = document.createElement('script');
+      jsonLd.setAttribute('type', 'application/ld+json');
+      jsonLd.setAttribute('id', 'local-business-schema');
+      document.head.appendChild(jsonLd);
+    }
+    jsonLd.textContent = JSON.stringify(structuredData);
+    
+  }, [cityName, pageTitle, metaDescription, cityInfo]);
 
   // Affichage de chargement
   if (isLoading) {
@@ -261,15 +345,6 @@ const CityTemplate: React.FC = () => {
     );
   }
   
-  // Construire les informations de la ville
-  const cityInfo = dynamicCity ? {
-    name: dynamicCity.name,
-    codePostal: dynamicCity.content?.localInfo?.codePostal || '',
-    population: dynamicCity.content?.localInfo?.population || '',
-    departement: dynamicCity.content?.localInfo?.departement || 'Yvelines',
-    description: `${dynamicCity.name.toLowerCase()}, votre ville de confiance`
-  } : staticCityData;
-
   const depannagePrice = 110;
 
   // Contenu SEO optimisé pour chaque ville
@@ -353,78 +428,6 @@ const CityTemplate: React.FC = () => {
 
   const heroTitle = dynamicCity?.content?.heroTitle || `Électricien à ${cityName}`;
   const heroSubtitle = dynamicCity?.content?.heroSubtitle || `Votre électricien professionnel de confiance à ${cityName}`;
-  const pageTitle = dynamicCity?.title || `Électricien à ${cityName} - LS COM | Installation, Dépannage, Conformité`;
-  const metaDescription = dynamicCity?.metaDescription || `LS COM, électricien professionnel à ${cityName} (${cityInfo.codePostal}). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.`;
-
-  // SEO local optimisé
-  React.useEffect(() => {
-    // Mise à jour dynamique des meta tags pour le SEO local
-    document.title = pageTitle;
-    
-    // Meta description
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute('content', metaDescription);
-    
-    // Keywords locaux
-    let metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (!metaKeywords) {
-      metaKeywords = document.createElement('meta');
-      metaKeywords.setAttribute('name', 'keywords');
-      document.head.appendChild(metaKeywords);
-    }
-    const keywords = `électricien ${cityName}, installation électrique ${cityName}, dépannage électrique ${cityName}, ${cityInfo.codePostal}, ${cityInfo.departement}, LS COM`;
-    metaKeywords.setAttribute('content', keywords);
-    
-    // Données structurées JSON-LD pour le SEO local
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": `LS COM - Électricien à ${cityName}`,
-      "description": metaDescription,
-      "url": window.location.href,
-      "telephone": "+33622523902",
-      "email": "contact@lscom.fr",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "24 Avenue de Chevincourt",
-        "addressLocality": "Magny-les-Hameaux",
-        "postalCode": "78114",
-        "addressCountry": "FR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "48.7167",
-        "longitude": "2.0833"
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": cityName,
-        "addressRegion": cityInfo.departement
-      },
-      "serviceType": ["Installation électrique", "Dépannage électrique", "Mise en conformité", "Bornes IRVE"],
-      "priceRange": "110€-150€",
-      "openingHours": "Mo-Fr 08:00-18:00, Sa 08:00-12:00",
-      "sameAs": [
-        "https://www.google.com/search?q=LS+COM+électricien"
-      ]
-    };
-    
-    // Injection du JSON-LD
-    let jsonLd = document.querySelector('#local-business-schema');
-    if (!jsonLd) {
-      jsonLd = document.createElement('script');
-      jsonLd.setAttribute('type', 'application/ld+json');
-      jsonLd.setAttribute('id', 'local-business-schema');
-      document.head.appendChild(jsonLd);
-    }
-    jsonLd.textContent = JSON.stringify(structuredData);
-    
-  }, [cityName, pageTitle, metaDescription, cityInfo]);
 
   return (
     <div>

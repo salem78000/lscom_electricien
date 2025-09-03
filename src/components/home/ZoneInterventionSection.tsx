@@ -15,8 +15,16 @@ const ZoneInterventionSection: React.FC = () => {
       const staticCities = Array.isArray(cityData) ? cityData : [];
       const allCities = [...storedCities, ...staticCities];
       
+      // Éviter les doublons en utilisant le slug comme clé unique
+      const uniqueCities = allCities.reduce((acc, city) => {
+        if (!acc.find(c => c.slug === city.slug)) {
+          acc.push(city);
+        }
+        return acc;
+      }, []);
+      
       // Filtrer les villes actives et prendre les 60 premières
-      return allCities
+      return uniqueCities
         .filter(city => city.status === 'active')
         .slice(0, 60)
         .map(city => ({

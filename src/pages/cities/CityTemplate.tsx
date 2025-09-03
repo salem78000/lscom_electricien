@@ -163,8 +163,6 @@ const supportedCities = {
 };
 
 const CityTemplate: React.FC = () => {
-  // Scroll vers le haut géré par App.tsx
-  
   const location = useLocation();
   // Extraire le nom de la ville depuis l'URL /electricien/ville-name
   const pathParts = location.pathname.split('/');
@@ -172,19 +170,26 @@ const CityTemplate: React.FC = () => {
   
   // Récupérer les pages ville depuis le localStorage avec gestion d'erreur
   const [cityPages, setCityPages] = React.useState<any[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   
   React.useEffect(() => {
     try {
+      console.log('Loading city data for:', city);
       const stored = localStorage.getItem('admin_cities');
       const parsedData = stored ? JSON.parse(stored) : [];
       const pages = Array.isArray(parsedData) ? parsedData : [];
       // Combiner les données du localStorage avec les données statiques
       const staticData = Array.isArray(cityData) ? cityData : [];
       const combinedPages = [...pages, ...staticData];
+      console.log('Combined pages:', combinedPages.length);
       setCityPages(combinedPages);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error loading city pages:', error);
+      setError('Erreur de chargement des données');
       setCityPages(Array.isArray(cityData) ? cityData : []);
+      setIsLoading(false);
     }
   }, []);
   
@@ -195,29 +200,62 @@ const CityTemplate: React.FC = () => {
   const staticCityData = supportedCities[city as keyof typeof supportedCities];
   
   // Déterminer les données à utiliser
-  const cityData = dynamicCity || staticCityData;
+  const currentCityData = dynamicCity || staticCityData;
   const cityName = dynamicCity ? dynamicCity.name : staticCityData?.name;
 
-  // Si aucune donnée trouvée, afficher une erreur
-  if (!cityName || !cityData) {
+  // Affichage de chargement
+  if (isLoading) {
     return (
-      <div>
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <div className="text-center p-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Ville non trouvée</h1>
-            <p className="text-gray-600 mb-4">
-              La page pour "{city}" n'existe pas ou n'est pas encore active.
-            </p>
-            <p className="text-sm text-gray-500 mb-6">
-              Villes disponibles : {Object.keys(supportedCities).join(', ')}
-            </p>
-            <Link 
-              to="/" 
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-            >
-              Retour à l'accueil
-            </Link>
-          </div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center p-8">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Chargement...</h1>
+          <p className="text-gray-600">Chargement de la page pour {city}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Affichage d'erreur
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center p-8">
+          <h1 className="text-3xl font-bold text-red-600 mb-4">Erreur</h1>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <Link 
+            to="/" 
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          >
+            Retour à l'accueil
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // Si aucune donnée trouvée, afficher une erreur
+  if (!cityName || !currentCityData) {
+    console.log('City not found:', city);
+    console.log('Available cities:', Object.keys(supportedCities));
+    console.log('Dynamic cities:', cityPages.map(c => c.slug));
+    
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center p-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Ville non trouvée</h1>
+          <p className="text-gray-600 mb-4">
+            La page pour "{city}" n'existe pas ou n'est pas encore active.
+          </p>
+          <p className="text-sm text-gray-500 mb-6">
+            Villes disponibles : {Object.keys(supportedCities).slice(0, 10).join(', ')}...
+          </p>
+          <Link 
+            to="/" 
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          >
+            Retour à l'accueil
+          </Link>
         </div>
       </div>
     );

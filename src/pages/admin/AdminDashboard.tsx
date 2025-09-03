@@ -1074,4 +1074,10 @@ const AdminDashboard: React.FC = () => {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`
+                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                            city.status === 'active' 
+                              ? 'bg-green-100 text-green-800' 
+                              : 'bg-red-100 text-red-800'
+                          }`}>
+                            {city.status === 'active' ? 'Active' : 'Inactive'}
+                          </span>

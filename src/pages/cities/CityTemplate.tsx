@@ -747,12 +747,12 @@ const CityTemplate: React.FC = () => {
             <div className="space-y-4">
               <Link 
                 to="/contact" 
-                className="inline-block bg-[#b32a29] hover:bg-[#9a2426] text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors shadow-lg"
+                className="inline-block bg-[#b32a29] hover:bg-[#9a2426] text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-lg font-bold text-sm sm:text-base lg:text-lg transition-colors shadow-lg"
               >
                 Demander un devis à {cityName}
               </Link>
               <p className="text-gray-400 text-sm">
-                Devis gratuit sous 24h • SIRET: 52445239800026 • Électricien certifié
+                className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-lg font-bold text-sm sm:text-base lg:text-lg transition-all flex items-center justify-center space-x-2"
               </p>
             </div>
           </div>

@@ -120,7 +120,6 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
     </section>
-  )
   );
 };
 

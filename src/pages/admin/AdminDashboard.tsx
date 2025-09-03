@@ -1088,18 +1088,17 @@ const AdminDashboard: React.FC = () => {
     const matchesSearch = city.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          city.slug.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = filterStatus === 'all' || city.status === filterStatus;
-      const localStorageCities = stored ? JSON.parse(stored) : [];
-      const storedCities = Array.isArray(localStorageCities) ? localStorageCities : [];
+    return matchesSearch && matchesFilter;
+  });
 
-      // Combiner les données du localStorage avec les données statiques
-      const staticCities = Array.isArray(cityData) ? cityData : [];
-      const allCities = [...storedCities, ...staticCities];
+  // Pagination
+  const totalPages = Math.ceil(filteredCities.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedCities = filteredCities.slice(startIndex, startIndex + itemsPerPage);
 
   const handleDeleteCity = (id: string) => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer cette ville ?')) {
-      // En cas d'erreur, utiliser au moins les données statiques
-      setCities(Array.isArray(cityData) ? cityData : []);
+      setCities(cities.filter(city => city.id !== id));
     }
   };
 

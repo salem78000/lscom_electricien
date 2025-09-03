@@ -592,7 +592,7 @@ const CityTemplate: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Clock className="h-6 w-6 text-green-400" />
-                  <span className="text-blue-100">Dépannage ${depannagePrice}€ HT</span>
+                  <span className="text-blue-100">Dépannage {depannagePrice}€ HT</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Award className="h-6 w-6 text-green-400" />

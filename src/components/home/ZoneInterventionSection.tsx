@@ -15,17 +15,17 @@ const ZoneInterventionSection: React.FC = () => {
       const staticCities = Array.isArray(cityData) ? cityData : [];
       const allCities = [...storedCities, ...staticCities];
       
-      // Filtrer les villes actives et prendre les 54 premières
+      // Filtrer les villes actives et prendre les 60 premières
       return allCities
         .filter(city => city.status === 'active')
-        .slice(0, 54)
+        .slice(0, 60)
         .map(city => ({
           name: city.name,
           slug: city.slug
         }));
     } catch (error) {
       console.error('Error loading cities:', error);
-      // Fallback avec quelques villes principales
+      // Fallback avec villes principales
       return [
         { name: 'Magny-les-Hameaux', slug: 'magny-les-hameaux' },
         { name: 'Versailles', slug: 'versailles' },
@@ -33,7 +33,18 @@ const ZoneInterventionSection: React.FC = () => {
         { name: 'Guyancourt', slug: 'guyancourt' },
         { name: 'Montigny-le-Bretonneux', slug: 'montigny-le-bretonneux' },
         { name: 'Trappes', slug: 'trappes' },
-        { name: 'Plaisir', slug: 'plaisir' }
+        { name: 'Plaisir', slug: 'plaisir' },
+        { name: 'Le Chesnay', slug: 'le-chesnay' },
+        { name: 'Élancourt', slug: 'elancourt' },
+        { name: 'Buc', slug: 'buc' },
+        { name: 'Gif-sur-Yvette', slug: 'gif-sur-yvette' },
+        { name: 'Saclay', slug: 'saclay' },
+        { name: 'Viroflay', slug: 'viroflay' },
+        { name: 'Bois d\'Arcy', slug: 'bois-d-arcy' },
+        { name: 'Maurepas', slug: 'maurepas' },
+        { name: 'Coignières', slug: 'coignieres' },
+        { name: 'Les Clayes-sous-bois', slug: 'les-clayes-sous-bois' },
+        { name: 'Orsay', slug: 'orsay' }
       ];
     }
   };

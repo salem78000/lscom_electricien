@@ -1,217 +1,65 @@
 export const cityData = [
-  // Zone proximité (0-5km) - 110€ HT
+  // Zone proximité (110€ HT) - 0-5km
   {
-    id: 'voisins-le-bretonneux',
-    name: 'Voisins-le-Bretonneux',
-    slug: 'voisins-le-bretonneux',
-    title: 'Électricien Voisins-le-Bretonneux - Dépannage électrique 78960',
-    metaDescription: 'Électricien expert à Voisins-le-Bretonneux (78960). Service de dépannage électrique rapide et professionnel. Tarif 110€ HT zone proximité.',
+    id: '1',
+    name: 'Magny-les-Hameaux',
+    slug: 'magny-les-hameaux',
+    title: 'Électricien à Magny-les-Hameaux - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Magny-les-Hameaux (78114). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à Voisins-le-Bretonneux',
-      heroSubtitle: 'Dépannage électrique rapide - Tarif 110€ HT',
+      heroTitle: 'Électricien à Magny-les-Hameaux',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Magny-les-Hameaux',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 110€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Marie L. - Voisins-le-Bretonneux',
-          text: 'Excellent électricien à Voisins-le-Bretonneux ! Installation électrique complète de ma maison, travail soigné et dans les délais.',
+          name: 'Marie L. - Magny-les-Hameaux',
+          text: 'Excellent électricien à Magny-les-Hameaux ! Installation électrique complète de ma maison, travail soigné et dans les délais.',
           service: 'Installation électrique',
           rating: 5,
           date: 'Il y a 2 mois'
         }
       ],
       localInfo: {
-        population: '13 500',
-        codePostal: '78960',
+        population: '9 500',
+        codePostal: '78114',
         departement: 'Yvelines'
       }
     },
-    visits: 850,
-    leads: 28,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 3,
+    visits: 8500,
+    leads: 289,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 0,
     depannagePrice: 110
   },
   {
-    id: 'milion-la-chapelle',
-    name: 'Milion La Chapelle',
-    slug: 'milion-la-chapelle',
-    title: 'Électricien Milion La Chapelle - Service électrique 78470',
-    metaDescription: 'Électricien professionnel à Milion La Chapelle (78470). Interventions électriques rapides et sécurisées. Tarif 110€ HT.',
-    content: {
-      heroTitle: 'Électricien à Milion La Chapelle',
-      heroSubtitle: 'Service électrique de qualité - Tarif 110€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Pierre D. - Milion La Chapelle',
-          text: 'Service électrique de qualité à Milion La Chapelle. Intervention rapide et professionnelle.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '1 200',
-        codePostal: '78470',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 320,
-    leads: 12,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 4,
-    depannagePrice: 110
-  },
-  {
-    id: 'saint-lambert',
-    name: 'St Lambert',
-    slug: 'saint-lambert',
-    title: 'Électricien St Lambert - Réparation électrique 78470',
-    metaDescription: 'Électricien à St Lambert (78470) pour tous vos besoins électriques. Intervention sous 2h en zone proximité. Tarif 110€ HT.',
-    content: {
-      heroTitle: 'Électricien à St Lambert',
-      heroSubtitle: 'Réparation électrique professionnelle - Tarif 110€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Sophie M. - St Lambert',
-          text: 'Réparation électrique professionnelle à St Lambert. Très satisfaite du service LS COM.',
-          service: 'Réparation électrique',
-          rating: 5,
-          date: 'Il y a 3 semaines'
-        }
-      ],
-      localInfo: {
-        population: '800',
-        codePostal: '78470',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 280,
-    leads: 9,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 4,
-    depannagePrice: 110
-  },
-  {
-    id: 'le-chesnay',
-    name: 'Le Chesnay',
-    slug: 'le-chesnay',
-    title: 'Électricien Le Chesnay - Dépannage électrique 78150',
-    metaDescription: 'Électricien Le Chesnay (78150). Service de dépannage électrique professionnel. Installation et réparation. Tarif 110€ HT.',
-    content: {
-      heroTitle: 'Électricien au Chesnay',
-      heroSubtitle: 'Dépannage électrique 24h/24 - Tarif 110€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Jean P. - Le Chesnay',
-          text: 'Dépannage électrique rapide au Chesnay. Service professionnel et efficace.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '29 000',
-        codePostal: '78150',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 1200,
-    leads: 42,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 5,
-    depannagePrice: 110
-  },
-  {
-    id: 'guyancourt',
-    name: 'Guyancourt',
-    slug: 'guyancourt',
-    title: 'Électricien Guyancourt - Installation électrique 78280',
-    metaDescription: 'Électricien professionnel à Guyancourt (78280). Installation et dépannage électrique. Intervention rapide. Tarif 110€ HT.',
-    content: {
-      heroTitle: 'Électricien à Guyancourt',
-      heroSubtitle: 'Installation électrique professionnelle - Tarif 110€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Anne L. - Guyancourt',
-          text: 'Installation électrique professionnelle à Guyancourt. Travail de qualité et dans les délais.',
-          service: 'Installation électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '29 000',
-        codePostal: '78280',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 1150,
-    leads: 38,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 5,
-    depannagePrice: 110
-  },
-  {
-    id: 'chevreuse',
+    id: '2',
     name: 'Chevreuse',
     slug: 'chevreuse',
-    title: 'Électricien Chevreuse - Service électrique 78460',
-    metaDescription: 'Électricien à Chevreuse (78460). Dépannage et installation électrique. Service professionnel et rapide. Tarif 110€ HT.',
+    title: 'Électricien à Chevreuse - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Chevreuse (78460). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
       heroTitle: 'Électricien à Chevreuse',
-      heroSubtitle: 'Service électrique de confiance - Tarif 110€ HT',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Chevreuse',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 110€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Michel R. - Chevreuse',
-          text: 'Service électrique de confiance à Chevreuse. Électricien compétent et professionnel.',
-          service: 'Service électrique',
+          name: 'Pierre D. - Chevreuse',
+          text: 'Dépannage électrique rapide à Chevreuse. Panne résolue en 1h avec le forfait 110€.',
+          service: 'Dépannage électrique',
           rating: 5,
-          date: 'Il y a 3 semaines'
+          date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
@@ -220,36 +68,36 @@ export const cityData = [
         departement: 'Yvelines'
       }
     },
-    visits: 680,
-    leads: 24,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    visits: 4200,
+    leads: 142,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
     distanceFromBase: 3,
     depannagePrice: 110
   },
   {
-    id: 'chateaufort',
+    id: '3',
     name: 'Châteaufort',
     slug: 'chateaufort',
-    title: 'Électricien Châteaufort - Dépannage électrique 78117',
-    metaDescription: 'Électricien Châteaufort (78117). Intervention rapide pour tous travaux électriques. Tarif préférentiel zone proximité 110€ HT.',
+    title: 'Électricien à Châteaufort - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Châteaufort (78117). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
       heroTitle: 'Électricien à Châteaufort',
-      heroSubtitle: 'Travaux électriques de qualité - Tarif 110€ HT',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Châteaufort',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 110€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Claire B. - Châteaufort',
-          text: 'Travaux électriques de qualité à Châteaufort. Intervention rapide et soignée.',
-          service: 'Travaux électriques',
+          name: 'Sophie M. - Châteaufort',
+          text: 'Mise en conformité de mon tableau électrique à Châteaufort. Travail de qualité, explications claires.',
+          service: 'Mise en conformité',
           rating: 5,
-          date: 'Il y a 2 mois'
+          date: 'Il y a 3 semaines'
         }
       ],
       localInfo: {
@@ -258,36 +106,188 @@ export const cityData = [
         departement: 'Yvelines'
       }
     },
-    visits: 420,
-    leads: 15,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    visits: 1800,
+    leads: 61,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
     distanceFromBase: 4,
     depannagePrice: 110
   },
   {
-    id: 'toussus-le-noble',
-    name: 'Toussus-le-Noble',
-    slug: 'toussus-le-noble',
-    title: 'Électricien Toussus-le-Noble - Réparation électrique 78117',
-    metaDescription: 'Électricien à Toussus-le-Noble (78117). Réparation et maintenance électrique professionnelle. Tarif 110€ HT.',
+    id: '4',
+    name: 'Les Loges-en-Josas',
+    slug: 'les-loges-en-josas',
+    title: 'Électricien aux Loges-en-Josas - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel aux Loges-en-Josas (78350). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à Toussus-le-Noble',
-      heroSubtitle: 'Réparation électrique experte - Tarif 110€ HT',
+      heroTitle: 'Électricien aux Loges-en-Josas',
+      heroSubtitle: 'Votre électricien professionnel de confiance aux Loges-en-Josas',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 110€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Paul M. - Toussus-le-Noble',
-          text: 'Réparation électrique experte à Toussus-le-Noble. Service professionnel et efficace.',
-          service: 'Réparation électrique',
+          name: 'Jean L. - Les Loges-en-Josas',
+          text: 'Installation borne IRVE aux Loges-en-Josas. Installateur certifié, éligible aux aides.',
+          service: 'Borne IRVE',
+          rating: 5,
+          date: 'Il y a 2 semaines'
+        }
+      ],
+      localInfo: {
+        population: '1 300',
+        codePostal: '78350',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 1600,
+    leads: 54,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 5,
+    depannagePrice: 110
+  },
+  {
+    id: '5',
+    name: 'Voisins-le-Bretonneux',
+    slug: 'voisins-le-bretonneux',
+    title: 'Électricien à Voisins-le-Bretonneux - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Voisins-le-Bretonneux (78960). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Voisins-le-Bretonneux',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Voisins-le-Bretonneux',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 110€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Marie D. - Voisins-le-Bretonneux',
+          text: 'Excellent service à Voisins-le-Bretonneux ! Rénovation électrique complète, très professionnel.',
+          service: 'Rénovation électrique',
           rating: 5,
           date: 'Il y a 1 mois'
+        }
+      ],
+      localInfo: {
+        population: '13 500',
+        codePostal: '78960',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 9200,
+    leads: 312,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 4,
+    depannagePrice: 110
+  },
+  {
+    id: '6',
+    name: 'Guyancourt',
+    slug: 'guyancourt',
+    title: 'Électricien à Guyancourt - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Guyancourt (78280). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Guyancourt',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Guyancourt',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 110€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Paul M. - Guyancourt',
+          text: 'Installation électrique neuve à Guyancourt. Travail impeccable, respect des délais.',
+          service: 'Installation électrique',
+          rating: 5,
+          date: 'Il y a 3 semaines'
+        }
+      ],
+      localInfo: {
+        population: '30 000',
+        codePostal: '78280',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 12500,
+    leads: 425,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 5,
+    depannagePrice: 110
+  },
+  {
+    id: '7',
+    name: 'Saint-Lambert',
+    slug: 'saint-lambert',
+    title: 'Électricien à Saint-Lambert - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Saint-Lambert (78470). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Saint-Lambert',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Saint-Lambert',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 110€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Claire R. - Saint-Lambert',
+          text: 'Dépannage urgent à Saint-Lambert. Intervention rapide et efficace, très satisfaite.',
+          service: 'Dépannage électrique',
+          rating: 5,
+          date: 'Il y a 1 semaine'
+        }
+      ],
+      localInfo: {
+        population: '300',
+        codePostal: '78470',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 800,
+    leads: 27,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 4,
+    depannagePrice: 110
+  },
+  {
+    id: '8',
+    name: 'Toussus-le-Noble',
+    slug: 'toussus-le-noble',
+    title: 'Électricien à Toussus-le-Noble - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Toussus-le-Noble (78117). Installation électrique, dépannage 110€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Toussus-le-Noble',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Toussus-le-Noble',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 110€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Michel B. - Toussus-le-Noble',
+          text: 'Mise en conformité tableau électrique à Toussus-le-Noble. Service professionnel.',
+          service: 'Mise en conformité',
+          rating: 5,
+          date: 'Il y a 2 semaines'
         }
       ],
       localInfo: {
@@ -296,226 +296,188 @@ export const cityData = [
         departement: 'Yvelines'
       }
     },
-    visits: 380,
-    leads: 13,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 4,
-    depannagePrice: 110
-  },
-  {
-    id: 'les-loges-en-josas',
-    name: 'Les Loges-en-Josas',
-    slug: 'les-loges-en-josas',
-    title: 'Électricien Les Loges-en-Josas - Service électrique 78350',
-    metaDescription: 'Électricien Les Loges-en-Josas (78350). Service électrique complet et professionnel. Zone proximité tarif 110€ HT.',
-    content: {
-      heroTitle: 'Électricien aux Loges-en-Josas',
-      heroSubtitle: 'Service électrique complet - Tarif 110€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Sylvie D. - Les Loges-en-Josas',
-          text: 'Service électrique complet aux Loges-en-Josas. Très professionnel et réactif.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 3 semaines'
-        }
-      ],
-      localInfo: {
-        population: '1 400',
-        codePostal: '78350',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 450,
-    leads: 16,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    visits: 1400,
+    leads: 47,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
     distanceFromBase: 5,
     depannagePrice: 110
   },
 
-  // Zone intermédiaire (5-10km) - 130€ HT
+  // Zone intermédiaire (130€ HT) - 5-10km
   {
-    id: 'montigny-le-bretonneux',
+    id: '9',
     name: 'Montigny-le-Bretonneux',
     slug: 'montigny-le-bretonneux',
-    title: 'Électricien Montigny-le-Bretonneux - Dépannage 78180',
-    metaDescription: 'Électricien professionnel à Montigny-le-Bretonneux (78180). Dépannage électrique rapide et efficace. Tarif 130€ HT.',
+    title: 'Électricien à Montigny-le-Bretonneux - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Montigny-le-Bretonneux (78180). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
       heroTitle: 'Électricien à Montigny-le-Bretonneux',
-      heroSubtitle: 'Dépannage électrique efficace - Tarif 130€ HT',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Montigny-le-Bretonneux',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 130€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Laurent F. - Montigny-le-Bretonneux',
-          text: 'Dépannage électrique efficace à Montigny-le-Bretonneux. Service rapide et professionnel.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '34 000',
-        codePostal: '78180',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 1350,
-    leads: 48,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 6,
-    depannagePrice: 130
-  },
-  {
-    id: 'elancourt',
-    name: 'Élancourt',
-    slug: 'elancourt',
-    title: 'Électricien Élancourt - Installation électrique 78990',
-    metaDescription: 'Électricien à Élancourt (78990). Installation et rénovation électrique. Service professionnel. Tarif 130€ HT.',
-    content: {
-      heroTitle: 'Électricien à Élancourt',
-      heroSubtitle: 'Installation électrique moderne - Tarif 130€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Catherine G. - Élancourt',
-          text: 'Installation électrique moderne à Élancourt. Travail soigné et professionnel.',
+          name: 'Anne S. - Montigny-le-Bretonneux',
+          text: 'Installation complète à Montigny-le-Bretonneux. Équipe professionnelle et ponctuelle.',
           service: 'Installation électrique',
           rating: 5,
           date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
-        population: '26 000',
-        codePostal: '78990',
+        population: '35 000',
+        codePostal: '78180',
         departement: 'Yvelines'
       }
     },
-    visits: 980,
-    leads: 35,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 8,
+    visits: 14200,
+    leads: 482,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 7,
     depannagePrice: 130
   },
   {
-    id: 'choisy',
-    name: 'Choisy',
-    slug: 'choisy',
-    title: 'Électricien Choisy - Service électrique 78460',
-    metaDescription: 'Électricien Choisy (78460). Service électrique complet pour particuliers et professionnels. Tarif 130€ HT.',
+    id: '10',
+    name: 'Milon La Chapelle',
+    slug: 'milon-la-chapelle',
+    title: 'Électricien à Milon La Chapelle - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Milon La Chapelle (78470). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à Choisy',
-      heroSubtitle: 'Service électrique polyvalent - Tarif 130€ HT',
+      heroTitle: 'Électricien à Milon La Chapelle',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Milon La Chapelle',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 130€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Marc T. - Choisy',
-          text: 'Service électrique polyvalent à Choisy. Électricien très compétent.',
-          service: 'Service électrique',
+          name: 'François L. - Milon La Chapelle',
+          text: 'Dépannage électrique à Milon La Chapelle. Intervention rapide et tarif respecté.',
+          service: 'Dépannage électrique',
           rating: 5,
           date: 'Il y a 2 semaines'
         }
       ],
       localInfo: {
-        population: '3 500',
-        codePostal: '78460',
+        population: '400',
+        codePostal: '78470',
         departement: 'Yvelines'
       }
     },
-    visits: 420,
-    leads: 15,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 7,
+    visits: 900,
+    leads: 31,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 6,
     depannagePrice: 130
   },
   {
-    id: 'jouy-en-josas',
-    name: 'Jouy-en-Josas',
-    slug: 'jouy-en-josas',
-    title: 'Électricien Jouy-en-Josas - Dépannage électrique 78350',
-    metaDescription: 'Électricien à Jouy-en-Josas (78350). Dépannage et installation électrique. Intervention rapide. Tarif 130€ HT.',
+    id: '11',
+    name: 'Le Chesnay-Rocquencourt',
+    slug: 'le-chesnay',
+    title: 'Électricien au Chesnay-Rocquencourt - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel au Chesnay-Rocquencourt (78150). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à Jouy-en-Josas',
-      heroSubtitle: 'Dépannage électrique sur mesure - Tarif 130€ HT',
+      heroTitle: 'Électricien au Chesnay-Rocquencourt',
+      heroSubtitle: 'Votre électricien professionnel de confiance au Chesnay-Rocquencourt',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 130€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Alain B. - Jouy-en-Josas',
-          text: 'Dépannage électrique sur mesure à Jouy-en-Josas. Service personnalisé et efficace.',
-          service: 'Dépannage électrique',
+          name: 'Isabelle M. - Le Chesnay',
+          text: 'Rénovation électrique au Chesnay. Travail soigné et conforme aux normes.',
+          service: 'Rénovation électrique',
           rating: 5,
           date: 'Il y a 3 semaines'
         }
       ],
       localInfo: {
-        population: '8 100',
-        codePostal: '78350',
+        population: '30 000',
+        codePostal: '78150',
         departement: 'Yvelines'
       }
     },
-    visits: 650,
-    leads: 23,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    visits: 11800,
+    leads: 401,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
     distanceFromBase: 8,
     depannagePrice: 130
   },
   {
-    id: 'buc',
-    name: 'Buc',
-    slug: 'buc',
-    title: 'Électricien Buc - Dépannage électrique 78530',
-    metaDescription: 'Électricien à Buc (78530). Dépannage électrique rapide et professionnel. Service 24h/24. Tarif 130€ HT.',
+    id: '12',
+    name: 'Jouy-en-Josas',
+    slug: 'jouy-en-josas',
+    title: 'Électricien à Jouy-en-Josas - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Jouy-en-Josas (78350). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à Buc',
-      heroSubtitle: 'Dépannage électrique 24h/24 - Tarif 130€ HT',
+      heroTitle: 'Électricien à Jouy-en-Josas',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Jouy-en-Josas',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 130€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Thierry L. - Buc',
-          text: 'Dépannage électrique 24h/24 à Buc. Service rapide et efficace.',
-          service: 'Dépannage électrique',
+          name: 'Philippe R. - Jouy-en-Josas',
+          text: 'Installation borne IRVE à Jouy-en-Josas. Installateur certifié, très professionnel.',
+          service: 'Borne IRVE',
+          rating: 5,
+          date: 'Il y a 1 mois'
+        }
+      ],
+      localInfo: {
+        population: '8 000',
+        codePostal: '78350',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 5600,
+    leads: 190,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 7,
+    depannagePrice: 130
+  },
+  {
+    id: '13',
+    name: 'Buc',
+    slug: 'buc',
+    title: 'Électricien à Buc - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Buc (78530). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Buc',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Buc',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 130€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Catherine L. - Buc',
+          text: 'Mise en conformité électrique à Buc. Service rapide et prix transparent.',
+          service: 'Mise en conformité',
           rating: 5,
           date: 'Il y a 2 semaines'
         }
@@ -526,299 +488,109 @@ export const cityData = [
         departement: 'Yvelines'
       }
     },
-    visits: 720,
-    leads: 26,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    visits: 4200,
+    leads: 143,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
     distanceFromBase: 8,
     depannagePrice: 130
   },
   {
-    id: 'saint-aubin',
-    name: 'St Aubin',
-    slug: 'saint-aubin',
-    title: 'Électricien St Aubin - Service électrique 91190',
-    metaDescription: 'Électricien St Aubin (91190). Service électrique professionnel pour tous types d\'interventions. Tarif 130€ HT.',
+    id: '14',
+    name: 'Versailles',
+    slug: 'versailles',
+    title: 'Électricien à Versailles - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Versailles (78000). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à St Aubin',
-      heroSubtitle: 'Service électrique complet - Tarif 130€ HT',
+      heroTitle: 'Électricien à Versailles',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Versailles',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 130€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Philippe R. - St Aubin',
-          text: 'Service électrique complet à St Aubin. Électricien très professionnel.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '2 800',
-        codePostal: '91190',
-        departement: 'Essonne'
-      }
-    },
-    visits: 380,
-    leads: 14,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 9,
-    depannagePrice: 130
-  },
-  {
-    id: 'gif-sur-yvette',
-    name: 'Gif-sur-Yvette',
-    slug: 'gif-sur-yvette',
-    title: 'Électricien Gif-sur-Yvette - Dépannage 91190',
-    metaDescription: 'Électricien Gif-sur-Yvette (91190). Dépannage et maintenance électrique experte. Tarif zone intermédiaire 130€ HT.',
-    content: {
-      heroTitle: 'Électricien à Gif-sur-Yvette',
-      heroSubtitle: 'Dépannage électrique expert - Tarif 130€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Nathalie P. - Gif-sur-Yvette',
-          text: 'Dépannage électrique expert à Gif-sur-Yvette. Service professionnel et réactif.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 3 semaines'
-        }
-      ],
-      localInfo: {
-        population: '21 000',
-        codePostal: '91190',
-        departement: 'Essonne'
-      }
-    },
-    visits: 890,
-    leads: 31,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 9,
-    depannagePrice: 130
-  },
-  {
-    id: 'villiers-le-bacle',
-    name: 'Villiers-le-Bâcle',
-    slug: 'villiers-le-bacle',
-    title: 'Électricien Villiers-le-Bâcle - Installation 91190',
-    metaDescription: 'Électricien Villiers-le-Bâcle (91190). Installation et réparation électrique de qualité. Tarif 130€ HT.',
-    content: {
-      heroTitle: 'Électricien à Villiers-le-Bâcle',
-      heroSubtitle: 'Installation électrique de qualité - Tarif 130€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Bernard M. - Villiers-le-Bâcle',
-          text: 'Installation électrique de qualité à Villiers-le-Bâcle. Travail impeccable.',
-          service: 'Installation électrique',
-          rating: 5,
-          date: 'Il y a 2 mois'
-        }
-      ],
-      localInfo: {
-        population: '750',
-        codePostal: '91190',
-        departement: 'Essonne'
-      }
-    },
-    visits: 280,
-    leads: 10,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 10,
-    depannagePrice: 130
-  },
-  {
-    id: 'bailly',
-    name: 'Bailly',
-    slug: 'bailly',
-    title: 'Électricien Bailly - Service électrique 78870',
-    metaDescription: 'Électricien à Bailly (78870). Service électrique complet pour résidentiel et commercial. Tarif 130€ HT.',
-    content: {
-      heroTitle: 'Électricien à Bailly',
-      heroSubtitle: 'Service électrique résidentiel - Tarif 130€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Christine L. - Bailly',
-          text: 'Service électrique résidentiel à Bailly. Électricien très compétent.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '4 200',
-        codePostal: '78870',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 520,
-    leads: 18,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 9,
-    depannagePrice: 130
-  },
-  {
-    id: 'saclay',
-    name: 'Saclay',
-    slug: 'saclay',
-    title: 'Électricien Saclay - Dépannage électrique 91400',
-    metaDescription: 'Électricien professionnel à Saclay (91400). Dépannage électrique pour particuliers et entreprises. Tarif 130€ HT.',
-    content: {
-      heroTitle: 'Électricien à Saclay',
-      heroSubtitle: 'Dépannage électrique pro - Tarif 130€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'François M. - Saclay',
-          text: 'Dépannage électrique professionnel à Saclay. Service de qualité pour entreprises.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '4 000',
-        codePostal: '91400',
-        departement: 'Essonne'
-      }
-    },
-    visits: 520,
-    leads: 19,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 8,
-    depannagePrice: 130
-  },
-  {
-    id: 'gometz-la-ville',
-    name: 'Gometz la ville',
-    slug: 'gometz-la-ville',
-    title: 'Électricien Gometz la ville - Service électrique 91400',
-    metaDescription: 'Électricien Gometz la ville (91400). Service électrique de proximité et de qualité. Tarif 130€ HT.',
-    content: {
-      heroTitle: 'Électricien à Gometz-la-ville',
-      heroSubtitle: 'Service électrique de proximité - Tarif 130€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Martine D. - Gometz-la-ville',
-          text: 'Service électrique de proximité à Gometz-la-ville. Très satisfaite.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '1 200',
-        codePostal: '91400',
-        departement: 'Essonne'
-      }
-    },
-    visits: 320,
-    leads: 12,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 9,
-    depannagePrice: 130
-  },
-  {
-    id: 'chaveney',
-    name: 'Chaveney',
-    slug: 'chaveney',
-    title: 'Électricien Chaveney - Installation électrique 78450',
-    metaDescription: 'Électricien Chaveney (78450). Installation et rénovation électrique professionnelle. Tarif 130€ HT.',
-    content: {
-      heroTitle: 'Électricien à Chaveney',
-      heroSubtitle: 'Installation électrique pro - Tarif 130€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Robert P. - Chaveney',
-          text: 'Installation électrique professionnelle à Chaveney. Excellent travail.',
+          name: 'Jean-Pierre D. - Versailles',
+          text: 'Excellent électricien à Versailles ! Installation complète dans un appartement ancien.',
           service: 'Installation électrique',
           rating: 5,
           date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
-        population: '1 800',
-        codePostal: '78450',
+        population: '85 000',
+        codePostal: '78000',
         departement: 'Yvelines'
       }
     },
-    visits: 380,
-    leads: 13,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 6,
+    visits: 18500,
+    leads: 629,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 9,
     depannagePrice: 130
   },
   {
-    id: 'dampierre-en-yvelines',
-    name: 'Dampierre en yvelines',
+    id: '15',
+    name: 'Viroflay',
+    slug: 'viroflay',
+    title: 'Électricien à Viroflay - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Viroflay (78220). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Viroflay',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Viroflay',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 130€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Martine F. - Viroflay',
+          text: 'Dépannage électrique à Viroflay. Intervention rapide et tarif respecté.',
+          service: 'Dépannage électrique',
+          rating: 5,
+          date: 'Il y a 1 semaine'
+        }
+      ],
+      localInfo: {
+        population: '16 000',
+        codePostal: '78220',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 7200,
+    leads: 245,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 9,
+    depannagePrice: 130
+  },
+  {
+    id: '16',
+    name: 'Dampierre-en-Yvelines',
     slug: 'dampierre-en-yvelines',
-    title: 'Électricien Dampierre en yvelines - Installation 78720',
-    metaDescription: 'Électricien Dampierre en yvelines (78720). Installation électrique moderne et sécurisée. Tarif 130€ HT.',
+    title: 'Électricien à Dampierre-en-Yvelines - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Dampierre-en-Yvelines (78720). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
       heroTitle: 'Électricien à Dampierre-en-Yvelines',
-      heroSubtitle: 'Installation électrique sécurisée - Tarif 130€ HT',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Dampierre-en-Yvelines',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 130€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Sylvain G. - Dampierre-en-Yvelines',
-          text: 'Installation électrique sécurisée à Dampierre. Travail de qualité.',
+          name: 'Robert M. - Dampierre-en-Yvelines',
+          text: 'Installation électrique à Dampierre. Travail de qualité et respect des délais.',
           service: 'Installation électrique',
           rating: 5,
           date: 'Il y a 3 semaines'
@@ -830,114 +602,342 @@ export const cityData = [
         departement: 'Yvelines'
       }
     },
-    visits: 320,
-    leads: 11,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 9,
+    visits: 1500,
+    leads: 51,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 8,
     depannagePrice: 130
   },
   {
-    id: 'viroflay',
-    name: 'Viroflay',
-    slug: 'viroflay',
-    title: 'Électricien Viroflay - Service électrique 78220',
-    metaDescription: 'Électricien Viroflay (78220). Service électrique professionnel et de confiance. Tarif zone intermédiaire 130€ HT.',
+    id: '17',
+    name: 'Saclay',
+    slug: 'saclay',
+    title: 'Électricien à Saclay - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Saclay (91400). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à Viroflay',
-      heroSubtitle: 'Service électrique confiance - Tarif 130€ HT',
+      heroTitle: 'Électricien à Saclay',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Saclay',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 130€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Isabelle R. - Viroflay',
-          text: 'Service électrique de confiance à Viroflay. Électricien professionnel et ponctuel.',
-          service: 'Service électrique',
+          name: 'Sylvie P. - Saclay',
+          text: 'Mise en conformité à Saclay. Électricien compétent et prix transparent.',
+          service: 'Mise en conformité',
           rating: 5,
           date: 'Il y a 2 semaines'
         }
       ],
       localInfo: {
-        population: '15 500',
-        codePostal: '78220',
-        departement: 'Yvelines'
+        population: '4 000',
+        codePostal: '91400',
+        departement: 'Essonne'
       }
     },
-    visits: 780,
-    leads: 28,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    visits: 2800,
+    leads: 95,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
     distanceFromBase: 9,
     depannagePrice: 130
   },
-
-  // Zone étendue (10-15km) - 150€ HT
   {
-    id: 'trappes',
-    name: 'Trappes',
-    slug: 'trappes',
-    title: 'Électricien Trappes - Service électrique 78190',
-    metaDescription: 'Électricien professionnel à Trappes (78190). Service électrique complet et fiable. Zone étendue tarif 150€ HT.',
+    id: '18',
+    name: 'Gif-sur-Yvette',
+    slug: 'gif-sur-yvette',
+    title: 'Électricien à Gif-sur-Yvette - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Gif-sur-Yvette (91190). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à Trappes',
-      heroSubtitle: 'Service électrique fiable - Tarif 150€ HT',
+      heroTitle: 'Électricien à Gif-sur-Yvette',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Gif-sur-Yvette',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 130€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Mohamed K. - Trappes',
-          text: 'Service électrique fiable à Trappes. Électricien compétent et professionnel.',
-          service: 'Service électrique',
+          name: 'Alain B. - Gif-sur-Yvette',
+          text: 'Installation borne IRVE à Gif-sur-Yvette. Service professionnel et certifié.',
+          service: 'Borne IRVE',
+          rating: 5,
+          date: 'Il y a 1 mois'
+        }
+      ],
+      localInfo: {
+        population: '21 000',
+        codePostal: '91190',
+        departement: 'Essonne'
+      }
+    },
+    visits: 8900,
+    leads: 302,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 10,
+    depannagePrice: 130
+  },
+  {
+    id: '19',
+    name: 'Villiers-le-Bâcle',
+    slug: 'villiers-le-bacle',
+    title: 'Électricien à Villiers-le-Bâcle - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Villiers-le-Bâcle (91190). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Villiers-le-Bâcle',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Villiers-le-Bâcle',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 130€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Nathalie G. - Villiers-le-Bâcle',
+          text: 'Dépannage électrique à Villiers-le-Bâcle. Intervention rapide et efficace.',
+          service: 'Dépannage électrique',
+          rating: 5,
+          date: 'Il y a 1 semaine'
+        }
+      ],
+      localInfo: {
+        population: '1 000',
+        codePostal: '91190',
+        departement: 'Essonne'
+      }
+    },
+    visits: 1200,
+    leads: 41,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 9,
+    depannagePrice: 130
+  },
+  {
+    id: '20',
+    name: 'Choisy',
+    slug: 'choisy',
+    title: 'Électricien à Choisy - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Choisy (78460). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Choisy',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Choisy',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 130€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Bernard T. - Choisy',
+          text: 'Mise en conformité électrique à Choisy. Travail soigné et conforme.',
+          service: 'Mise en conformité',
+          rating: 5,
+          date: 'Il y a 2 semaines'
+        }
+      ],
+      localInfo: {
+        population: '200',
+        codePostal: '78460',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 600,
+    leads: 20,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 6,
+    depannagePrice: 130
+  },
+  {
+    id: '21',
+    name: 'Saint-Aubin',
+    slug: 'saint-aubin',
+    title: 'Électricien à Saint-Aubin - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Saint-Aubin (91190). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Saint-Aubin',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Saint-Aubin',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 130€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Dominique H. - Saint-Aubin',
+          text: 'Installation électrique à Saint-Aubin. Service professionnel et ponctuel.',
+          service: 'Installation électrique',
+          rating: 5,
+          date: 'Il y a 3 semaines'
+        }
+      ],
+      localInfo: {
+        population: '2 000',
+        codePostal: '91190',
+        departement: 'Essonne'
+      }
+    },
+    visits: 1800,
+    leads: 61,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 10,
+    depannagePrice: 130
+  },
+  {
+    id: '22',
+    name: 'Bailly',
+    slug: 'bailly',
+    title: 'Électricien à Bailly - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Bailly (78870). Installation électrique, dépannage 130€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Bailly',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Bailly',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 130€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Christine V. - Bailly',
+          text: 'Dépannage électrique à Bailly. Intervention rapide et tarif transparent.',
+          service: 'Dépannage électrique',
+          rating: 5,
+          date: 'Il y a 1 semaine'
+        }
+      ],
+      localInfo: {
+        population: '4 200',
+        codePostal: '78870',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 2900,
+    leads: 98,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 10,
+    depannagePrice: 130
+  },
+
+  // Zone étendue (150€ HT) - 10-15km
+  {
+    id: '23',
+    name: 'Plaisir',
+    slug: 'plaisir',
+    title: 'Électricien à Plaisir - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Plaisir (78370). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Plaisir',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Plaisir',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Laurent C. - Plaisir',
+          text: 'Excellent électricien à Plaisir ! Rénovation électrique complète, très professionnel.',
+          service: 'Rénovation électrique',
           rating: 5,
           date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
         population: '31 000',
-        codePostal: '78190',
+        codePostal: '78370',
         departement: 'Yvelines'
       }
     },
-    visits: 1180,
-    leads: 41,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    visits: 15800,
+    leads: 537,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
     distanceFromBase: 12,
     depannagePrice: 150
   },
   {
-    id: 'saint-cyr-l-ecole',
-    name: 'St Cyr l\'école',
-    slug: 'saint-cyr-l-ecole',
-    title: 'Électricien St Cyr l\'école - Dépannage électrique 78210',
-    metaDescription: 'Électricien St Cyr l\'école (78210). Dépannage électrique professionnel et rapide. Tarif 150€ HT.',
+    id: '24',
+    name: 'Trappes',
+    slug: 'trappes',
+    title: 'Électricien à Trappes - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Trappes (78190). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à St Cyr l\'École',
-      heroSubtitle: 'Dépannage électrique professionnel - Tarif 150€ HT',
+      heroTitle: 'Électricien à Trappes',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Trappes',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 150€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Colonel M. - St Cyr l\'École',
-          text: 'Dépannage électrique professionnel à St Cyr. Service militaire de précision.',
-          service: 'Dépannage électrique',
+          name: 'Ahmed K. - Trappes',
+          text: 'Installation électrique à Trappes. Service de qualité et respect des délais.',
+          service: 'Installation électrique',
           rating: 5,
           date: 'Il y a 2 semaines'
+        }
+      ],
+      localInfo: {
+        population: '30 000',
+        codePostal: '78190',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 14500,
+    leads: 493,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 11,
+    depannagePrice: 150
+  },
+  {
+    id: '25',
+    name: 'Saint-Cyr-l\'École',
+    slug: 'st-cyr-l-ecole',
+    title: 'Électricien à Saint-Cyr-l\'École - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Saint-Cyr-l\'École (78210). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Saint-Cyr-l\'École',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Saint-Cyr-l\'École',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Colonel R. - Saint-Cyr-l\'École',
+          text: 'Mise en conformité à Saint-Cyr-l\'École. Travail rigoureux et conforme.',
+          service: 'Mise en conformité',
+          rating: 5,
+          date: 'Il y a 3 semaines'
         }
       ],
       localInfo: {
@@ -946,72 +946,606 @@ export const cityData = [
         departement: 'Yvelines'
       }
     },
-    visits: 850,
-    leads: 30,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 12,
+    visits: 7800,
+    leads: 265,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 13,
     depannagePrice: 150
   },
   {
-    id: 'bois-d-arcy',
-    name: 'Bois d\'Arcy',
-    slug: 'bois-d-arcy',
-    title: 'Électricien Bois d\'Arcy - Installation électrique 78390',
-    metaDescription: 'Électricien Bois d\'Arcy (78390). Installation et rénovation électrique professionnelle. Tarif 150€ HT zone étendue.',
+    id: '26',
+    name: 'Élancourt',
+    slug: 'elancourt',
+    title: 'Électricien à Élancourt - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Élancourt (78990). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à Bois d\'Arcy',
-      heroSubtitle: 'Installation électrique sur mesure - Tarif 150€ HT',
+      heroTitle: 'Électricien à Élancourt',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Élancourt',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 150€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Patrick D. - Bois d\'Arcy',
-          text: 'Installation électrique sur mesure à Bois d\'Arcy. Travail de qualité professionnelle.',
-          service: 'Installation électrique',
+          name: 'Valérie N. - Élancourt',
+          text: 'Dépannage électrique à Élancourt. Intervention rapide et efficace.',
+          service: 'Dépannage électrique',
+          rating: 5,
+          date: 'Il y a 1 semaine'
+        }
+      ],
+      localInfo: {
+        population: '26 000',
+        codePostal: '78990',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 11200,
+    leads: 381,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 12,
+    depannagePrice: 150
+  },
+  {
+    id: '27',
+    name: 'Bois-d\'Arcy',
+    slug: 'bois-d-arcy',
+    title: 'Électricien à Bois-d\'Arcy - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Bois-d\'Arcy (78390). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Bois-d\'Arcy',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Bois-d\'Arcy',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Thierry L. - Bois-d\'Arcy',
+          text: 'Installation borne IRVE à Bois-d\'Arcy. Installateur certifié, très professionnel.',
+          service: 'Borne IRVE',
+          rating: 5,
+          date: 'Il y a 2 semaines'
+        }
+      ],
+      localInfo: {
+        population: '14 000',
+        codePostal: '78390',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 6800,
+    leads: 231,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 14,
+    depannagePrice: 150
+  },
+  {
+    id: '28',
+    name: 'Noisy-le-Roi',
+    slug: 'noisy-le-roi',
+    title: 'Électricien à Noisy-le-Roi - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Noisy-le-Roi (78590). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Noisy-le-Roi',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Noisy-le-Roi',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Françoise B. - Noisy-le-Roi',
+          text: 'Mise en conformité électrique à Noisy-le-Roi. Service professionnel et prix transparent.',
+          service: 'Mise en conformité',
           rating: 5,
           date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
         population: '13 500',
-        codePostal: '78390',
+        codePostal: '78590',
         departement: 'Yvelines'
       }
     },
-    visits: 820,
-    leads: 29,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 13,
+    visits: 6200,
+    leads: 211,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 15,
     depannagePrice: 150
   },
   {
-    id: 'fontenay-le-fleury',
-    name: 'Fontenay le fleury',
-    slug: 'fontenay-le-fleury',
-    title: 'Électricien Fontenay le fleury - Service électrique 78330',
-    metaDescription: 'Électricien Fontenay le fleury (78330). Service électrique complet et professionnel. Tarif 150€ HT.',
+    id: '29',
+    name: 'Rennemoulin',
+    slug: 'rennemoulin',
+    title: 'Électricien à Rennemoulin - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Rennemoulin (78590). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à Fontenay-le-Fleury',
-      heroSubtitle: 'Service électrique complet - Tarif 150€ HT',
+      heroTitle: 'Électricien à Rennemoulin',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Rennemoulin',
       services: [
         'Installation électrique complète',
-        'Dépannage électrique 24h/24',
+        'Dépannage électrique 150€ HT',
         'Mise en conformité électrique',
         'Bornes de recharge IRVE'
       ],
       testimonials: [
         {
-          name: 'Valérie S. - Fontenay-le-Fleury',
-          text: 'Service électrique complet à Fontenay. Très professionnel.',
-          service: 'Service électrique',
+          name: 'Gérard M. - Rennemoulin',
+          text: 'Dépannage électrique à Rennemoulin. Intervention rapide et tarif respecté.',
+          service: 'Dépannage électrique',
+          rating: 5,
+          date: 'Il y a 1 semaine'
+        }
+      ],
+      localInfo: {
+        population: '900',
+        codePostal: '78590',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 1100,
+    leads: 37,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 14,
+    depannagePrice: 150
+  },
+  {
+    id: '30',
+    name: 'Forges-les-Bains',
+    slug: 'forges-les-bains',
+    title: 'Électricien à Forges-les-Bains - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Forges-les-Bains (91470). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Forges-les-Bains',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Forges-les-Bains',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Monique D. - Forges-les-Bains',
+          text: 'Installation électrique à Forges-les-Bains. Travail soigné et conforme aux normes.',
+          service: 'Installation électrique',
+          rating: 5,
+          date: 'Il y a 2 semaines'
+        }
+      ],
+      localInfo: {
+        population: '4 000',
+        codePostal: '91470',
+        departement: 'Essonne'
+      }
+    },
+    visits: 2600,
+    leads: 88,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 13,
+    depannagePrice: 150
+  },
+  {
+    id: '31',
+    name: 'Limours',
+    slug: 'limours',
+    title: 'Électricien à Limours - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Limours (91470). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Limours',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Limours',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Patrick R. - Limours',
+          text: 'Dépannage électrique à Limours. Service rapide et professionnel.',
+          service: 'Dépannage électrique',
+          rating: 5,
+          date: 'Il y a 1 semaine'
+        }
+      ],
+      localInfo: {
+        population: '6 500',
+        codePostal: '91470',
+        departement: 'Essonne'
+      }
+    },
+    visits: 3800,
+    leads: 129,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 12,
+    depannagePrice: 150
+  },
+  {
+    id: '32',
+    name: 'Angervilliers',
+    slug: 'angervilliers',
+    title: 'Électricien à Angervilliers - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Angervilliers (91470). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Angervilliers',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Angervilliers',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Sylvain T. - Angervilliers',
+          text: 'Mise en conformité à Angervilliers. Électricien compétent et prix transparent.',
+          service: 'Mise en conformité',
+          rating: 5,
+          date: 'Il y a 3 semaines'
+        }
+      ],
+      localInfo: {
+        population: '2 200',
+        codePostal: '91470',
+        departement: 'Essonne'
+      }
+    },
+    visits: 1900,
+    leads: 65,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 14,
+    depannagePrice: 150
+  },
+  {
+    id: '33',
+    name: 'Les Molières',
+    slug: 'les-molieres',
+    title: 'Électricien aux Molières - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel aux Molières (91470). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien aux Molières',
+      heroSubtitle: 'Votre électricien professionnel de confiance aux Molières',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Brigitte L. - Les Molières',
+          text: 'Installation borne IRVE aux Molières. Service professionnel et certifié.',
+          service: 'Borne IRVE',
+          rating: 5,
+          date: 'Il y a 2 semaines'
+        }
+      ],
+      localInfo: {
+        population: '2 000',
+        codePostal: '91470',
+        departement: 'Essonne'
+      }
+    },
+    visits: 1700,
+    leads: 58,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 13,
+    depannagePrice: 150
+  },
+  {
+    id: '34',
+    name: 'Gometz-la-Ville',
+    slug: 'gometz-la-ville',
+    title: 'Électricien à Gometz-la-Ville - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Gometz-la-Ville (91400). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Gometz-la-Ville',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Gometz-la-Ville',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Didier P. - Gometz-la-Ville',
+          text: 'Dépannage électrique à Gometz-la-Ville. Intervention rapide et efficace.',
+          service: 'Dépannage électrique',
+          rating: 5,
+          date: 'Il y a 1 semaine'
+        }
+      ],
+      localInfo: {
+        population: '1 200',
+        codePostal: '91400',
+        departement: 'Essonne'
+      }
+    },
+    visits: 1300,
+    leads: 44,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 11,
+    depannagePrice: 150
+  },
+  {
+    id: '35',
+    name: 'Orsay',
+    slug: 'orsay',
+    title: 'Électricien à Orsay - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Orsay (91400). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Orsay',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Orsay',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Professeur M. - Orsay',
+          text: 'Installation électrique à Orsay. Travail de qualité et respect des délais.',
+          service: 'Installation électrique',
+          rating: 5,
+          date: 'Il y a 1 mois'
+        }
+      ],
+      localInfo: {
+        population: '17 000',
+        codePostal: '91400',
+        departement: 'Essonne'
+      }
+    },
+    visits: 8500,
+    leads: 289,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 12,
+    depannagePrice: 150
+  },
+  {
+    id: '36',
+    name: 'Bures-sur-Yvette',
+    slug: 'bures-sur-yvette',
+    title: 'Électricien à Bures-sur-Yvette - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Bures-sur-Yvette (91440). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Bures-sur-Yvette',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Bures-sur-Yvette',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Étudiante S. - Bures-sur-Yvette',
+          text: 'Dépannage électrique à Bures-sur-Yvette. Service rapide et prix correct.',
+          service: 'Dépannage électrique',
+          rating: 5,
+          date: 'Il y a 2 semaines'
+        }
+      ],
+      localInfo: {
+        population: '10 000',
+        codePostal: '91440',
+        departement: 'Essonne'
+      }
+    },
+    visits: 5200,
+    leads: 177,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 13,
+    depannagePrice: 150
+  },
+  {
+    id: '37',
+    name: 'L\'Étang-la-Ville',
+    slug: 'l-etang-la-ville',
+    title: 'Électricien à L\'Étang-la-Ville - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à L\'Étang-la-Ville (78620). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à L\'Étang-la-Ville',
+      heroSubtitle: 'Votre électricien professionnel de confiance à L\'Étang-la-Ville',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Hubert V. - L\'Étang-la-Ville',
+          text: 'Mise en conformité à L\'Étang-la-Ville. Électricien compétent et professionnel.',
+          service: 'Mise en conformité',
+          rating: 5,
+          date: 'Il y a 3 semaines'
+        }
+      ],
+      localInfo: {
+        population: '4 500',
+        codePostal: '78620',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 2800,
+    leads: 95,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 15,
+    depannagePrice: 150
+  },
+
+  // Villes supplémentaires pour compléter la couverture
+  {
+    id: '38',
+    name: 'Maurepas',
+    slug: 'maurepas',
+    title: 'Électricien à Maurepas - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Maurepas (78310). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Maurepas',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Maurepas',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Karim A. - Maurepas',
+          text: 'Installation électrique à Maurepas. Service professionnel et ponctuel.',
+          service: 'Installation électrique',
+          rating: 5,
+          date: 'Il y a 1 mois'
+        }
+      ],
+      localInfo: {
+        population: '20 000',
+        codePostal: '78310',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 9200,
+    leads: 313,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 11,
+    depannagePrice: 150
+  },
+  {
+    id: '39',
+    name: 'Coignières',
+    slug: 'coignieres',
+    title: 'Électricien à Coignières - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Coignières (78310). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Coignières',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Coignières',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Sandrine F. - Coignières',
+          text: 'Dépannage électrique à Coignières. Intervention rapide et tarif respecté.',
+          service: 'Dépannage électrique',
+          rating: 5,
+          date: 'Il y a 1 semaine'
+        }
+      ],
+      localInfo: {
+        population: '4 500',
+        codePostal: '78310',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 2700,
+    leads: 92,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 12,
+    depannagePrice: 150
+  },
+  {
+    id: '40',
+    name: 'Les Clayes-sous-Bois',
+    slug: 'les-clayes-sous-bois',
+    title: 'Électricien aux Clayes-sous-Bois - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel aux Clayes-sous-Bois (78340). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien aux Clayes-sous-Bois',
+      heroSubtitle: 'Votre électricien professionnel de confiance aux Clayes-sous-Bois',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Christophe G. - Les Clayes-sous-Bois',
+          text: 'Installation borne IRVE aux Clayes-sous-Bois. Installateur certifié, très professionnel.',
+          service: 'Borne IRVE',
+          rating: 5,
+          date: 'Il y a 2 semaines'
+        }
+      ],
+      localInfo: {
+        population: '18 000',
+        codePostal: '78340',
+        departement: 'Yvelines'
+      }
+    },
+    visits: 8100,
+    leads: 275,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
+    distanceFromBase: 13,
+    depannagePrice: 150
+  },
+  {
+    id: '41',
+    name: 'Fontenay-le-Fleury',
+    slug: 'fontenay-le-fleury',
+    title: 'Électricien à Fontenay-le-Fleury - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à Fontenay-le-Fleury (78330). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    content: {
+      heroTitle: 'Électricien à Fontenay-le-Fleury',
+      heroSubtitle: 'Votre électricien professionnel de confiance à Fontenay-le-Fleury',
+      services: [
+        'Installation électrique complète',
+        'Dépannage électrique 150€ HT',
+        'Mise en conformité électrique',
+        'Bornes de recharge IRVE'
+      ],
+      testimonials: [
+        {
+          name: 'Éric H. - Fontenay-le-Fleury',
+          text: 'Mise en conformité à Fontenay-le-Fleury. Travail soigné et conforme aux normes.',
+          service: 'Mise en conformité',
           rating: 5,
           date: 'Il y a 3 semaines'
         }
@@ -1022,1520 +1556,12 @@ export const cityData = [
         departement: 'Yvelines'
       }
     },
-    visits: 720,
-    leads: 25,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 11,
-    depannagePrice: 150
-  },
-  {
-    id: 'noisy-le-roi',
-    name: 'Noisy-le-Roi',
-    slug: 'noisy-le-roi',
-    title: 'Électricien Noisy-le-Roi - Installation électrique 78590',
-    metaDescription: 'Électricien Noisy-le-Roi (78590). Installation et modernisation électrique. Service professionnel. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Noisy-le-Roi',
-      heroSubtitle: 'Installation électrique moderne - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Henri L. - Noisy-le-Roi',
-          text: 'Installation électrique moderne à Noisy-le-Roi. Excellent service.',
-          service: 'Installation électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '8 500',
-        codePostal: '78590',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 650,
-    leads: 23,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 13,
-    depannagePrice: 150
-  },
-  {
-    id: 'levis-saint-nom',
-    name: 'Lévis St nom',
-    slug: 'levis-saint-nom',
-    title: 'Électricien Lévis St nom - Dépannage 78320',
-    metaDescription: 'Électricien Lévis St nom (78320). Dépannage électrique professionnel et rapide. Zone étendue tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Lévis St nom',
-      heroSubtitle: 'Dépannage électrique professionnel - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Gérard M. - Lévis St nom',
-          text: 'Dépannage électrique professionnel à Lévis. Service rapide.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '1 100',
-        codePostal: '78320',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 320,
-    leads: 11,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    visits: 5800,
+    leads: 197,
+    status: 'active',
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-12-20T15:30:00Z',
     distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: 'le-mesnil-saint-denis',
-    name: 'Le mesnil st denis',
-    slug: 'le-mesnil-saint-denis',
-    title: 'Électricien Le mesnil st denis - Service électrique 78320',
-    metaDescription: 'Électricien Le mesnil st denis (78320). Service électrique spécialisé et fiable. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien au Mesnil-St-Denis',
-      heroSubtitle: 'Service électrique spécialisé - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Monique T. - Le Mesnil-St-Denis',
-          text: 'Service électrique spécialisé au Mesnil. Très satisfaite.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '6 500',
-        codePostal: '78320',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 520,
-    leads: 18,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 13,
-    depannagePrice: 150
-  },
-  {
-    id: 'rennemoulin',
-    name: 'Rennemoulin',
-    slug: 'rennemoulin',
-    title: 'Électricien Rennemoulin - Service électrique 78590',
-    metaDescription: 'Électricien Rennemoulin (78590). Service électrique spécialisé pour tous types de travaux. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Rennemoulin',
-      heroSubtitle: 'Service électrique spécialisé - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'André P. - Rennemoulin',
-          text: 'Service électrique spécialisé à Rennemoulin. Électricien très compétent.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 3 semaines'
-        }
-      ],
-      localInfo: {
-        population: '900',
-        codePostal: '78590',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 280,
-    leads: 10,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: 'les-clayes-sous-bois',
-    name: 'Les Clayes-sous-bois',
-    slug: 'les-clayes-sous-bois',
-    title: 'Électricien Les Clayes-sous-bois - Installation 78340',
-    metaDescription: 'Électricien Les Clayes-sous-bois (78340). Installation et maintenance électrique professionnelle. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien aux Clayes-sous-bois',
-      heroSubtitle: 'Installation électrique pro - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Valérie G. - Les Clayes-sous-bois',
-          text: 'Installation électrique professionnelle aux Clayes-sous-bois. Service de qualité.',
-          service: 'Installation électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '17 500',
-        codePostal: '78340',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 920,
-    leads: 33,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 15,
-    depannagePrice: 150
-  },
-  {
-    id: 'forges-les-bains',
-    name: 'Forges-les-bains',
-    slug: 'forges-les-bains',
-    title: 'Électricien Forges-les-bains - Dépannage 91470',
-    metaDescription: 'Électricien Forges-les-bains (91470). Dépannage et réparation électrique. Service zone étendue. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Forges-les-bains',
-      heroSubtitle: 'Réparation électrique experte - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Claude R. - Forges-les-bains',
-          text: 'Réparation électrique experte à Forges. Service professionnel.',
-          service: 'Réparation électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '3 800',
-        codePostal: '91470',
-        departement: 'Essonne'
-      }
-    },
-    visits: 480,
-    leads: 17,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: 'limours',
-    name: 'Limours',
-    slug: 'limours',
-    title: 'Électricien Limours - Service électrique 91470',
-    metaDescription: 'Électricien Limours (91470). Service électrique complet et fiable pour tous besoins. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Limours',
-      heroSubtitle: 'Service électrique complet - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Françoise B. - Limours',
-          text: 'Service électrique complet à Limours. Électricien très fiable.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '6 700',
-        codePostal: '91470',
-        departement: 'Essonne'
-      }
-    },
-    visits: 580,
-    leads: 21,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 13,
-    depannagePrice: 150
-  },
-  {
-    id: 'angervilliers',
-    name: 'Angervilliers',
-    slug: 'angervilliers',
-    title: 'Électricien Angervilliers - Installation électrique 91470',
-    metaDescription: 'Électricien Angervilliers (91470). Installation et modernisation de système électrique. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Angervilliers',
-      heroSubtitle: 'Modernisation électrique - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Daniel L. - Angervilliers',
-          text: 'Modernisation électrique à Angervilliers. Travail de qualité.',
-          service: 'Modernisation électrique',
-          rating: 5,
-          date: 'Il y a 3 semaines'
-        }
-      ],
-      localInfo: {
-        population: '2 200',
-        codePostal: '91470',
-        departement: 'Essonne'
-      }
-    },
-    visits: 380,
-    leads: 13,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 15,
-    depannagePrice: 150
-  },
-  {
-    id: 'les-molieres',
-    name: 'Les molières',
-    slug: 'les-molieres',
-    title: 'Électricien Les molières - Dépannage électrique 91470',
-    metaDescription: 'Électricien Les molières (91470). Dépannage électrique rapide et professionnel. Zone étendue. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien aux Molières',
-      heroSubtitle: 'Dépannage électrique rapide - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Sylvie M. - Les Molières',
-          text: 'Dépannage électrique rapide aux Molières. Service efficace.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '1 900',
-        codePostal: '91470',
-        departement: 'Essonne'
-      }
-    },
-    visits: 350,
-    leads: 12,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 12,
-    depannagePrice: 150
-  },
-  {
-    id: 'pecqueuse',
-    name: 'Pecqueuse',
-    slug: 'pecqueuse',
-    title: 'Électricien Pecqueuse - Installation électrique 91470',
-    metaDescription: 'Électricien Pecqueuse (91470). Installation et maintenance électrique spécialisée. Tarif zone étendue 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Pecqueuse',
-      heroSubtitle: 'Installation électrique spécialisée - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Jacques D. - Pecqueuse',
-          text: 'Installation électrique spécialisée à Pecqueuse. Très professionnel.',
-          service: 'Installation électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '600',
-        codePostal: '91470',
-        departement: 'Essonne'
-      }
-    },
-    visits: 250,
-    leads: 9,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: 'orsay',
-    name: 'Orsay',
-    slug: 'orsay',
-    title: 'Électricien Orsay - Service électrique 91400',
-    metaDescription: 'Électricien Orsay (91400). Service électrique complet pour résidentiel et tertiaire. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Orsay',
-      heroSubtitle: 'Service électrique résidentiel - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Dominique F. - Orsay',
-          text: 'Service électrique résidentiel à Orsay. Électricien professionnel et compétent.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '16 000',
-        codePostal: '91400',
-        departement: 'Essonne'
-      }
-    },
-    visits: 880,
-    leads: 31,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 12,
-    depannagePrice: 150
-  },
-  {
-    id: 'la-celle-les-bordes',
-    name: 'La celle les bordes',
-    slug: 'la-celle-les-bordes',
-    title: 'Électricien La celle les bordes - Dépannage 78720',
-    metaDescription: 'Électricien La celle les bordes (78720). Dépannage électrique spécialisé. Zone étendue tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à La Celle-les-Bordes',
-      heroSubtitle: 'Dépannage électrique spécialisé - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Pierre L. - La Celle-les-Bordes',
-          text: 'Dépannage électrique spécialisé à La Celle. Service de qualité.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 3 semaines'
-        }
-      ],
-      localInfo: {
-        population: '600',
-        codePostal: '78720',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 250,
-    leads: 9,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: 'saint-forget',
-    name: 'St forget',
-    slug: 'saint-forget',
-    title: 'Électricien St forget - Service électrique 78720',
-    metaDescription: 'Électricien St forget (78720). Service électrique de qualité pour tous types d\'installations. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à St Forget',
-      heroSubtitle: 'Service électrique de qualité - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Marie-Claire T. - St Forget',
-          text: 'Service électrique de qualité à St Forget. Très satisfaite.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '450',
-        codePostal: '78720',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 220,
-    leads: 8,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 13,
-    depannagePrice: 150
-  },
-  {
-    id: 'senlisse',
-    name: 'Senlisse',
-    slug: 'senlisse',
-    title: 'Électricien Senlisse - Installation électrique 78720',
-    metaDescription: 'Électricien Senlisse (78720). Installation et modernisation électrique professionnelle. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Senlisse',
-      heroSubtitle: 'Modernisation électrique - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Alain G. - Senlisse',
-          text: 'Modernisation électrique à Senlisse. Travail impeccable.',
-          service: 'Modernisation électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '800',
-        codePostal: '78720',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 280,
-    leads: 10,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 12,
-    depannagePrice: 150
-  },
-  {
-    id: 'bures-sur-yvette',
-    name: 'Bures sur yvette',
-    slug: 'bures-sur-yvette',
-    title: 'Électricien Bures sur yvette - Dépannage 91440',
-    metaDescription: 'Électricien Bures sur yvette (91440). Dépannage et maintenance électrique experte. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Bures-sur-Yvette',
-      heroSubtitle: 'Maintenance électrique experte - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Professeur M. - Bures-sur-Yvette',
-          text: 'Maintenance électrique experte à Bures. Service universitaire.',
-          service: 'Maintenance électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '10 500',
-        codePostal: '91440',
-        departement: 'Essonne'
-      }
-    },
-    visits: 720,
-    leads: 25,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 12,
-    depannagePrice: 150
-  },
-  {
-    id: 'l-etang-la-ville',
-    name: 'L etang la ville',
-    slug: 'l-etang-la-ville',
-    title: 'Électricien L etang la ville - Service électrique 78620',
-    metaDescription: 'Électricien L etang la ville (78620). Service électrique de qualité professionnelle. Tarif zone étendue 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à L\'Étang-la-Ville',
-      heroSubtitle: 'Service électrique qualité - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Brigitte R. - L\'Étang-la-Ville',
-          text: 'Service électrique de qualité à L\'Étang. Très professionnel.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 3 semaines'
-        }
-      ],
-      localInfo: {
-        population: '4 500',
-        codePostal: '78620',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 520,
-    leads: 18,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 13,
-    depannagePrice: 150
-  },
-  {
-    id: 'plaisir',
-    name: 'Plaisir',
-    slug: 'plaisir',
-    title: 'Électricien Plaisir - Dépannage électrique 78370',
-    metaDescription: 'Électricien professionnel à Plaisir (78370). Dépannage électrique rapide et efficace. Tarif zone étendue 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Plaisir',
-      heroSubtitle: 'Dépannage électrique Plaisir - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Christine L. - Plaisir',
-          text: 'Dépannage électrique rapide à Plaisir. Service efficace et professionnel.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '31 000',
-        codePostal: '78370',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 1220,
-    leads: 43,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 15,
-    depannagePrice: 150
-  },
-  {
-    id: 'bonnelles',
-    name: 'Bonnelles',
-    slug: 'bonnelles',
-    title: 'Électricien Bonnelles - Service électrique 78830',
-    metaDescription: 'Électricien Bonnelles (78830). Service électrique complet pour habitat et commerce. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Bonnelles',
-      heroSubtitle: 'Service électrique habitat - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Yves P. - Bonnelles',
-          text: 'Service électrique habitat à Bonnelles. Excellent travail.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '1 800',
-        codePostal: '78830',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 350,
-    leads: 12,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 13,
-    depannagePrice: 150
-  },
-  {
-    id: 'bullion',
-    name: 'Bullion',
-    slug: 'bullion',
-    title: 'Électricien Bullion - Installation électrique 78830',
-    metaDescription: 'Électricien Bullion (78830). Installation électrique moderne et aux normes. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Bullion',
-      heroSubtitle: 'Installation électrique normes - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Didier M. - Bullion',
-          text: 'Installation électrique aux normes à Bullion. Travail de qualité.',
-          service: 'Installation électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '2 100',
-        codePostal: '78830',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 380,
-    leads: 13,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: 'marie-le-roi',
-    name: 'Marie le roi',
-    slug: 'marie-le-roi',
-    title: 'Électricien Marie le roi - Dépannage électrique 78160',
-    metaDescription: 'Électricien Marie le roi (78160). Dépannage et maintenance électrique professionnelle. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Marie-le-Roi',
-      heroSubtitle: 'Maintenance électrique pro - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Chantal D. - Marie-le-Roi',
-          text: 'Maintenance électrique professionnelle à Marie-le-Roi. Service de qualité.',
-          service: 'Maintenance électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '4 000',
-        codePostal: '78160',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 480,
-    leads: 17,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 15,
-    depannagePrice: 150
-  },
-  {
-    id: 'mareil-sur-mauldre',
-    name: 'Mareil sur mauldre',
-    slug: 'mareil-sur-mauldre',
-    title: 'Électricien Mareil sur mauldre - Service électrique 78430',
-    metaDescription: 'Électricien Mareil sur mauldre (78430). Service électrique spécialisé et fiable. Tarif zone étendue 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Mareil-sur-Mauldre',
-      heroSubtitle: 'Service électrique spécialisé - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Gilles T. - Mareil-sur-Mauldre',
-          text: 'Service électrique spécialisé à Mareil. Très professionnel.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 3 semaines'
-        }
-      ],
-      localInfo: {
-        population: '2 800',
-        codePostal: '78430',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 420,
-    leads: 15,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: 'saint-jean-de-beauregard',
-    name: 'St jean de beauregard',
-    slug: 'saint-jean-de-beauregard',
-    title: 'Électricien St jean de beauregard - Installation 91940',
-    metaDescription: 'Électricien St jean de beauregard (91940). Installation électrique de qualité supérieure. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à St Jean-de-Beauregard',
-      heroSubtitle: 'Installation électrique qualité - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Comte de B. - St Jean-de-Beauregard',
-          text: 'Installation électrique de qualité supérieure à St Jean. Service d\'excellence.',
-          service: 'Installation électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '1 100',
-        codePostal: '91940',
-        departement: 'Essonne'
-      }
-    },
-    visits: 320,
-    leads: 11,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: 'gometz-le-chatel',
-    name: 'Gometz le chatel',
-    slug: 'gometz-le-chatel',
-    title: 'Électricien Gometz le chatel - Dépannage électrique 91940',
-    metaDescription: 'Électricien Gometz le chatel (91940). Dépannage électrique expert et rapide. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Gometz-le-Châtel',
-      heroSubtitle: 'Dépannage électrique expert - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Élisabeth L. - Gometz-le-Châtel',
-          text: 'Dépannage électrique expert à Gometz. Service rapide et efficace.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '2 400',
-        codePostal: '91940',
-        departement: 'Essonne'
-      }
-    },
-    visits: 380,
-    leads: 13,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 13,
-    depannagePrice: 150
-  },
-  {
-    id: 'les-ulis',
-    name: 'Les ulis',
-    slug: 'les-ulis',
-    title: 'Électricien Les ulis - Service électrique 91940',
-    metaDescription: 'Électricien Les ulis (91940). Service électrique complet pour particuliers et professionnels. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien aux Ulis',
-      heroSubtitle: 'Service électrique complet - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Ahmed S. - Les Ulis',
-          text: 'Service électrique complet aux Ulis. Électricien très compétent.',
-          service: 'Service électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '25 000',
-        codePostal: '91940',
-        departement: 'Essonne'
-      }
-    },
-    visits: 1050,
-    leads: 37,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 15,
-    depannagePrice: 150
-  },
-  {
-    id: 'coignieres',
-    name: 'Coignieres',
-    slug: 'coignieres',
-    title: 'Électricien Coignieres - Installation électrique 78310',
-    metaDescription: 'Électricien Coignieres (78310). Installation et rénovation électrique professionnelle. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Coignières',
-      heroSubtitle: 'Rénovation électrique pro - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Pascal R. - Coignières',
-          text: 'Rénovation électrique professionnelle à Coignières. Excellent service.',
-          service: 'Rénovation électrique',
-          rating: 5,
-          date: 'Il y a 3 semaines'
-        }
-      ],
-      localInfo: {
-        population: '4 500',
-        codePostal: '78310',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 520,
-    leads: 18,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: 'maurepas',
-    name: 'Maurepas',
-    slug: 'maurepas',
-    title: 'Électricien Maurepas - Dépannage électrique 78310',
-    metaDescription: 'Électricien Maurepas (78310). Dépannage électrique 24h/24 et service d\'urgence. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à Maurepas',
-      heroSubtitle: 'Dépannage électrique 24h/24 - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Sandrine M. - Maurepas',
-          text: 'Dépannage électrique 24h/24 à Maurepas. Service d\'urgence très réactif.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 3 semaines'
-        }
-      ],
-      localInfo: {
-        population: '19 500',
-        codePostal: '78310',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 950,
-    leads: 34,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 13,
-    depannagePrice: 150
-  },
-  {
-    id: 'saint-nom-des-breteche',
-    name: 'St nom des breteche',
-    slug: 'saint-nom-des-breteche',
-    title: 'Électricien St nom des breteche - Installation 78860',
-    metaDescription: 'Électricien St nom des breteche (78860). Installation électrique haut de gamme. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à St Nom-des-Bretèche',
-      heroSubtitle: 'Installation électrique haut gamme - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Comte de S. - St Nom-des-Bretèche',
-          text: 'Installation électrique haut de gamme à St Nom. Service d\'excellence.',
-          service: 'Installation électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '5 200',
-        codePostal: '78860',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 580,
-    leads: 20,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: 'les-essarts-le-roi',
-    name: 'Les essarts le roi',
-    slug: 'les-essarts-le-roi',
-    title: 'Électricien Les essarts le roi - Dépannage 78690',
-    metaDescription: 'Électricien Les essarts le roi (78690). Dépannage électrique professionnel et garanti. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien aux Essarts-le-Roi',
-      heroSubtitle: 'Dépannage électrique garanti - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Françoise B. - Les Essarts-le-Roi',
-          text: 'Dépannage électrique garanti aux Essarts. Service professionnel.',
-          service: 'Dépannage électrique',
-          rating: 5,
-          date: 'Il y a 2 semaines'
-        }
-      ],
-      localInfo: {
-        population: '7 000',
-        codePostal: '78690',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 620,
-    leads: 22,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 15,
-    depannagePrice: 150
-  },
-  {
-    id: 'la-celle-saint-cloud',
-    name: 'La celle saint cloud',
-    slug: 'la-celle-saint-cloud',
-    title: 'Électricien La celle saint cloud - Installation 78170',
-    metaDescription: 'Électricien La celle saint cloud (78170). Installation électrique moderne et sécurisée. Tarif 150€ HT.',
-    content: {
-      heroTitle: 'Électricien à La Celle-St-Cloud',
-      heroSubtitle: 'Installation électrique moderne - Tarif 150€ HT',
-      services: [
-        'Installation électrique complète',
-        'Dépannage électrique 24h/24',
-        'Mise en conformité électrique',
-        'Bornes de recharge IRVE'
-      ],
-      testimonials: [
-        {
-          name: 'Philippe M. - La Celle-St-Cloud',
-          text: 'Installation électrique moderne à La Celle. Travail de qualité.',
-          service: 'Installation électrique',
-          rating: 5,
-          date: 'Il y a 1 mois'
-        }
-      ],
-      localInfo: {
-        population: '21 000',
-        codePostal: '78170',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 980,
-    leads: 35,
-    status: 'active' as const,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    distanceFromBase: 15,
     depannagePrice: 150
   }
 ];
-// Ajouter les villes manquantes
-const additionalCities: CityPage[] = [
-  // Zone proximité (110€ HT)
-  {
-    id: '26',
-    name: 'Saint-Lambert',
-    slug: 'saint-lambert',
-    title: 'Électricien à Saint-Lambert - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Saint-Lambert (78470). Installation électrique, dépannage 110€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Saint-Lambert',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Saint-Lambert',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '1 200',
-        codePostal: '78470',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 168,
-    leads: 6,
-    status: 'active',
-    createdAt: '2024-05-10',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 4,
-    depannagePrice: 110
-  },
-  {
-    id: '27',
-    name: 'Milon La Chapelle',
-    slug: 'milon-la-chapelle',
-    title: 'Électricien à Milon La Chapelle - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Milon La Chapelle (78470). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Milon La Chapelle',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Milon La Chapelle',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '2 800',
-        codePostal: '78470',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 392,
-    leads: 13,
-    status: 'active',
-    createdAt: '2024-05-15',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 6,
-    depannagePrice: 130
-  },
-  {
-    id: '28',
-    name: 'Choisy',
-    slug: 'choisy',
-    title: 'Électricien à Choisy - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Choisy (78460). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Choisy',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Choisy',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '1 500',
-        codePostal: '78460',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 210,
-    leads: 7,
-    status: 'active',
-    createdAt: '2024-05-20',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 7,
-    depannagePrice: 130
-  },
-  {
-    id: '29',
-    name: 'Toussus-le-Noble',
-    slug: 'toussus-le-noble',
-    title: 'Électricien à Toussus-le-Noble - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Toussus-le-Noble (78117). Installation électrique, dépannage 110€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Toussus-le-Noble',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Toussus-le-Noble',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '1 200',
-        codePostal: '78117',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 168,
-    leads: 6,
-    status: 'active',
-    createdAt: '2024-05-25',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 5,
-    depannagePrice: 110
-  },
-  {
-    id: '30',
-    name: 'Saint-Aubin',
-    slug: 'saint-aubin',
-    title: 'Électricien à Saint-Aubin - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Saint-Aubin (91190). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Saint-Aubin',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Saint-Aubin',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '2 100',
-        codePostal: '91190',
-        departement: 'Essonne'
-      }
-    },
-    visits: 294,
-    leads: 10,
-    status: 'active',
-    createdAt: '2024-05-30',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 8,
-    depannagePrice: 130
-  },
-  {
-    id: '31',
-    name: 'Villiers-le-Bâcle',
-    slug: 'villiers-le-bacle',
-    title: 'Électricien à Villiers-le-Bâcle - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Villiers-le-Bâcle (91190). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Villiers-le-Bâcle',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Villiers-le-Bâcle',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '1 800',
-        codePostal: '91190',
-        departement: 'Essonne'
-      }
-    },
-    visits: 252,
-    leads: 9,
-    status: 'active',
-    createdAt: '2024-06-01',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 9,
-    depannagePrice: 130
-  },
-  {
-    id: '32',
-    name: 'Bailly',
-    slug: 'bailly',
-    title: 'Électricien à Bailly - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Bailly (78870). Installation électrique, dépannage 130€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Bailly',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Bailly',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '4 200',
-        codePostal: '78870',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 588,
-    leads: 20,
-    status: 'active',
-    createdAt: '2024-06-05',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 10,
-    depannagePrice: 130
-  },
-  {
-    id: '33',
-    name: 'Noisy-le-Roi',
-    slug: 'noisy-le-roi',
-    title: 'Électricien à Noisy-le-Roi - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Noisy-le-Roi (78590). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Noisy-le-Roi',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Noisy-le-Roi',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '8 500',
-        codePostal: '78590',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 1190,
-    leads: 41,
-    status: 'active',
-    createdAt: '2024-06-10',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 12,
-    depannagePrice: 150
-  },
-  {
-    id: '34',
-    name: 'Rennemoulin',
-    slug: 'rennemoulin',
-    title: 'Électricien à Rennemoulin - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Rennemoulin (78590). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Rennemoulin',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Rennemoulin',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '900',
-        codePostal: '78590',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 126,
-    leads: 4,
-    status: 'active',
-    createdAt: '2024-06-15',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 13,
-    depannagePrice: 150
-  },
-  {
-    id: '35',
-    name: 'Forges-les-Bains',
-    slug: 'forges-les-bains',
-    title: 'Électricien à Forges-les-Bains - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Forges-les-Bains (91470). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Forges-les-Bains',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Forges-les-Bains',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '4 100',
-        codePostal: '91470',
-        departement: 'Essonne'
-      }
-    },
-    visits: 574,
-    leads: 20,
-    status: 'active',
-    createdAt: '2024-06-20',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: '36',
-    name: 'Limours',
-    slug: 'limours',
-    title: 'Électricien à Limours - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Limours (91470). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Limours',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Limours',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '6 800',
-        codePostal: '91470',
-        departement: 'Essonne'
-      }
-    },
-    visits: 952,
-    leads: 33,
-    status: 'active',
-    createdAt: '2024-06-25',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 15,
-    depannagePrice: 150
-  },
-  {
-    id: '37',
-    name: 'Angervilliers',
-    slug: 'angervilliers',
-    title: 'Électricien à Angervilliers - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Angervilliers (91470). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Angervilliers',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Angervilliers',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '2 200',
-        codePostal: '91470',
-        departement: 'Essonne'
-      }
-    },
-    visits: 308,
-    leads: 11,
-    status: 'active',
-    createdAt: '2024-06-30',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 14,
-    depannagePrice: 150
-  },
-  {
-    id: '38',
-    name: 'Les Molières',
-    slug: 'les-molieres',
-    title: 'Électricien aux Molières - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel aux Molières (91470). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien aux Molières',
-      heroSubtitle: 'Votre électricien professionnel de confiance aux Molières',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '1 900',
-        codePostal: '91470',
-        departement: 'Essonne'
-      }
-    },
-    visits: 266,
-    leads: 9,
-    status: 'active',
-    createdAt: '2024-07-01',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 13,
-    depannagePrice: 150
-  },
-  {
-    id: '39',
-    name: 'Gometz-la-Ville',
-    slug: 'gometz-la-ville',
-    title: 'Électricien à Gometz-la-Ville - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Gometz-la-Ville (91400). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Gometz-la-Ville',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Gometz-la-Ville',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '1 400',
-        codePostal: '91400',
-        departement: 'Essonne'
-      }
-    },
-    visits: 196,
-    leads: 7,
-    status: 'active',
-    createdAt: '2024-07-05',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 12,
-    depannagePrice: 150
-  },
-  {
-    id: '40',
-    name: 'Bures-sur-Yvette',
-    slug: 'bures-sur-yvette',
-    title: 'Électricien à Bures-sur-Yvette - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à Bures-sur-Yvette (91440). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à Bures-sur-Yvette',
-      heroSubtitle: 'Votre électricien professionnel de confiance à Bures-sur-Yvette',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '10 200',
-        codePostal: '91440',
-        departement: 'Essonne'
-      }
-    },
-    visits: 1428,
-    leads: 49,
-    status: 'active',
-    createdAt: '2024-07-10',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 11,
-    depannagePrice: 150
-  },
-  {
-    id: '41',
-    name: 'L\'Étang-la-Ville',
-    slug: 'l-etang-la-ville',
-    title: 'Électricien à L\'Étang-la-Ville - LS COM | Installation, Dépannage',
-    metaDescription: 'LS COM, électricien professionnel à L\'Étang-la-Ville (78620). Installation électrique, dépannage 150€ HT, mise en conformité. Devis gratuit.',
-    content: {
-      heroTitle: 'Électricien à L\'Étang-la-Ville',
-      heroSubtitle: 'Votre électricien professionnel de confiance à L\'Étang-la-Ville',
-      services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
-      testimonials: [],
-      localInfo: {
-        population: '4 500',
-        codePostal: '78620',
-        departement: 'Yvelines'
-      }
-    },
-    visits: 630,
-    leads: 22,
-    status: 'active',
-    createdAt: '2024-07-15',
-    updatedAt: '2024-12-20',
-    distanceFromBase: 15,
-    depannagePrice: 150
-  }
-];
-
-// Combiner toutes les villes

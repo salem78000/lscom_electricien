@@ -22,7 +22,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '8 500',
+        population: '9 500',
         codePostal: '78114',
         departement: 'Yvelines'
       }
@@ -121,7 +121,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '1 300',
+        population: '1 400',
         codePostal: '78350',
         departement: 'Yvelines'
       }
@@ -187,7 +187,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '30 000',
+        population: '29 000',
         codePostal: '78280',
         departement: 'Yvelines'
       }
@@ -220,7 +220,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '600',
+        population: '800',
         codePostal: '78470',
         departement: 'Yvelines'
       }
@@ -288,7 +288,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '35 000',
+        population: '34 000',
         codePostal: '78180',
         departement: 'Yvelines'
       }
@@ -321,7 +321,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '700',
+        population: '1 200',
         codePostal: '78470',
         departement: 'Yvelines'
       }
@@ -354,7 +354,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '30 000',
+        population: '29 000',
         codePostal: '78150',
         departement: 'Yvelines'
       }
@@ -387,7 +387,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '8 000',
+        population: '8 100',
         codePostal: '78350',
         departement: 'Yvelines'
       }
@@ -486,7 +486,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '16 000',
+        population: '15 500',
         codePostal: '78220',
         departement: 'Yvelines'
       }
@@ -618,7 +618,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '1 000',
+        population: '750',
         codePostal: '91190',
         departement: 'Essonne'
       }
@@ -651,7 +651,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '500',
+        population: '3 500',
         codePostal: '78460',
         departement: 'Yvelines'
       }
@@ -684,7 +684,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '1 500',
+        population: '2 800',
         codePostal: '91190',
         departement: 'Essonne'
       }
@@ -785,7 +785,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '30 000',
+        population: '31 000',
         codePostal: '78190',
         departement: 'Yvelines'
       }
@@ -884,7 +884,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '14 000',
+        population: '13 500',
         codePostal: '78390',
         departement: 'Yvelines'
       }
@@ -917,7 +917,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '13 500',
+        population: '8 500',
         codePostal: '78590',
         departement: 'Yvelines'
       }
@@ -1016,7 +1016,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '6 800',
+        population: '6 700',
         codePostal: '91470',
         departement: 'Essonne'
       }
@@ -1115,7 +1115,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '1 100',
+        population: '1 200',
         codePostal: '91400',
         departement: 'Essonne'
       }
@@ -1148,7 +1148,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '17 000',
+        population: '16 000',
         codePostal: '91400',
         departement: 'Essonne'
       }
@@ -1247,7 +1247,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '20 000',
+        population: '19 500',
         codePostal: '78310',
         departement: 'Yvelines'
       }
@@ -1313,7 +1313,7 @@ export const cityData: CityPage[] = [
         }
       ],
       localInfo: {
-        population: '18 000',
+        population: '17 500',
         codePostal: '78340',
         departement: 'Yvelines'
       }

@@ -34,7 +34,7 @@ const ContactPage: React.FC = () => {
             Contactez LS COM
           </h1>
           <p className="text-xl text-blue-100">
-            Demandez votre devis gratuit ou contactez-nous pour toute urgence électrique
+            Demandez votre devis gratuit ou contactez-nous pour toute urgence electrique
           </p>
         </div>
       </section>
@@ -66,7 +66,7 @@ const ContactPage: React.FC = () => {
               {/* Contact Principal */}
               <div className="bg-white p-8 rounded-2xl shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Nos coordonnées
+                  Nos coordonnees
                 </h3>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
@@ -86,7 +86,7 @@ const ContactPage: React.FC = () => {
                       📞
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900 text-lg">Téléphone</p>
+                      <p className="font-medium text-gray-900 text-lg">Telephone</p>
                       <SecurePhone 
                         className="text-blue-600 hover:text-blue-700 transition-colors text-lg font-medium"
                         variant="link"
@@ -117,7 +117,7 @@ const ContactPage: React.FC = () => {
                         <p>Lundi - Vendredi: 8h00 - 18h00</p>
                         <p>Samedi: 8h00 - 12h00</p>
                         <p className="text-orange-600 font-medium mt-2">
-                          🚨 Urgences électriques: 24h/24 - 7j/7
+                          🚨 Urgences electriques: 24h/24 - 7j/7
                         </p>
                       </div>
                     </div>
@@ -126,7 +126,7 @@ const ContactPage: React.FC = () => {
 
                 <div className="mt-8 pt-6 border-t border-gray-200">
                   <p className="text-sm text-gray-500 text-center">
-                    SIRET: 52445239800026 • Électricien certifié et assuré
+                    SIRET: 52445239800026 • Electricien certifie et assure
                   </p>
                 </div>
               </div>
@@ -134,11 +134,11 @@ const ContactPage: React.FC = () => {
               {/* Urgences */}
               <div className="bg-red-50 p-8 rounded-2xl border border-red-200">
                 <h3 className="text-xl font-bold text-red-800 mb-4">
-                  ⚡ Panne électrique ?
+                  ⚡ Panne electrique ?
                 </h3>
                 <p className="text-red-700 mb-6">
-                  Pour toute panne électrique (coupure de courant, court-circuit, 
-                  problème de sécurité), contactez-nous pour un dépannage rapide.
+                  Pour toute panne electrique (coupure de courant, court-circuit, 
+                  probleme de securite), contactez-nous pour un depannage rapide.
                 </p>
                 <SecurePhone 
                   className="inline-flex items-center space-x-2 bg-[#b32a29] hover:bg-[#9a2426] text-white px-6 py-3 rounded-lg font-bold transition-colors"
@@ -157,13 +157,13 @@ const ContactPage: React.FC = () => {
                 <div className="space-y-3">
                   {[
                     'Devis gratuit sous 24h',
-                    'Électriciens certifiés et expérimentés',
-                    'Travaux garantis et assurés',
-                    '15+ années d\'expérience',
-                    'Intervention dans 60+ villes d\'Île-de-France',
-                    'Service client personnalisé',
-                    'Respect des normes électriques',
-                    'Matériel professionnel de qualité'
+                    'Electriciens certifies et experimentes',
+                    'Travaux garantis et assures',
+                    '15+ annees d experience',
+                    'Intervention dans 60+ villes d Ile-de-France',
+                    'Service client personnalise',
+                    'Respect des normes electriques',
+                    'Materiel professionnel de qualite'
                   ].map((advantage, index) => (
                     <div key={index} className="flex items-center space-x-3">
                       <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />

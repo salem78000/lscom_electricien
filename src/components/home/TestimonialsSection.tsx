@@ -28,7 +28,7 @@ const TestimonialsSection: React.FC = () => {
               <span className="text-lg font-semibold text-gray-900">Avis Google</span>
             </div>
             <p className="text-gray-600">
-              Découvrez les avis authentiques de nos clients sur Google
+              Decouvrez les avis authentiques de nos clients sur Google
             </p>
           </div>
           
@@ -75,6 +75,7 @@ const TestimonialsSection: React.FC = () => {
               </div>
               <p className="text-2xl font-bold text-gray-900">Années</p>
               <p className="text-gray-600">D'expérience terrain</p>
+              <p className="text-gray-600">D experience terrain</p>
             </div>
           </div>
         </div>

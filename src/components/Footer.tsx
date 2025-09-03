@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
               />
             </div>
             <p className="text-gray-300 mb-4">
-              Votre électricien professionnel de confiance en Île-de-France depuis plus de 15 ans.
+              Votre electricien professionnel de confiance en Ile-de-France depuis plus de 15 ans.
             </p>
             <div className="flex space-x-2">
               <div className="bg-green-600 p-2 rounded">
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
               </div>
               <div>
                 <p className="text-sm font-medium">Certifié & Assuré</p>
-                <p className="text-xs text-gray-400">15+ années d'expérience</p>
+                <p className="text-xs text-gray-400">15+ annees d experience</p>
               </div>
             </div>
           </div>
@@ -114,8 +114,7 @@ const Footer: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <Clock className="h-5 w-5 text-blue-400 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">Dépannage à partir de 110€ HT</p>
-                  <p className="text-sm text-gray-400">Selon zone - 1h</p>
+                  <p className="text-gray-300">Depannage a partir de 110€ HT selon votre zone</p>
                 </div>
               </div>
             </div>
@@ -123,7 +122,7 @@ const Footer: React.FC = () => {
 
           {/* Zone intervention */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Zone d'intervention</h4>
+            <h4 className="text-lg font-semibold mb-4">Zone d intervention</h4>
             <div className="bg-blue-900 p-4 rounded-lg">
               <div className="flex items-center space-x-2 mb-2">
                 <Shield className="h-5 w-5 text-blue-400" />
@@ -147,7 +146,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 mb-4 md:mb-0">
               <p className="text-gray-400 text-sm">
-                © 2025 LS COM Électricien. Tous droits réservés.
+                © 2025 LS COM Electricien. Tous droits reserves.
               </p>
               <p className="text-gray-400 text-sm">
                 SIRET: 52445239800026
@@ -164,7 +163,7 @@ const Footer: React.FC = () => {
                 to="/politique-confidentialite" 
                 className="text-gray-400 hover:text-blue-400 text-sm transition-colors"
               >
-                Politique de confidentialité
+                Politique de confidentialite
               </Link>
               <Link 
                 to="/admin" 

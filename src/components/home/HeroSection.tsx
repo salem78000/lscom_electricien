@@ -23,13 +23,13 @@ const HeroSection: React.FC = () => {
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
                 Votre électricien
-                <span className="block text-orange-400">professionnel</span>
+                <span className="block" style={{ color: '#b32a29' }}>professionnel</span>
                 <span className="block">de confiance</span>
               </h1>
               
               <p className="text-xl lg:text-2xl text-blue-100 leading-relaxed">
-                Installation, dépannage et mise en conformité électrique en Île-de-France. 
-                <span className="font-semibold text-white">Plus de 15 ans d'expérience</span> à votre service.
+                Installation, depannage et mise en conformite electrique en Ile-de-France. 
+                <span className="font-semibold text-white">Plus de 15 ans d experience</span> a votre service.
               </p>
             </div>
 
@@ -53,7 +53,7 @@ const HeroSection: React.FC = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                <span className="text-blue-100">Plus de 15 ans d'expérience</span>
+                <span className="text-blue-100">Plus de 15 ans d experience</span>
               </div>
             </div>
 
@@ -78,11 +78,11 @@ const HeroSection: React.FC = () => {
             {/* Trust Indicator */}
             <div className="bg-blue-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 border border-blue-600">
               <p className="text-center text-blue-100">
-                <span className="font-bold text-white">+500 clients satisfaits</span> en Île-de-France
+                <span className="font-bold text-white">+500 clients satisfaits</span> en Ile-de-France
                 <span className="block text-sm mt-1">SIRET: 52445239800026 - Électricien certifié et assuré</span>
               </p>
               <p className="text-center text-blue-100">
-                <span className="font-semibold text-white">Plus de 15 ans d'expérience</span> à votre service.
+                <span className="font-semibold text-white">Plus de 15 ans d experience</span> a votre service.
               </p>
             </div>
           </div>
@@ -90,11 +90,11 @@ const HeroSection: React.FC = () => {
           {/* Image */}
           <div className="relative">
             <div className="relative z-10">
-              <img 
-                src="https://stackblitz.com/storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCSnhEMWdFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--6ce275ffe5425587a81c9059eb16af4093404be0//Lscom-%20e%CC%81lectricien.webp" 
-                alt="Électricien professionnel LS COM au travail - Installation électrique"
-                className="rounded-2xl shadow-2xl w-full h-96 lg:h-[500px] object-cover"
-                loading="eager"
+              <img
+                src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg"
+                alt="Électricien professionnel au travail"
+                className="w-full h-auto rounded-xl shadow-2xl"
+                loading="lazy"
                 width="800"
                 height="500"
               />

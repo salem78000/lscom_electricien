@@ -159,6 +159,118 @@ const supportedCities = {
     population: '8 100',
     departement: 'Yvelines',
     description: 'commune historique de la vallée de Bièvre'
+  },
+  'levis-saint-nom': {
+    name: 'Lévis St nom',
+    codePostal: '78320',
+    population: '1 100',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'chaveney': {
+    name: 'Chaveney',
+    codePostal: '78450',
+    population: '1 800',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'la-celle-les-bordes': {
+    name: 'La celle les bordes',
+    codePostal: '78720',
+    population: '600',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'saint-forget': {
+    name: 'St forget',
+    codePostal: '78720',
+    population: '450',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'senlisse': {
+    name: 'Senlisse',
+    codePostal: '78720',
+    population: '800',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'bonnelles': {
+    name: 'Bonnelles',
+    codePostal: '78830',
+    population: '1 800',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'bullion': {
+    name: 'Bullion',
+    codePostal: '78830',
+    population: '2 100',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'marie-le-roi': {
+    name: 'Marie le roi',
+    codePostal: '78160',
+    population: '4 000',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'mareil-sur-mauldre': {
+    name: 'Mareil sur mauldre',
+    codePostal: '78430',
+    population: '2 800',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'saint-jean-de-beauregard': {
+    name: 'St jean de beauregard',
+    codePostal: '91940',
+    population: '1 100',
+    departement: 'Essonne',
+    description: 'commune de l\'Essonne'
+  },
+  'gometz-le-chatel': {
+    name: 'Gometz le chatel',
+    codePostal: '91940',
+    population: '2 400',
+    departement: 'Essonne',
+    description: 'commune de l\'Essonne'
+  },
+  'les-ulis': {
+    name: 'Les ulis',
+    codePostal: '91940',
+    population: '25 000',
+    departement: 'Essonne',
+    description: 'ville nouvelle de l\'Essonne'
+  },
+  'la-celle-saint-cloud': {
+    name: 'La celle saint cloud',
+    codePostal: '78170',
+    population: '21 000',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'saint-nom-des-breteche': {
+    name: 'St nom des breteche',
+    codePostal: '78860',
+    population: '5 200',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'les-essarts-le-roi': {
+    name: 'Les essarts le roi',
+    codePostal: '78690',
+    population: '7 000',
+    departement: 'Yvelines',
+    description: 'commune des Yvelines'
+  },
+  'pecqueuse': {
+    name: 'Pecqueuse',
+    codePostal: '91470',
+    population: '600',
+    departement: 'Essonne',
+    description: 'commune de l\'Essonne'
   }
 };
 

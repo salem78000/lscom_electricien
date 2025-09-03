@@ -246,7 +246,7 @@ const TableauElectriquePage: React.FC = () => {
               
               <div className="text-center">
                 <img 
-                  src="/neutre commun.jpg" 
+                  src="/neutre-commun.jpg" 
                   alt="Neutre commun en hamon - Configuration électrique spéciale"
                   className="rounded-lg shadow-lg w-full h-64 object-cover mb-4"
                 />

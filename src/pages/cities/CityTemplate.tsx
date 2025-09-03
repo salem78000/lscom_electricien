@@ -176,13 +176,15 @@ const CityTemplate: React.FC = () => {
   React.useEffect(() => {
     try {
       const stored = localStorage.getItem('admin_cities');
-      const pages = stored ? JSON.parse(stored) : [];
+      const parsedData = stored ? JSON.parse(stored) : [];
+      const pages = Array.isArray(parsedData) ? parsedData : [];
       // Combiner les données du localStorage avec les données statiques
-      const combinedPages = [...pages, ...cityData];
+      const staticData = Array.isArray(cityData) ? cityData : [];
+      const combinedPages = [...pages, ...staticData];
       setCityPages(combinedPages);
     } catch (error) {
       console.error('Error loading city pages:', error);
-      setCityPages(cityData);
+      setCityPages(Array.isArray(cityData) ? cityData : []);
     }
   }, []);
   

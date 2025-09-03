@@ -91,6 +91,13 @@ const HeroSection: React.FC = () => {
           <div className="relative">
             <div className="relative z-10">
               <img
+                src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg"
+                alt="Électricien professionnel au travail"
+                className="w-full h-auto rounded-xl shadow-2xl"
+                loading="lazy"
+                width="800"
+                height="500"
+              />
               
               {/* Floating Card */}
               <div className="absolute -bottom-6 -left-6 bg-white text-gray-900 p-6 rounded-xl shadow-xl">

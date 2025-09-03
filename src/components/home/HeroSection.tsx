@@ -91,13 +91,6 @@ const HeroSection: React.FC = () => {
           <div className="relative">
             <div className="relative z-10">
               <img
-                src="https://stackblitz.com/storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCSnhEMWdFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--6ce275ffe5425587a81c9059eb16af4093404be0//Lscom-%20e%CC%81lectricien.webp"
-                alt="Électricien professionnel LS COM au travail - Installation électrique"
-                className="rounded-2xl shadow-2xl w-full h-96 lg:h-[500px] object-cover"
-                loading="eager"
-                width="800"
-                height="500"
-              />
               
               {/* Floating Card */}
               <div className="absolute -bottom-6 -left-6 bg-white text-gray-900 p-6 rounded-xl shadow-xl">

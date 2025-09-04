@@ -238,13 +238,6 @@ const supportedCities = {
     departement: 'Essonne',
     description: 'ville nouvelle de l\'Essonne'
   },
-  'la-celle-saint-cloud': {
-    name: 'Saint-Nom-la-Bretèche',
-    codePostal: '78170',
-    population: '4 877',
-    departement: 'Yvelines',
-    description: 'commune résidentielle des Yvelines'
-  },
   'les-essarts-le-roi': {
     name: 'Les essarts le roi',
     codePostal: '78690',

@@ -208,14 +208,14 @@ const TableauElectriquePage: React.FC = () => {
                 
                 <div className="space-y-4">
                   <p className="text-gray-700">
-                    Si votre installation existante dispose d'un <strong>câblage neutre commun en hamon</strong>, 
+                    Si votre installation existante dispose d'un <strong>câblage en neutre commun en amont</strong>, 
                     nous proposons une option spécifique pour adapter le nouveau tableau à cette configuration.
                   </p>
                   
                   <div className="bg-white p-6 rounded-lg border border-orange-200">
                     <div className="flex items-center justify-between mb-4">
                       <h4 className="text-lg font-semibold text-gray-900">
-                        Adaptation neutre commun
+                        Adaptation Neutre Commun
                       </h4>
                       <span className="text-2xl font-bold text-orange-600">
                         +350€

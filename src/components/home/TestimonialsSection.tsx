@@ -175,16 +175,14 @@ const TestimonialsSection: React.FC = () => {
             Découvrez les témoignages de nos clients satisfaits - 100% authentiques
           </p>
           <div className="bg-white inline-flex items-center space-x-2 px-4 py-2 rounded-full shadow-sm">
-            <span className="text-2xl font-bold text-yellow-500">5.0</span>
-            <div className="flex space-x-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-              ))}
-            </div>
-            <span className="text-gray-600">• {testimonials.length} avis</span>
-            <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
-              ✓ Trustindex.io
-            </span>
+            <a 
+              href="https://www.google.com/search?q=LS+COM+%C3%A9lectricien+avis#mpd=~15659174708579577897/customers/reviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
+            >
+              Voir tous nos avis sur Google
+            </a>
           </div>
         </div>
 
@@ -286,30 +284,6 @@ const TestimonialsSection: React.FC = () => {
                 aria-label={`Aller à la page ${index + 1}`}
               />
             ))}
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 mb-12">
-          <div className="bg-white p-6 rounded-xl shadow-sm text-center">
-            <div className="text-2xl font-bold text-green-600 mb-2">20+</div>
-            <div className="font-semibold text-gray-900 mb-1">Avis récents</div>
-            <div className="text-sm text-gray-600">Février - Août 2025</div>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow-sm text-center">
-            <div className="text-2xl font-bold text-yellow-500 mb-2">5.0★</div>
-            <div className="font-semibold text-gray-900 mb-1">Note moyenne</div>
-            <div className="text-sm text-gray-600">Sur tous les avis</div>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow-sm text-center">
-            <div className="text-2xl font-bold text-blue-600 mb-2">100%</div>
-            <div className="font-semibold text-gray-900 mb-1">Satisfaction</div>
-            <div className="text-sm text-gray-600">Clients recommandent</div>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow-sm text-center">
-            <div className="text-2xl font-bold text-purple-600 mb-2">15+</div>
-            <div className="font-semibold text-gray-900 mb-1">Années</div>
-            <div className="text-sm text-gray-600">D'expérience</div>
           </div>
         </div>
 

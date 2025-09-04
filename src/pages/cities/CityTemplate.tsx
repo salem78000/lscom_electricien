@@ -87,7 +87,7 @@ const supportedCities = {
   'saclay': {
     name: 'Saclay',
     codePostal: '91400',
-    population: '4 000',
+    population: '17 059',
     departement: 'Essonne',
     description: 'commune du plateau de Saclay'
   },

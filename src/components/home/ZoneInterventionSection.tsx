@@ -134,7 +134,7 @@ const ZoneInterventionSection: React.FC = () => {
               <SecurePhone 
                 className="inline-flex items-center space-x-2 bg-[#b32a29] hover:bg-[#9a2426] text-white px-6 py-3 rounded-lg font-medium transition-colors"
                 variant="button"
-                className="inline-block bg-[#b32a29] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#9a2426] transition-colors"
+                showIcon={true}
               >
                 06 22 52 39 02
               </SecurePhone>

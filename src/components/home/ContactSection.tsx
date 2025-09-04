@@ -80,7 +80,6 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Téléphone</p>
-                    <p className="font-medium text-gray-900">Telephone</p>
                     <SecurePhone 
                       className="text-blue-600 hover:text-blue-700 transition-colors"
                       variant="link"

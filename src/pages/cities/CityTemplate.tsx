@@ -86,7 +86,7 @@ const supportedCities = {
   },
   'saclay': {
     name: 'Saclay',
-    codePostal: '78160', 
+    codePostal: '91400',
     population: '17 059',
     departement: 'Essonne',
     description: 'commune du plateau de Saclay'
@@ -200,13 +200,6 @@ const supportedCities = {
     name: 'Bonnelles',
     codePostal: '78830',
     population: '1 800',
-    departement: 'Yvelines',
-    description: 'commune des Yvelines'
-  },
-  'bullion': {
-    name: 'Bullion',
-    codePostal: '78830',
-    population: '2 100',
     departement: 'Yvelines',
     description: 'commune des Yvelines'
   },

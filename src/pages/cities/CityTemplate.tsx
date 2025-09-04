@@ -258,6 +258,13 @@ const supportedCities = {
     population: '600',
     departement: 'Essonne',
     description: 'commune de l\'Essonne'
+  },
+  'marly-le-roi': {
+    name: 'Marly-le-Roi',
+    codePostal: '78160',
+    population: '17 000',
+    departement: 'Yvelines',
+    description: 'commune résidentielle des Yvelines'
   }
 };
 

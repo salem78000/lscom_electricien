@@ -115,7 +115,7 @@ const ContactPage: React.FC = () => {
                       <p className="font-medium text-gray-900 text-lg">Horaires</p>
                       <div className="text-gray-600">
                         <p>Lundi - Vendredi: 8h00 - 18h00</p>
-                        <p>Samedi: 8h00 - 12h00</p>
+                        onClick={() => window.location.href = 'tel:+33622523902'}
                         <p className="text-orange-600 font-medium mt-2">
                           🚨 Urgences electriques: 24h/24 - 7j/7
                         </p>

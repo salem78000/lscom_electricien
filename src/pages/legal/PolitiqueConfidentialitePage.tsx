@@ -363,7 +363,7 @@ const PolitiqueConfidentialitePage: React.FC = () => {
                   
                   <div className="space-y-2">
                     <p className="font-medium text-gray-900">Par téléphone :</p>
-                    <p className="text-blue-600 font-medium">0622523902</p>
+                    <a href="tel:+33622523902" className="text-blue-600 hover:text-blue-700 font-medium">0622523902</a>
                   </div>
                 </div>
                 

@@ -19,9 +19,6 @@ const Header: React.FC = () => {
               alt="LS COM Électricien"
               className="h-12 w-auto"
             />
-            <SecurePhone>
-              06 22 52 39 02
-            </SecurePhone>
           </Link>
 
           {/* Desktop Navigation */}

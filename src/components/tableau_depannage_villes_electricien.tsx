@@ -53,7 +53,7 @@ const TableauVillesElectricien = () => {
     { nom: "Saint-Forget", codePostal: "78720", departement: "Yvelines", population: 450, distance: 13, prixHT: 150, zone: "Zone étendue" },
     { nom: "Saint-Jean-de-Beauregard", codePostal: "91940", departement: "Essonne", population: 1100, distance: 14, prixHT: 150, zone: "Zone étendue" },
     { nom: "Saint-Lambert", codePostal: "78470", departement: "Yvelines", population: 800, distance: 4, prixHT: 110, zone: "Zone proximité" },
-    { nom: "Saint-Nom-des-Bretèches", codePostal: "78860", departement: "Yvelines", population: 5200, distance: 14, prixHT: 150, zone: "Zone étendue" },
+    { nom: "Saint-Nom-la-Bretèche", codePostal: "78860", departement: "Yvelines", population: 5200, distance: 14, prixHT: 150, zone: "Zone étendue" },
     { nom: "Senlisse", codePostal: "78720", departement: "Yvelines", population: 800, distance: 12, prixHT: 150, zone: "Zone étendue" },
     { nom: "Toussus-le-Noble", codePostal: "78117", departement: "Yvelines", population: 1200, distance: 4, prixHT: 110, zone: "Zone proximité" },
     { nom: "Trappes", codePostal: "78190", departement: "Yvelines", population: 31000, distance: 12, prixHT: 150, zone: "Zone étendue" },

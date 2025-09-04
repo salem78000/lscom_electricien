@@ -211,11 +211,11 @@ const supportedCities = {
     description: 'commune des Yvelines'
   },
   'marly-le-roi': {
-    name: 'Marly le roi',
+    name: 'Marly-le-Roi',
     codePostal: '78160',
     population: '4 000',
     departement: 'Yvelines',
-    description: 'commune des Yvelines'
+    description: 'commune historique des Yvelines'
   },
   'mareil-sur-mauldre': {
     name: 'Mareil sur mauldre',
@@ -252,12 +252,12 @@ const supportedCities = {
     departement: 'Yvelines',
     description: 'commune des Yvelines'
   },
-  'saint-nom-les-breteche': {
-    name: 'St nom les breteche',
+  'saint-nom-la-breteche': {
+    name: 'Saint-Nom-la-Bretèche',
     codePostal: '78860',
     population: '5 200',
     departement: 'Yvelines',
-    description: 'commune des Yvelines'
+    description: 'commune résidentielle des Yvelines'
   },
   'les-essarts-le-roi': {
     name: 'Les essarts le roi',

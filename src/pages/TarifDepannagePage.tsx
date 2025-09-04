@@ -2,96 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Clock, Phone, AlertTriangle, CheckCircle, Euro } from 'lucide-react';
 import SecurePhone from '../components/SecurePhone';
+import TableauVillesElectricien from '../components/tableau_depannage_villes_electricien';
 
 const TarifDepannagePage: React.FC = () => {
-  const zones = [
-    {
-      name: 'ZONE PROXIMITÉ (0-5km)',
-      price: '110€ HT',
-      color: 'green',
-      bgColor: 'from-green-600 to-green-500',
-      cities: [
-        { name: 'Magny-les-Hameaux', postal: '78114' },
-        { name: 'Chevreuse', postal: '78460' },
-        { name: 'Châteaufort', postal: '78117' },
-        { name: 'Les Loges-en-Josas', postal: '78350' },
-        { name: 'Voisins-le-Bretonneux', postal: '78960' },
-        { name: 'Guyancourt', postal: '78280' }
-      ]
-    },
-    {
-      name: 'ZONE INTERMÉDIAIRE (5-10km)',
-      price: '130€ HT',
-      color: 'orange',
-      bgColor: 'from-orange-600 to-orange-500',
-      cities: [
-        { name: 'Montigny-le-Bretonneux', postal: '78180' },
-        { name: 'Milon La Chapelle', postal: '78470' },
-        { name: 'St Lambert', postal: '78470' },
-        { name: 'Le Chesnay', postal: '78150' },
-        { name: 'Toussus-le-Noble', postal: '78117' },
-        { name: 'Jouy-en-Josas', postal: '78350' },
-        { name: 'Buc', postal: '78530' },
-        { name: 'Versailles', postal: '78000' },
-        { name: 'Viroflay', postal: '78220' },
-        { name: 'Dampierre-en-Yvelines', postal: '78720' },
-        { name: 'Saclay', postal: '91400' },
-        { name: 'Gif-sur-Yvette', postal: '91190' },
-        { name: 'Villiers-le-Bâcle', postal: '91190' }
-      ]
-    },
-    {
-      name: 'ZONE ÉTENDUE (10-15km)',
-      price: '150€ HT',
-      priceTTC: '(165€ TTC particuliers)',
-      color: 'red',
-      bgColor: 'from-red-600 to-red-500',
-      cities: [
-        { name: 'Plaisir', postal: '78370' },
-        { name: 'Trappes', postal: '78190' },
-        { name: 'St Cyr l\'École', postal: '78210' },
-        { name: 'Élancourt', postal: '78990' },
-        { name: 'Bois d\'Arcy', postal: '78390' },
-        { name: 'St Aubin', postal: '91190' },
-        { name: 'Bailly', postal: '78870' },
-        { name: 'Noisy-le-Roi', postal: '78590' },
-        { name: 'Rennemoulin', postal: '78590' },
-        { name: 'Forges-les-Bains', postal: '91470' },
-        { name: 'Limours', postal: '91470' },
-        { name: 'Angervilliers', postal: '91470' },
-        { name: 'Les Molières', postal: '91470' },
-        { name: 'Gometz-la-Ville', postal: '91400' },
-        { name: 'Orsay', postal: '91400' },
-        { name: 'Bures-sur-Yvette', postal: '91440' },
-        { name: 'L\'Étang-la-Ville', postal: '78620' },
-        { name: 'St Nom-la-Bretèche', postal: '78860' },
-        { name: 'Bonnelles', postal: '78830' },
-        { name: 'Bullion', postal: '78830' },
-        { name: 'Mareil-le-Roi', postal: '78160' },
-        { name: 'Mareil-sur-Mauldre', postal: '78430' },
-        { name: 'St Jean-de-Beauregard', postal: '91940' },
-        { name: 'Gometz-le-Châtel', postal: '91940' },
-        { name: 'Les Ulis', postal: '91940' },
-        { name: 'Coignières', postal: '78310' },
-        { name: 'Maurepas', postal: '78310' },
-        { name: 'St Forget', postal: '78720' },
-        { name: 'Senlisse', postal: '78720' },
-        { name: 'La Celle-les-Bordes', postal: '78720' },
-        { name: 'Les Essarts-le-Roi', postal: '78690' },
-        { name: 'Pecqueuse', postal: '91470' },
-        { name: 'La Celle Saint-Cloud', postal: '78170' }
-      ]
-    }
-  ];
-
-  const getZoneIcon = (color: string) => {
-    switch (color) {
-      case 'green': return '🟢';
-      case 'orange': return '🟡';
-      case 'red': return '🔴';
-      default: return '⚪';
-    }
-  };
 
   return (
     <div>
@@ -154,51 +67,10 @@ const TarifDepannagePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Zones de tarification */}
-          {zones.map((zone, zoneIndex) => (
-            <div key={zoneIndex} className="mb-12">
-              <div className={`bg-gradient-to-r ${zone.bgColor} text-white p-6 rounded-t-2xl`}>
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-bold flex items-center">
-                    <span className="text-2xl mr-3">{getZoneIcon(zone.color)}</span>
-                    {zone.name}
-                  </h3>
-                  <div className="text-right">
-                    <p className="text-2xl font-bold">{zone.price}</p>
-                    {zone.priceTTC && (
-                      <p className="text-sm opacity-90">{zone.priceTTC}</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-b-2xl shadow-lg overflow-hidden">
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead className="bg-gray-800 text-white">
-                      <tr>
-                        <th className="px-6 py-4 text-left font-semibold">Ville</th>
-                        <th className="px-6 py-4 text-left font-semibold">Code Postal</th>
-                        <th className="px-6 py-4 text-left font-semibold">Tarif HT</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {zone.cities.map((city, cityIndex) => (
-                        <tr 
-                          key={cityIndex} 
-                          className={`${cityIndex % 2 === 0 ? 'bg-gray-50' : 'bg-white'} hover:bg-blue-50 transition-colors`}
-                        >
-                          <td className="px-6 py-4 font-semibold text-gray-900">{city.name}</td>
-                          <td className="px-6 py-4 text-gray-600">{city.postal}</td>
-                          <td className="px-6 py-4 font-bold text-blue-600">{zone.price.split(' ')[0]}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          ))}
+          {/* Tableau détaillé des villes */}
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <TableauVillesElectricien />
+          </div>
 
           {/* Notes importantes */}
           <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-8">

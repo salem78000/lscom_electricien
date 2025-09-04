@@ -340,7 +340,6 @@ const TableauElectriquePage: React.FC = () => {
                   'Fourniture du nouveau tableau',
                   'Tous les dispositifs de protection',
                   'Raccordement de tous les circuits',
-                  'Étiquetage des circuits',
                   'Tests et mise en service',
                   'Nettoyage du chantier',
                   'Garantie travaux'

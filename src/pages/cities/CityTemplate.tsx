@@ -210,8 +210,8 @@ const supportedCities = {
     departement: 'Yvelines',
     description: 'commune des Yvelines'
   },
-  'marie-le-roi': {
-    name: 'Marie le roi',
+  'marly-le-roi': {
+    name: 'Marly le roi',
     codePostal: '78160',
     population: '4 000',
     departement: 'Yvelines',
@@ -252,8 +252,8 @@ const supportedCities = {
     departement: 'Yvelines',
     description: 'commune des Yvelines'
   },
-  'saint-nom-des-breteche': {
-    name: 'St nom des breteche',
+  'saint-nom-les-breteche': {
+    name: 'St nom les breteche',
     codePostal: '78860',
     population: '5 200',
     departement: 'Yvelines',

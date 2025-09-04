@@ -36,6 +36,7 @@ const TableauVillesElectricien = () => {
     { nom: "Lévis-Saint-Nom", codePostal: "78320", departement: "Yvelines", population: 1100, distance: 14, prixHT: 150, zone: "Zone étendue" },
     { nom: "Limours", codePostal: "91470", departement: "Essonne", population: 6700, distance: 13, prixHT: 150, zone: "Zone étendue" },
     { nom: "Magny-les-Hameaux", codePostal: "78114", departement: "Yvelines", population: 9500, distance: 0, prixHT: 110, zone: "Zone proximité" },
+    { nom: "Marly-le-Roi", codePostal: "78160", departement: "Yvelines", population: 17059, distance: 15, prixHT: 150, zone: "Zone étendue" },
     { nom: "Maurepas", codePostal: "78310", departement: "Yvelines", population: 19500, distance: 13, prixHT: 150, zone: "Zone étendue" },
     { nom: "Milon-la-Chapelle", codePostal: "78470", departement: "Yvelines", population: 1200, distance: 4, prixHT: 110, zone: "Zone proximité" },
     { nom: "Montigny-le-Bretonneux", codePostal: "78180", departement: "Yvelines", population: 34000, distance: 6, prixHT: 130, zone: "Zone intermédiaire" },

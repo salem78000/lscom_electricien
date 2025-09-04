@@ -217,6 +217,13 @@ const supportedCities = {
     departement: 'Yvelines',
     description: 'commune des Yvelines'
   },
+  'marly-le-roi': {
+    name: 'Marly-le-Roi',
+    codePostal: '78160',
+    population: '17 059',
+    departement: 'Yvelines',
+    description: 'ville historique des Yvelines'
+  },
   'saint-jean-de-beauregard': {
     name: 'St jean de beauregard',
     codePostal: '91940',

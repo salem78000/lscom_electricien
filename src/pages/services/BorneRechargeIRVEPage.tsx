@@ -443,6 +443,202 @@ const BorneRechargeIRVEPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Prérequis Techniques */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="bg-yellow-100 p-2 rounded-full">
+                <Zap className="h-6 w-6 text-yellow-600" />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900">
+                ⚡ Prérequis Techniques Île-de-France
+              </h2>
+            </div>
+            <p className="text-xl text-gray-600">
+              Spécifications techniques requises pour l'installation en Île-de-France
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* 3,7kW */}
+            <div className="bg-green-50 p-6 rounded-2xl border border-green-200">
+              <div className="text-center">
+                <div className="bg-green-100 w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-green-600 font-bold">3,7</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">3,7kW</h3>
+                <p className="text-green-700 font-medium mb-3">Compteur 6kVA minimum</p>
+                <p className="text-gray-600 text-sm">
+                  Installation simple sur compteur standard
+                </p>
+              </div>
+            </div>
+
+            {/* 7,4kW */}
+            <div className="bg-blue-50 p-6 rounded-2xl border border-blue-200">
+              <div className="text-center">
+                <div className="bg-blue-100 w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold">7,4</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">7,4kW</h3>
+                <p className="text-blue-700 font-medium mb-3">Compteur 9kVA minimum</p>
+                <p className="text-gray-600 text-sm">
+                  Installation monophasé renforcée
+                </p>
+              </div>
+            </div>
+
+            {/* 22kW */}
+            <div className="bg-purple-50 p-6 rounded-2xl border border-purple-200">
+              <div className="text-center">
+                <div className="bg-purple-100 w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-purple-600 font-bold">22</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">22kW</h3>
+                <p className="text-purple-700 font-medium mb-3">Triphasé + 24kVA min</p>
+                <p className="text-gray-600 text-sm">
+                  Installation professionnelle
+                </p>
+              </div>
+            </div>
+
+            {/* Spécificités IDF */}
+            <div className="bg-orange-50 p-6 rounded-2xl border border-orange-200">
+              <div className="text-center">
+                <div className="bg-orange-100 w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Shield className="h-6 w-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Spécificités IDF</h3>
+                <div className="text-orange-700 text-sm space-y-1">
+                  <p>• Parking souterrain</p>
+                  <p>• Copropriétés</p>
+                  <p>• Normes renforcées</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Solutions Copropriétés & ZFE */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="bg-blue-100 p-2 rounded-full">
+                <Shield className="h-6 w-6 text-blue-600" />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900">
+                🏢 Solutions Copropriétés & ZFE
+              </h2>
+            </div>
+            <p className="text-xl text-gray-600">
+              Expertise spécialisée pour copropriétés et Zone à Faibles Émissions Grand Paris
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Copropriétés */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="bg-blue-100 p-3 rounded-lg">
+                  <Shield className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Solutions Copropriétés</h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-gray-900">Étude technique préalable obligatoire</p>
+                    <p className="text-gray-600 text-sm">Analyse complète de l'infrastructure existante</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-gray-900">Droit à la prise : accompagnement syndic</p>
+                    <p className="text-gray-600 text-sm">Démarches administratives et réglementaires</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-gray-900">Infrastructure collective</p>
+                    <p className="text-gray-600 text-sm">Devis sur mesure pour installations partagées</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ZFE Grand Paris */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="bg-green-100 p-3 rounded-lg">
+                  <Car className="h-6 w-6 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">ZFE Grand Paris</h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-gray-900">Conformité ZFE Grand Paris</p>
+                    <p className="text-gray-600 text-sm">Bornes éligibles aux restrictions de circulation</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-gray-900">Conseil réglementaire</p>
+                    <p className="text-gray-600 text-sm">Accompagnement sur les obligations ZFE</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-gray-900">Solutions adaptées</p>
+                    <p className="text-gray-600 text-sm">Bornes conformes aux exigences métropolitaines</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA spécialisé */}
+          <div className="bg-blue-900 text-white p-8 rounded-2xl mt-12 text-center">
+            <h3 className="text-2xl font-bold mb-4">Projet en copropriété ou ZFE ?</h3>
+            <p className="text-blue-100 mb-6">
+              Contactez-nous pour une étude personnalisée de votre projet IRVE
+            </p>
+            
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <Link 
+                to="/contact" 
+                className="bg-[#b32a29] hover:bg-[#9a2426] text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors"
+              >
+                Demander une étude
+              </Link>
+              
+              <a 
+                href="tel:+33622523902" 
+                className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors flex items-center space-x-2"
+              >
+                <Phone className="h-5 w-5" />
+                <span>06 22 52 39 02</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <ServiceFeatures features={serviceData.features} />
       <ServiceProcess process={serviceData.process} />
       <ServiceCTA 

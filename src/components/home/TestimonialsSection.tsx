@@ -3,7 +3,7 @@ import { Star, Quote, ChevronLeft, ChevronRight, Calendar, User, MapPin } from '
 import SecurePhone from '../SecurePhone';
 
 const TestimonialsSection: React.FC = () => {
-  // Top 3 avis clients authentiques de Trustindex.io
+  // Avis clients authentiques de Trustindex.io
   const testimonials = [
     {
       name: "Floriane DENTU",
@@ -293,14 +293,15 @@ const TestimonialsSection: React.FC = () => {
               className="flex transition-transform duration-500 ease-in-out"
               style={{ 
                 transform: `translateX(-${currentSlide * (100 / slidesToShow)}%)`,
-                width: `${(testimonials.length / slidesToShow) * 100}%`
               }}
             >
               {testimonials.map((testimonial, index) => (
                 <div 
                   key={index} 
-                  className="px-3"
-                  style={{ width: `${100 / testimonials.length}%` }}
+                  className="flex-shrink-0 px-3"
+                  style={{ 
+                    width: `${100 / slidesToShow}%`
+                  }}
                 >
                   <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 h-full flex flex-col">
                     
@@ -320,6 +321,12 @@ const TestimonialsSection: React.FC = () => {
                           <Calendar className="h-3 w-3" />
                           <span>{testimonial.date}</span>
                         </div>
+                        {testimonial.location && (
+                          <div className="flex items-center space-x-2 text-xs text-gray-500">
+                            <MapPin className="h-3 w-3" />
+                            <span>{testimonial.location}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -341,7 +348,7 @@ const TestimonialsSection: React.FC = () => {
                     {/* Quote */}
                     <div className="relative flex-1">
                       <Quote className="h-5 w-5 text-blue-200 absolute -top-1 -left-1" />
-                      <p className="text-gray-700 text-sm leading-relaxed pl-4 line-clamp-6">
+                      <p className="text-gray-700 text-sm leading-relaxed pl-4">
                         "{testimonial.text}"
                       </p>
                     </div>
@@ -369,7 +376,7 @@ const TestimonialsSection: React.FC = () => {
         </div>
 
         {/* CTA */}
-        <div className="bg-gray-900 text-white rounded-2xl p-8 text-center">
+        <div className="bg-gray-900 text-white rounded-2xl p-8 text-center mt-12">
           <h3 className="text-2xl font-bold mb-4">Rejoignez nos clients satisfaits</h3>
           <p className="text-gray-300 mb-6">
             Plus de 500 clients nous font confiance en Île-de-France

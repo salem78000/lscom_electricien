@@ -124,6 +124,9 @@ const AdminDashboard: React.FC = () => {
       calculateStats(cities);
       setSaveMessage('✅ Données sauvegardées avec succès !');
       setTimeout(() => setSaveMessage(''), 3000);
+      
+      // Force un rechargement des données dans les autres composants
+      window.dispatchEvent(new Event('storage'));
     } catch (error) {
       console.error('Erreur lors de la sauvegarde:', error);
       setSaveMessage('❌ Erreur lors de la sauvegarde');

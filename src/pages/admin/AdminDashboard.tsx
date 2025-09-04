@@ -15,7 +15,12 @@ import {
   Save,
   X,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  RefreshCw,
+  Download,
+  Upload,
+  Settings,
+  Activity
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import ProtectedRoute from '../../components/admin/ProtectedRoute';
@@ -40,6 +45,8 @@ const AdminDashboard: React.FC = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [saveMessage, setSaveMessage] = useState('');
+  const [isExporting, setIsExporting] = useState(false);
+  const [lastBackup, setLastBackup] = useState<string | null>(null);
 
   const citiesPerPage = 10;
 
@@ -70,6 +77,78 @@ const AdminDashboard: React.FC = () => {
 
     initializeData();
   }, []);
+
+  // Fonction d'export des données
+  const exportData = () => {
+    setIsExporting(true);
+    try {
+      const dataToExport = {
+        cities: cities,
+        stats: stats,
+        exportDate: new Date().toISOString(),
+        version: '1.0'
+      };
+      
+      const blob = new Blob([JSON.stringify(dataToExport, null, 2)], {
+        type: 'application/json'
+      });
+      
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `lscom-backup-${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      setLastBackup(new Date().toISOString());
+      setSaveMessage('✅ Export réussi !');
+      setTimeout(() => setSaveMessage(''), 3000);
+    } catch (error) {
+      console.error('Erreur lors de l\'export:', error);
+      setSaveMessage('❌ Erreur lors de l\'export');
+      setTimeout(() => setSaveMessage(''), 3000);
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  // Fonction de remise à zéro des stats
+  const resetStats = () => {
+    if (confirm('Êtes-vous sûr de vouloir remettre toutes les statistiques à zéro ?')) {
+      const resetCities = cities.map(city => ({
+        ...city,
+        visits: 0,
+        leads: 0,
+        updatedAt: new Date().toISOString()
+      }));
+      
+      setCities(resetCities);
+      localStorage.setItem('admin_cities', JSON.stringify(resetCities));
+      calculateStats(resetCities);
+      setSaveMessage('✅ Statistiques remises à zéro !');
+      setTimeout(() => setSaveMessage(''), 3000);
+    }
+  };
+
+  // Fonction de simulation de trafic (pour les tests)
+  const simulateTraffic = () => {
+    if (confirm('Voulez-vous simuler du trafic pour tester le dashboard ?')) {
+      const simulatedCities = cities.map(city => ({
+        ...city,
+        visits: Math.floor(Math.random() * 1000) + 100,
+        leads: Math.floor(Math.random() * 50) + 10,
+        updatedAt: new Date().toISOString()
+      }));
+      
+      setCities(simulatedCities);
+      localStorage.setItem('admin_cities', JSON.stringify(simulatedCities));
+      calculateStats(simulatedCities);
+      setSaveMessage('✅ Trafic simulé généré !');
+      setTimeout(() => setSaveMessage(''), 3000);
+    }
+  };
 
   // Calculer les statistiques
   const calculateStats = (citiesData: CityPage[]) => {
@@ -241,6 +320,37 @@ const AdminDashboard: React.FC = () => {
                 {saveMessage && (
                   <span className="text-sm font-medium text-green-600">{saveMessage}</span>
                 )}
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={exportData}
+                    disabled={isExporting}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 text-sm"
+                  >
+                    {isExporting ? (
+                      <RefreshCw className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Download className="h-4 w-4" />
+                    )}
+                    <span>Export</span>
+                  </button>
+                  
+                  <button
+                    onClick={resetStats}
+                    className="bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 text-sm"
+                  >
+                    <RefreshCw className="h-4 w-4" />
+                    <span>Reset Stats</span>
+                  </button>
+                  
+                  <button
+                    onClick={simulateTraffic}
+                    className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 text-sm"
+                  >
+                    <Activity className="h-4 w-4" />
+                    <span>Simuler</span>
+                  </button>
+                </div>
+                
                 <button
                   onClick={saveData}
                   className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
@@ -248,6 +358,7 @@ const AdminDashboard: React.FC = () => {
                   <Save className="h-4 w-4" />
                   <span>Sauvegarder</span>
                 </button>
+                
                 <button
                   onClick={logout}
                   className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
@@ -268,6 +379,9 @@ const AdminDashboard: React.FC = () => {
                 <div>
                   <p className="text-sm font-medium text-gray-600">Total Visites</p>
                   <p className="text-2xl font-bold text-gray-900">{stats.totalVisits.toLocaleString()}</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {stats.totalVisits === 0 ? 'Aucune visite enregistrée' : 'Visites cumulées'}
+                  </p>
                 </div>
                 <div className="bg-blue-100 p-3 rounded-lg">
                   <Eye className="h-6 w-6 text-blue-600" />
@@ -280,6 +394,9 @@ const AdminDashboard: React.FC = () => {
                 <div>
                   <p className="text-sm font-medium text-gray-600">Total Leads</p>
                   <p className="text-2xl font-bold text-gray-900">{stats.totalLeads.toLocaleString()}</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {stats.totalLeads === 0 ? 'Aucun lead généré' : 'Leads cumulés'}
+                  </p>
                 </div>
                 <div className="bg-green-100 p-3 rounded-lg">
                   <Phone className="h-6 w-6 text-green-600" />
@@ -292,6 +409,9 @@ const AdminDashboard: React.FC = () => {
                 <div>
                   <p className="text-sm font-medium text-gray-600">Villes Actives</p>
                   <p className="text-2xl font-bold text-gray-900">{stats.activeCities}</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Sur {cities.length} villes totales
+                  </p>
                 </div>
                 <div className="bg-orange-100 p-3 rounded-lg">
                   <MapPin className="h-6 w-6 text-orange-600" />
@@ -304,10 +424,45 @@ const AdminDashboard: React.FC = () => {
                 <div>
                   <p className="text-sm font-medium text-gray-600">Taux Conversion</p>
                   <p className="text-2xl font-bold text-gray-900">{stats.conversionRate.toFixed(1)}%</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {stats.totalVisits === 0 ? 'Pas de données' : 'Leads/Visites'}
+                  </p>
                 </div>
                 <div className="bg-purple-100 p-3 rounded-lg">
                   <TrendingUp className="h-6 w-6 text-purple-600" />
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Informations système */}
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+                <Settings className="h-5 w-5 mr-2" />
+                Informations Système
+              </h3>
+              <div className="text-sm text-gray-500">
+                Dernière sauvegarde: {new Date().toLocaleString('fr-FR')}
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-4 gap-4">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm font-medium text-gray-600">Environnement</p>
+                <p className="text-lg font-bold text-green-600">Production</p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm font-medium text-gray-600">Version</p>
+                <p className="text-lg font-bold text-gray-900">v1.0.0</p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm font-medium text-gray-600">Stockage</p>
+                <p className="text-lg font-bold text-blue-600">LocalStorage</p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm font-medium text-gray-600">Statut</p>
+                <p className="text-lg font-bold text-green-600">✅ Opérationnel</p>
               </div>
             </div>
           </div>
@@ -318,6 +473,21 @@ const AdminDashboard: React.FC = () => {
               <BarChart3 className="h-5 w-5 mr-2" />
               Top 5 Villes par Visites
             </h3>
+            {stats.totalVisits === 0 ? (
+              <div className="text-center py-8">
+                <div className="bg-gray-100 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <BarChart3 className="h-8 w-8 text-gray-400" />
+                </div>
+                <p className="text-gray-500 mb-2">Aucune donnée de trafic</p>
+                <p className="text-sm text-gray-400">Les statistiques apparaîtront ici une fois que le site recevra des visites</p>
+                <button
+                  onClick={simulateTraffic}
+                  className="mt-4 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  Simuler du trafic pour tester
+                </button>
+              </div>
+            ) : (
             <div className="space-y-3">
               {stats.topCities.map((city, index) => (
                 <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -337,6 +507,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
               ))}
             </div>
+            )}
           </div>
 
           {/* Gestion des villes */}

@@ -719,15 +719,6 @@ const CityTemplate: React.FC = () => {
               </p>
             </div>
             
-            {/* Elfsight Google Reviews Widget */}
-            <div
-              className="elfsight-app-bc4c44a7-b903-40bc-aab5-1a857bd89cec" 
-              data-elfsight-app-lazy
-              style={{ minHeight: '400px' }}
-              role="complementary"
-              aria-label={`Avis clients Google pour ${cityName}`}
-            ></div>
-            
             <div className="text-center mt-6">
               <a 
                 href={`https://www.google.com/search?q=LS+COM+électricien+${cityName}+avis`}

@@ -1,81 +1,98 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Clock, Phone } from 'lucide-react';
 import SecurePhone from '../SecurePhone';
 import { cityData } from '../../data/cities';
 
 const ZoneInterventionSection: React.FC = () => {
-  // Récupérer les villes depuis les données avec fallback
-  const getCitiesFromData = () => {
-    try {
-      // Combiner les données du localStorage et les données statiques
-      const stored = localStorage.getItem('admin_cities');
-      const localStorageCities = stored ? JSON.parse(stored) : [];
-      const storedCities = Array.isArray(localStorageCities) ? localStorageCities : [];
-      const staticCities = Array.isArray(cityData) ? cityData : [];
-      const allCities = [...storedCities, ...staticCities];
-      
-      // Éviter les doublons en utilisant le slug comme clé unique
-      const uniqueCities = allCities.reduce((acc, city) => {
-        if (!acc.find(c => c.slug === city.slug)) {
-          acc.push(city);
-        }
-        return acc;
-      }, []);
-      
-      // Filtrer les villes actives et prendre les 60 premières
-      return uniqueCities
-        .filter(city => city.status === 'active')
-        .slice(0, 60)
-        .map(city => ({
-          name: city.name,
-          slug: city.slug
-        }));
-    } catch (error) {
-      console.error('Error loading cities:', error);
-      // Fallback avec villes principales
-      return [
-        { name: 'Magny-les-Hameaux', slug: 'magny-les-hameaux' },
-        { name: 'Versailles', slug: 'versailles' },
-        { name: 'Voisins-le-Bretonneux', slug: 'voisins-le-bretonneux' },
-        { name: 'Guyancourt', slug: 'guyancourt' },
-        { name: 'Montigny-le-Bretonneux', slug: 'montigny-le-bretonneux' },
-        { name: 'Trappes', slug: 'trappes' },
-        { name: 'Plaisir', slug: 'plaisir' },
-        { name: 'Le Chesnay', slug: 'le-chesnay' },
-        { name: 'Élancourt', slug: 'elancourt' },
-        { name: 'Buc', slug: 'buc' },
-        { name: 'Gif-sur-Yvette', slug: 'gif-sur-yvette' },
-        { name: 'Saclay', slug: 'saclay' },
-        { name: 'Viroflay', slug: 'viroflay' },
-        { name: 'Bois d\'Arcy', slug: 'bois-d-arcy' },
-        { name: 'Maurepas', slug: 'maurepas' },
-        { name: 'Coignières', slug: 'coignieres' },
-        { name: 'Les Clayes-sous-bois', slug: 'les-clayes-sous-bois' },
-        { name: 'Orsay', slug: 'orsay' },
-        { name: 'Saint-Lambert', slug: 'saint-lambert' },
-        { name: 'Milon La Chapelle', slug: 'milon-la-chapelle' },
-        { name: 'Choisy', slug: 'choisy' },
-        { name: 'Toussus-le-Noble', slug: 'toussus-le-noble' },
-        { name: 'Saint-Aubin', slug: 'saint-aubin' },
-        { name: 'Villiers-le-Bâcle', slug: 'villiers-le-bacle' },
-        { name: 'Bailly', slug: 'bailly' },
-        { name: 'Noisy-le-Roi', slug: 'noisy-le-roi' },
-        { name: 'Rennemoulin', slug: 'rennemoulin' },
-        { name: 'Forges-les-Bains', slug: 'forges-les-bains' },
-        { name: 'Limours', slug: 'limours' },
-        { name: 'Angervilliers', slug: 'angervilliers' },
-        { name: 'Les Molières', slug: 'les-molieres' },
-        { name: 'Gometz-la-Ville', slug: 'gometz-la-ville' },
-        { name: 'Bures-sur-Yvette', slug: 'bures-sur-yvette' },
-        { name: 'L\'Étang-la-Ville', slug: 'l-etang-la-ville' },
-        { name: 'Mareil-sur-Mauldre', slug: 'mareil-sur-mauldre' },
-        { name: 'Marly-le-Roi', slug: 'marly-le-roi' },
-      ];
-    }
-  };
-
-  const cities = getCitiesFromData();
+  const [cities, setCities] = useState<any[]>([]);
+  
+  React.useEffect(() => {
+    const loadCities = () => {
+      try {
+        // Combiner les données du localStorage et les données statiques
+        const stored = localStorage.getItem('admin_cities');
+        const localStorageCities = stored ? JSON.parse(stored) : [];
+        const storedCities = Array.isArray(localStorageCities) ? localStorageCities : [];
+        const staticCities = Array.isArray(cityData) ? cityData : [];
+        const allCities = [...storedCities, ...staticCities];
+        
+        // Éviter les doublons en utilisant le slug comme clé unique
+        const uniqueCities = allCities.reduce((acc, city) => {
+          if (!acc.find(c => c.slug === city.slug)) {
+            acc.push(city);
+          }
+          return acc;
+        }, []);
+        
+        // Filtrer les villes actives et prendre les 60 premières
+        const activeCities = uniqueCities
+          .filter(city => city.status === 'active')
+          .slice(0, 60)
+          .map(city => ({
+            name: city.name,
+            slug: city.slug
+          }));
+          
+        setCities(activeCities);
+      } catch (error) {
+        console.error('Error loading cities:', error);
+        // Fallback avec villes principales
+        setCities([
+          { name: 'Magny-les-Hameaux', slug: 'magny-les-hameaux' },
+          { name: 'Versailles', slug: 'versailles' },
+          { name: 'Voisins-le-Bretonneux', slug: 'voisins-le-bretonneux' },
+          { name: 'Guyancourt', slug: 'guyancourt' },
+          { name: 'Montigny-le-Bretonneux', slug: 'montigny-le-bretonneux' },
+          { name: 'Trappes', slug: 'trappes' },
+          { name: 'Plaisir', slug: 'plaisir' },
+          { name: 'Le Chesnay', slug: 'le-chesnay' },
+          { name: 'Élancourt', slug: 'elancourt' },
+          { name: 'Buc', slug: 'buc' },
+          { name: 'Gif-sur-Yvette', slug: 'gif-sur-yvette' },
+          { name: 'Saclay', slug: 'saclay' },
+          { name: 'Viroflay', slug: 'viroflay' },
+          { name: 'Bois d\'Arcy', slug: 'bois-d-arcy' },
+          { name: 'Maurepas', slug: 'maurepas' },
+          { name: 'Coignières', slug: 'coignieres' },
+          { name: 'Les Clayes-sous-bois', slug: 'les-clayes-sous-bois' },
+          { name: 'Orsay', slug: 'orsay' },
+          { name: 'Saint-Lambert', slug: 'saint-lambert' },
+          { name: 'Milon La Chapelle', slug: 'milon-la-chapelle' },
+          { name: 'Choisy', slug: 'choisy' },
+          { name: 'Toussus-le-Noble', slug: 'toussus-le-noble' },
+          { name: 'Saint-Aubin', slug: 'saint-aubin' },
+          { name: 'Villiers-le-Bâcle', slug: 'villiers-le-bacle' },
+          { name: 'Bailly', slug: 'bailly' },
+          { name: 'Noisy-le-Roi', slug: 'noisy-le-roi' },
+          { name: 'Rennemoulin', slug: 'rennemoulin' },
+          { name: 'Forges-les-Bains', slug: 'forges-les-bains' },
+          { name: 'Limours', slug: 'limours' },
+          { name: 'Angervilliers', slug: 'angervilliers' },
+          { name: 'Les Molières', slug: 'les-molieres' },
+          { name: 'Gometz-la-Ville', slug: 'gometz-la-ville' },
+          { name: 'Bures-sur-Yvette', slug: 'bures-sur-yvette' },
+          { name: 'L\'Étang-la-Ville', slug: 'l-etang-la-ville' },
+          { name: 'Mareil-sur-Mauldre', slug: 'mareil-sur-mauldre' },
+          { name: 'Marly-le-Roi', slug: 'marly-le-roi' },
+        ]);
+      }
+    };
+    
+    // Charger les villes au montage
+    loadCities();
+    
+    // Écouter les changements du localStorage
+    const handleStorageChange = () => {
+      loadCities();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   return (
     <section className="py-20 bg-gray-900 text-white">

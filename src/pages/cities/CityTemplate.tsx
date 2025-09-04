@@ -290,6 +290,26 @@ const CityTemplate: React.FC = () => {
       setCityPages(Array.isArray(cityData) ? cityData : []);
       setIsLoading(false);
     }
+    
+    // Écouter les changements du localStorage
+    const handleStorageChange = () => {
+      try {
+        const stored = localStorage.getItem('admin_cities');
+        const parsedData = stored ? JSON.parse(stored) : [];
+        const pages = Array.isArray(parsedData) ? parsedData : [];
+        const staticData = Array.isArray(cityData) ? cityData : [];
+        const combinedPages = [...pages, ...staticData];
+        setCityPages(combinedPages);
+      } catch (error) {
+        console.error('Error reloading city pages:', error);
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, [city]);
   
   // Chercher d'abord dans les pages créées via le dashboard

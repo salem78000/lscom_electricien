@@ -196,39 +196,95 @@ const BorneRechargeIRVEPage: React.FC = () => {
               Nos solutions de recharge
             </h2>
             <p className="text-xl text-gray-600">
-              Du simple renforcement de prise aux bornes haute puissance
+              Solutions IRVE adaptées à tous vos besoins en Île-de-France
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {borneTypes.map((borne, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold text-gray-900">{borne.name}</h3>
-                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
-                      {borne.power}
-                    </span>
-                  </div>
-                  
-                  <p className="text-gray-600">{borne.description}</p>
-                  
-                  <ul className="space-y-2">
-                    {borne.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-600" />
-                        <span className="text-sm text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="pt-4 border-t border-gray-100">
-                    <p className="text-lg font-bold text-green-600">{borne.price}</p>
-                    <p className="text-xs text-gray-500">Installation comprise</p>
-                  </div>
+            {/* Prise Green'UP Legrand */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xl font-bold text-gray-900">Prise Green'UP Legrand</h3>
+                  <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                    3,7 kW
+                  </span>
+                </div>
+                
+                <div className="text-center mb-4">
+                  <p className="text-sm text-gray-600 font-medium">3,7 kW - Monophasé</p>
+                  <p className="text-gray-600">Solution économique pour recharge lente et sécurisée</p>
+                </div>
+                
+                <ul className="space-y-2">
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-green-600" />
+                    <span className="text-sm text-gray-700">Installation simple sur circuit dédié</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-green-600" />
+                    <span className="text-sm text-gray-700">Compatible tous véhicules électriques</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-green-600" />
+                    <span className="text-sm text-gray-700">Protection IP66 - Usage intérieur/extérieur</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-green-600" />
+                    <span className="text-sm text-gray-700">Recharge jusqu'à 14A (vs 10A prise standard)</span>
+                  </li>
+                </ul>
+                
+                <div className="pt-4 border-t border-gray-100">
+                  <p className="text-lg font-bold text-green-600">À partir de 710€ HT</p>
+                  <p className="text-xs text-gray-500">Installation comprise avec protection différentielle</p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Borne Murale 7,4kW */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow ring-2 ring-blue-200">
+              <div className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold mb-4 inline-block">
+                ⭐ POPULAIRE
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xl font-bold text-gray-900">Borne Murale 7,4kW</h3>
+                  <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                    7,4 kW
+                  </span>
+                </div>
+                
+                <div className="text-center mb-4">
+                  <p className="text-sm text-gray-600 font-medium">7,4 kW - Monophasé</p>
+                  <p className="text-gray-600">Solution optimale pour usage domestique</p>
+                </div>
+                
+                <ul className="space-y-2">
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
+                    <span className="text-sm text-gray-700">Recharge semi-rapide (35 km d'autonomie/heure)</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
+                    <span className="text-sm text-gray-700">Compatible gestion heures creuses</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
+                    <span className="text-sm text-gray-700">Écran de contrôle et sécurités intégrées</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-blue-600" />
+                    <span className="text-sm text-gray-700">Protection IP54 - Installation intérieure</span>
+                  </li>
+                </ul>
+                
+                <div className="pt-4 border-t border-gray-100">
+                  <p className="text-lg font-bold text-blue-600">À partir de 1 280€ HT</p>
+                  <p className="text-xs text-gray-500">Installation comprise</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

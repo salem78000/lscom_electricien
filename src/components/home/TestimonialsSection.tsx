@@ -29,6 +29,159 @@ const TestimonialsSection: React.FC = () => {
       text: "Nous avons fait appel à cet électricien pour l'installation de plafonniers dans notre domicile, qui en était initialement dépourvu, et nous sommes pleinement satisfaits de son intervention. Il s'est montré particulièrement disponible, intervenant en un temps record suite au premier contact. Nous avons également beaucoup apprécié sa réactivité ainsi que sa capacité à proposer des solutions efficaces afin de limiter au maximum les travaux de gros œuvre.",
       verified: true
     }
+    },
+    {
+      name: "Philippe Gaucher",
+      date: "28 juin 2025",
+      rating: 5,
+      service: "Rénovation tableau électrique",
+      text: "Excellent électricien qui a rénové un tableau électrique et une prise green up dans une très vieille maison. Ce n'était pas facile! Je le recommande vivement pour sa réactivité, son honnêteté et sa compétence.",
+      verified: true,
+      location: "Yvelines"
+    },
+    {
+      name: "Lucien Laurent",
+      date: "24 juin 2025",
+      rating: 5,
+      service: "Électricité générale",
+      text: "Compétent, serviable, disponible. Excellent électricien. Je recommande.",
+      verified: true,
+      location: "Magny-les-Hameaux"
+    },
+    {
+      name: "Thierry D",
+      date: "15 juin 2025",
+      rating: 5,
+      service: "Travaux électriques",
+      text: "Réactif pour établir le devis. Délai d'intervention court. Travail soigné. Joignable et disponible. Sens du service. Je recommande sans hésiter.",
+      verified: true,
+      location: "Magny-les-Hameaux"
+    },
+    {
+      name: "Stephanie Villard",
+      date: "04 juin 2025",
+      rating: 5,
+      service: "Installation borne IRVE",
+      text: "Après recherche d'un électricien IRVE certifié pour la pose d'une prise pour voiture électrique je rentre en contact avec Salem et la réactivité des réponses et les précieux conseils m'ont incité à demander un devis. J'ai obtenu le rdv pour la pose dans la foulée...rdv et pose super bien passée...à l'écoute pour comprendre les besoins, ultra professionnel..service de grande qualité... je ne peux que recommander ses services !",
+      verified: true,
+      location: "Chevreuse"
+    },
+    {
+      name: "Gilles COCHET",
+      date: "20 mai 2025",
+      rating: 5,
+      service: "Installation prise de terre",
+      text: "Les travaux demandés concernaient l'installation de prise de terre à la suite d'un diagnostic électrique, le résultat est probant et les artisans ont été très performants. À conseiller sans hésitation !",
+      verified: true,
+      location: "Yvelines"
+    },
+    {
+      name: "Claire Rochelet",
+      date: "16 mai 2025",
+      rating: 5,
+      service: "Travaux électriques",
+      text: "En plus d'être agréable c'est une équipe efficace et sérieuse merci",
+      verified: true,
+      location: "Île-de-France"
+    },
+    {
+      name: "Yolande Videau",
+      date: "15 mai 2025",
+      rating: 5,
+      service: "Travaux électriques",
+      text: "Artisan à recommander, fiable, sérieux, répond au téléphone. Travail très sérieux, bonne équipe, je la recommande vraiment",
+      verified: true,
+      location: "Yvelines"
+    },
+    {
+      name: "Michel Muller Lambert",
+      date: "14 mai 2025",
+      rating: 5,
+      service: "Travaux électriques",
+      text: "Un grand merci pour le très bon travail que vous avez fait.",
+      verified: true,
+      location: "Magny-les-Hameaux"
+    },
+    {
+      name: "Isabelle Le Nouail",
+      date: "05 mai 2025",
+      rating: 5,
+      service: "Changement tableau électrique",
+      text: "J'ai fait changer mon vieux compteur à fusible. Très satisfaite de l'entreprise LS COM. Très réactif dès le premier contact, travail satisfaisant et prix correct. Je recommande.",
+      verified: true,
+      location: "Yvelines"
+    },
+    {
+      name: "NelloB",
+      date: "29 avril 2025",
+      rating: 5,
+      service: "Installation prises et tableau",
+      text: "Nous avons fait appel à cette entreprise pour l'installation de prises électriques, dont une prise renforcée destinée à la recharge d'un véhicule électrique, ainsi que pour la pose d'un nouveau tableau électrique dans notre garage. Dès les premiers échanges en vue de l'établissement du devis, l'entreprise s'est montrée très réactive et flexible, répondant à mes messages en un temps record. L'équipe s'est également distinguée par sa ponctualité exemplaire et son professionnalisme.",
+      verified: true,
+      location: "Yvelines"
+    },
+    {
+      name: "Erwan Petit-Pierre",
+      date: "24 avril 2025",
+      rating: 5,
+      service: "Intervention électrique",
+      text: "Rapide, sérieux et sympathique.",
+      verified: true,
+      location: "Île-de-France"
+    },
+    {
+      name: "Marianne Julienne",
+      date: "24 avril 2025",
+      rating: 5,
+      service: "Travaux électriques",
+      text: "Très réactif, devis rapide et intervention dans les délais prévus. Travail propre et soigné. Je recommande cet artisan",
+      verified: true,
+      location: "Yvelines"
+    },
+    {
+      name: "Violaine Billot",
+      date: "24 mars 2025",
+      rating: 5,
+      service: "Dépannage cuisine",
+      text: "Ravie du dépannage pour l'électricité de ma cuisine. Rapide et efficace et surtout qui a su s'arranger en fonction de mes disponibilités!",
+      verified: true,
+      location: "Yvelines"
+    },
+    {
+      name: "Jean-Roch Constans",
+      date: "16 mars 2025",
+      rating: 5,
+      service: "Installation prise 32A",
+      text: "Installation d'une prise 32 A pour le véhicule électrique, travail bien et vite fait (et bien moins cher qu'une wall box).",
+      verified: true,
+      location: "Yvelines"
+    },
+    {
+      name: "Nicolas R",
+      date: "11 mars 2025",
+      rating: 5,
+      service: "Travaux électriques",
+      text: "Électricien très sérieux, très réactif et ce qui ne gâche rien très sympathique. Je recommande chaleureusement",
+      verified: true,
+      location: "Île-de-France"
+    },
+    {
+      name: "Bertrand Delacroix",
+      date: "20 février 2025",
+      rating: 5,
+      service: "Travaux électriques",
+      text: "J'ai fait appel à LS Com (que je ne connaissais pas) pour divers travaux électriques. L'intervention a été parfaite tant pour le délai que pour la qualité du travail. Je recommande donc",
+      verified: true,
+      location: "Yvelines"
+    },
+    {
+      name: "Guy Benzadon",
+      date: "12 février 2025",
+      rating: 5,
+      service: "Travaux électriques",
+      text: "Travail sérieux, rapide et en plus... dans la bonne humeur. Je recommande!",
+      verified: true,
+      location: "Yvelines"
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);

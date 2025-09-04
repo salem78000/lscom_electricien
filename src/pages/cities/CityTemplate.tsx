@@ -239,11 +239,11 @@ const supportedCities = {
     description: 'ville nouvelle de l\'Essonne'
   },
   'la-celle-saint-cloud': {
-    name: 'La celle saint cloud',
+    name: 'Saint-Nom-la-Bretèche',
     codePostal: '78170',
-    population: '21 000',
+    population: '4 877',
     departement: 'Yvelines',
-    description: 'commune des Yvelines'
+    description: 'commune résidentielle des Yvelines'
   },
   'les-essarts-le-roi': {
     name: 'Les essarts le roi',
@@ -262,7 +262,7 @@ const supportedCities = {
   'marly-le-roi': {
     name: 'Marly-le-Roi',
     codePostal: '78160',
-    population: '17 000',
+    population: '17 059',
     departement: 'Yvelines',
     description: 'commune résidentielle des Yvelines'
   }
@@ -527,8 +527,7 @@ const CityTemplate: React.FC = () => {
   ];
 
   const localInfo = {
-    population: cityInfo.population,
-    codePostal: cityInfo.codePostal,
+        { name: 'Marly-le-Roi', slug: 'marly-le-roi' }
     departement: cityInfo.departement,
     description: cityInfo.description
   };

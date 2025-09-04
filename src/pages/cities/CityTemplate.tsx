@@ -851,7 +851,7 @@ const CityTemplate: React.FC = () => {
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="space-y-2">
                   <Phone className="h-8 w-8 text-blue-400 mx-auto" />
-                  <h3 className="font-semibold">Dépannage ${depannagePrice}€ HT</h3>
+                  <h3 className="font-semibold">Dépannage {depannagePrice}€ HT</h3>
                   <p className="text-gray-300 text-sm">Selon zone - 1h à {cityName}</p>
                 </div>
                 <div className="space-y-2">

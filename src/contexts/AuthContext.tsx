@@ -27,7 +27,8 @@ const ADMIN_CREDENTIALS = [
 ];
 
 const MAX_LOGIN_ATTEMPTS = 3;
-const BLOCK_DURATION = 15 * 60 * 1000; // 15 minutes
+const MAX_LOGIN_ATTEMPTS = 10;
+const BLOCK_DURATION = 2 * 60 * 1000; // 2 minutes
 
 // Fonction de hash simple (MD5-like)
 const simpleHash = (str: string): string => {

@@ -20,7 +20,6 @@ const ZoneInterventionSection: React.FC = () => {
         // Éviter les doublons en utilisant le slug comme clé unique
         const uniqueCities = allCities.reduce((acc, city) => {
           if (!acc.find(c => c.slug === city.slug)) {
-              { name: 'Marly-le-Roi', slug: 'marly-le-roi' },
             acc.push(city);
           }
           return acc;

@@ -18,7 +18,8 @@ const Header: React.FC = () => {
               src="https://stackblitz.com/storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCT08xMVFFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c933664d226cd248d5b30317ed10cf915092de91/-Lscom.png"
               alt="LS COM Électricien"
               className="h-12 w-auto"
-            >
+            />
+            <SecurePhone>
               06 22 52 39 02
             </SecurePhone>
           </Link>

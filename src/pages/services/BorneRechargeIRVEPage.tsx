@@ -334,25 +334,89 @@ const BorneRechargeIRVEPage: React.FC = () => {
       <section className="py-20 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Aides financières disponibles
-            </h2>
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="bg-yellow-100 p-2 rounded-full">
+                <Euro className="h-6 w-6 text-yellow-600" />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900">
+                💰 Aides Disponibles 2025 - Île-de-France
+              </h2>
+            </div>
             <p className="text-xl text-gray-600">
-              Réduisez le coût de votre installation grâce aux aides publiques
+              Réduisez significativement le coût de votre installation IRVE en Île-de-France
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {aides.map((aide, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-sm text-center">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Crédit d'impôt */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="text-center mb-6">
+                <div className="bg-green-100 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Euro className="h-8 w-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Crédit d'impôt</h3>
+                <p className="text-2xl font-bold text-green-600 mb-3">500€ maximum</p>
+              </div>
+              <p className="text-gray-600 text-sm text-center">
+                Bornes pilotables uniquement - Résidence principale
+              </p>
+            </div>
+
+            {/* TVA réduite */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="text-center mb-6">
                 <div className="bg-blue-100 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <Euro className="h-8 w-8 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{aide.name}</h3>
-                <p className="text-2xl font-bold text-blue-600 mb-3">{aide.amount}</p>
-                <p className="text-gray-600 text-sm">{aide.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">TVA réduite</h3>
+                <p className="text-2xl font-bold text-blue-600 mb-3">5,5%</p>
               </div>
-            ))}
+              <p className="text-gray-600 text-sm text-center">
+                Au lieu de 20% - Installation par professionnel IRVE
+              </p>
+            </div>
+
+            {/* Programme Advenir */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="text-center mb-6">
+                <div className="bg-purple-100 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Euro className="h-8 w-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Programme Advenir</h3>
+                <p className="text-2xl font-bold text-purple-600 mb-3">Variables</p>
+              </div>
+              <p className="text-gray-600 text-sm text-center">
+                Pour copropriétés et entreprises
+              </p>
+            </div>
+
+            {/* Aide Roulez Branchez */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="text-center mb-6">
+                <div className="bg-orange-100 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Euro className="h-8 w-8 text-orange-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Aide "Roulez Branchez"</h3>
+                <p className="text-2xl font-bold text-orange-600 mb-3">Jusqu'à 6 000€</p>
+              </div>
+              <p className="text-gray-600 text-sm text-center">
+                Aide régionale Île-de-France (sous conditions)
+              </p>
+            </div>
+
+            {/* Aide Ville de Paris */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="text-center mb-6">
+                <div className="bg-red-100 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Euro className="h-8 w-8 text-red-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Aide Ville de Paris</h3>
+                <p className="text-2xl font-bold text-red-600 mb-3">Variables</p>
+              </div>
+              <p className="text-gray-600 text-sm text-center">
+                Selon arrondissement (se renseigner en mairie)
+              </p>
+            </div>
           </div>
 
           <div className="text-center mt-12">

@@ -70,7 +70,8 @@ const ZoneInterventionSection: React.FC = () => {
         { name: 'Bures-sur-Yvette', slug: 'bures-sur-yvette' },
         { name: 'L\'Étang-la-Ville', slug: 'l-etang-la-ville' },
         { name: 'Mareil-sur-Mauldre', slug: 'mareil-sur-mauldre' },
-        { name: 'Marly-le-Roi', slug: 'marly-le-roi' }
+        { name: 'Marly-le-Roi', slug: 'marly-le-roi' },
+        { name: 'Saint-Nom-la-Bretèche', slug: 'saint-nom-la-breteche' }
       ];
     }
   };

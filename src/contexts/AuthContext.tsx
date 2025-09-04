@@ -26,7 +26,6 @@ const ADMIN_CREDENTIALS = [
   }
 ];
 
-const MAX_LOGIN_ATTEMPTS = 3;
 const MAX_LOGIN_ATTEMPTS = 10;
 const BLOCK_DURATION = 2 * 60 * 1000; // 2 minutes
 

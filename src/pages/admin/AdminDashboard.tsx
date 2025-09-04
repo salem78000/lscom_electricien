@@ -120,6 +120,11 @@ const AdminDashboard: React.FC = () => {
   // Sauvegarder les données
   const saveData = () => {
     try {
+      // Nettoyer les doublons avant sauvegarde
+      const cleanedCities = cities.filter((city, index, self) => 
+        index === self.findIndex(c => c.slug === city.slug)
+      );
+      
       localStorage.setItem('admin_cities', JSON.stringify(cities));
       calculateStats(cities);
       setSaveMessage('✅ Données sauvegardées avec succès !');

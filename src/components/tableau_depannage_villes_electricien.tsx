@@ -12,7 +12,7 @@ const TableauVillesElectricien = () => {
     { nom: "Bullion", codePostal: "78830", departement: "Yvelines", population: 2100, distance: 14, prixHT: 150, zone: "Zone étendue" },
     { nom: "Bures-sur-Yvette", codePostal: "91440", departement: "Essonne", population: 10500, distance: 12, prixHT: 150, zone: "Zone étendue" },
     { nom: "Châteaufort", codePostal: "78117", departement: "Yvelines", population: 1400, distance: 4, prixHT: 110, zone: "Zone proximité" },
-    { nom: "Chaveney", codePostal: "78450", departement: "Yvelines", population: 1800, distance: 6, prixHT: 130, zone: "Zone intermédiaire" },
+    { nom: "Chavenay", codePostal: "78450", departement: "Yvelines", population: 1800, distance: 6, prixHT: 130, zone: "Zone intermédiaire" },
     { nom: "Chevreuse", codePostal: "78460", departement: "Yvelines", population: 5500, distance: 3, prixHT: 110, zone: "Zone proximité" },
     { nom: "Choisy", codePostal: "78460", departement: "Yvelines", population: 3500, distance: 7, prixHT: 130, zone: "Zone intermédiaire" },
     { nom: "Coignières", codePostal: "78310", departement: "Yvelines", population: 4500, distance: 14, prixHT: 150, zone: "Zone étendue" },

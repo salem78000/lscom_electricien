@@ -1195,26 +1195,26 @@ export const cityData: CityPage[] = [
     depannagePrice: 150
   },
   {
-    id: 'saint-nom-des-breteche',
-    name: 'St nom des breteche',
-    slug: 'saint-nom-des-breteche',
-    title: 'Électricien à St nom des breteche - LS COM | Installation, Dépannage, Conformité',
-    metaDescription: 'LS COM, électricien professionnel à St nom des breteche (78860). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
+    id: 'saint-nom-la-breteche',
+    name: 'St nom la breteche',
+    slug: 'saint-nom-la-breteche',
+    title: 'Électricien à St nom la breteche - LS COM | Installation, Dépannage, Conformité',
+    metaDescription: 'LS COM, électricien professionnel à St nom la breteche (78860). Installation électrique, dépannage 150€ HT, mise en conformité, bornes IRVE. Devis gratuit.',
     content: {
-      heroTitle: 'Électricien à St nom des breteche',
-      heroSubtitle: 'Votre électricien professionnel de confiance à St nom des breteche',
+      heroTitle: 'Électricien à St nom la breteche',
+      heroSubtitle: 'Votre électricien professionnel de confiance à St nom la breteche',
       services: ['Installation électrique', 'Dépannage électrique', 'Mise en conformité', 'Bornes IRVE'],
       testimonials: [
         {
-          name: 'Client - St nom des breteche',
-          text: 'Installation électrique haut de gamme à St nom des breteche.',
+          name: 'Client - St nom la breteche',
+          text: 'Installation électrique haut de gamme à St nom la breteche.',
           service: 'Installation électrique',
           rating: 5,
           date: 'Il y a 1 mois'
         }
       ],
       localInfo: {
-        population: '5 200',
+        population: '4 877',
         codePostal: '78860',
         departement: 'Yvelines'
       }

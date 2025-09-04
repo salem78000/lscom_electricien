@@ -285,6 +285,47 @@ const BorneRechargeIRVEPage: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {/* Borne Professionnelle 22kW */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xl font-bold text-gray-900">Borne Professionnelle 22kW</h3>
+                  <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">
+                    22 kW
+                  </span>
+                </div>
+                
+                <div className="text-center mb-4">
+                  <p className="text-sm text-gray-600 font-medium">22 kW - Triphasé</p>
+                  <p className="text-gray-600">Solution professionnelle haute performance</p>
+                </div>
+                
+                <ul className="space-y-2">
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-purple-600" />
+                    <span className="text-sm text-gray-700">Recharge rapide (100 km d'autonomie/heure)</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-purple-600" />
+                    <span className="text-sm text-gray-700">Gestion intelligente de la charge</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-purple-600" />
+                    <span className="text-sm text-gray-700">Construction robuste - Usage intensif</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-purple-600" />
+                    <span className="text-sm text-gray-700">Options connectivité et RFID</span>
+                  </li>
+                </ul>
+                
+                <div className="pt-4 border-t border-gray-100">
+                  <p className="text-lg font-bold text-purple-600">À partir de 1 990€ HT</p>
+                  <p className="text-xs text-gray-500">Installation comprise</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

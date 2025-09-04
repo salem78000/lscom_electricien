@@ -147,13 +147,6 @@ const supportedCities = {
     departement: 'Yvelines',
     description: 'commune résidentielle des Yvelines'
   },
-  'fontenay-le-fleury': {
-    name: 'Fontenay-le-Fleury',
-    codePostal: '78330',
-    population: '12 000',
-    departement: 'Yvelines',
-    description: 'commune des Yvelines'
-  },
   'jouy-en-josas': {
     name: 'Jouy-en-Josas',
     codePostal: '78350',
@@ -161,83 +154,6 @@ const supportedCities = {
     departement: 'Yvelines',
     description: 'commune historique de la vallée de Bièvre'
   },
-  'levis-saint-nom': {
-    name: 'Lévis St nom',
-    codePostal: '78320',
-    population: '1 100',
-    departement: 'Yvelines',
-    description: 'commune des Yvelines'
-  },
-  'chaveney': {
-    name: 'Chaveney',
-    codePostal: '78450',
-    population: '1 800',
-    departement: 'Yvelines',
-    description: 'commune des Yvelines'
-  },
-  'la-celle-les-bordes': {
-    name: 'La celle les bordes',
-    codePostal: '78720',
-    population: '600',
-    departement: 'Yvelines',
-    description: 'commune des Yvelines'
-  },
-  'saint-forget': {
-    name: 'St forget',
-    codePostal: '78720',
-    population: '450',
-    departement: 'Yvelines',
-    description: 'commune des Yvelines'
-  },
-  'senlisse': {
-    name: 'Senlisse',
-    codePostal: '78720',
-    population: '800',
-    departement: 'Yvelines',
-    description: 'commune des Yvelines'
-  },
-  'bonnelles': {
-    name: 'Bonnelles',
-    codePostal: '78830',
-    population: '1 800',
-    departement: 'Yvelines',
-    description: 'commune des Yvelines'
-  },
-  'mareil-sur-mauldre': {
-    name: 'Mareil sur mauldre',
-    codePostal: '78430',
-    population: '2 800',
-    departement: 'Yvelines',
-    description: 'commune des Yvelines'
-  },
-  'saint-jean-de-beauregard': {
-    name: 'St jean de beauregard',
-    codePostal: '91940',
-    population: '1 100',
-    departement: 'Essonne',
-    description: 'commune de l\'Essonne'
-  },
-  'gometz-le-chatel': {
-    name: 'Gometz le chatel',
-    codePostal: '91940',
-    population: '2 400',
-    departement: 'Essonne',
-    description: 'commune de l\'Essonne'
-  },
-  'les-ulis': {
-    name: 'Les ulis',
-    codePostal: '91940',
-    population: '25 000',
-    departement: 'Essonne',
-    description: 'ville nouvelle de l\'Essonne'
-  },
-  'pecqueuse': {
-    name: 'Pecqueuse',
-    codePostal: '91470',
-    population: '600',
-    departement: 'Essonne',
-    description: 'commune de l\'Essonne'
-  }
 };
 
 const CityTemplate: React.FC = () => {

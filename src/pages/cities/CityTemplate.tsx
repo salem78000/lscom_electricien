@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MapPin, Clock, Shield, Star, CheckCircle, Phone, Award, Zap, Users } from 'lucide-react';
 import SecurePhone from '../../components/SecurePhone';
+import TestimonialsSection from '../../components/home/TestimonialsSection';
 import { cityData } from '../../data/cities';
 
 // Liste des villes supportées avec informations détaillées
@@ -703,36 +704,6 @@ const CityTemplate: React.FC = () => {
             </p>
           </div>
 
-          {/* Google Reviews Widget */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-            <div className="text-center mb-8">
-              <div className="flex items-center justify-center space-x-2 mb-4">
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
-                  alt="Google" 
-                  className="w-6 h-6"
-                />
-                <span className="text-lg font-semibold text-gray-900">Avis Google - {cityName}</span>
-              </div>
-              <p className="text-gray-600">
-                Avis authentiques de nos clients électricité à {cityName}
-              </p>
-            </div>
-            
-            <div className="text-center mt-6">
-              <a 
-                href={`https://www.google.com/search?q=LS+COM+électricien+${cityName}+avis`}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
-              >
-                <span>Voir tous nos avis Google à {cityName}</span>
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </div>
-          </div>
 
           {/* Trust Indicators localisés */}
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
@@ -763,6 +734,8 @@ const CityTemplate: React.FC = () => {
         </div>
       </section>
 
+      {/* Avis clients slider */}
+      <TestimonialsSection />
 
       {/* Informations locales */}
       <section className="py-20 bg-white">

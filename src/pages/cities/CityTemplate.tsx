@@ -527,7 +527,6 @@ const CityTemplate: React.FC = () => {
   ];
 
   const localInfo = {
-        { name: 'Marly-le-Roi', slug: 'marly-le-roi' }
     departement: cityInfo.departement,
     description: cityInfo.description
   };

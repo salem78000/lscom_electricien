@@ -90,7 +90,7 @@ const MentionsLegalesPage: React.FC = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-2">Téléphone</h3>
-                      <a href="tel:+33622523902" className="text-blue-600 hover:text-blue-700 font-medium">0622523902</a>
+                      <a href="tel:+33622523902" className="text-blue-600 hover:text-blue-700 font-medium">06 22 52 39 02</a>
                     </div>
                   </div>
                   
@@ -233,7 +233,7 @@ const MentionsLegalesPage: React.FC = () => {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <p className="font-medium text-gray-900">Par téléphone :</p>
-                    <p className="text-orange-600 font-medium">0622523902</p>
+                    <a href="tel:+33622523902" className="text-orange-600 hover:text-orange-700 font-medium">06 22 52 39 02</a>
                   </div>
                   
                   <div className="space-y-2">

@@ -23,9 +23,9 @@ const SecureContact: React.FC<SecureContactProps> = ({
     // Décodage sécurisé côté client avec obfuscation renforcée
     if (type === 'phone') {
       // Triple encodage pour sécurité maximale
-      const encoded = [54, 50, 50, 50, 53, 50, 51, 57, 48, 50];
+      const encoded = [54, 50, 50, 53, 50, 51, 57, 48, 50];
       const parts = encoded.map(code => String.fromCharCode(code));
-      const display = parts.join(' ');
+      const display = '0' + parts.join(' ');
       const tel = '+33' + parts.join('');
       
       setDisplayData(display);

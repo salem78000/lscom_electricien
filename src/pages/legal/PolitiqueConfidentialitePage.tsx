@@ -59,7 +59,7 @@ const PolitiqueConfidentialitePage: React.FC = () => {
                   <p><strong>Entreprise :</strong> LS COM</p>
                   <p><strong>Adresse :</strong> 24 Avenue de Chevincourt, 78114 Magny-les-Hameaux</p>
                   <p><strong>SIRET :</strong> 52445239800026</p>
-                  <p><strong>Téléphone :</strong> 0622523902</p>
+                  <p><strong>Téléphone :</strong> <a href="tel:+33622523902" className="text-blue-600 hover:text-blue-700">06 22 52 39 02</a></p>
                   <p><strong>Email :</strong> <SecureEmail variant="text" showIcon={false} /></p>
                 </div>
               </div>
@@ -363,7 +363,7 @@ const PolitiqueConfidentialitePage: React.FC = () => {
                   
                   <div className="space-y-2">
                     <p className="font-medium text-gray-900">Par téléphone :</p>
-                    <a href="tel:+33622523902" className="text-blue-600 hover:text-blue-700 font-medium">0622523902</a>
+                    <a href="tel:+33622523902" className="text-blue-600 hover:text-blue-700 font-medium">06 22 52 39 02</a>
                   </div>
                 </div>
                 

@@ -86,7 +86,7 @@ const supportedCities = {
   },
   'saclay': {
     name: 'Saclay',
-    codePostal: '91400',
+    codePostal: '78160', 
     population: '17 059',
     departement: 'Essonne',
     description: 'commune du plateau de Saclay'
@@ -138,7 +138,7 @@ const supportedCities = {
     codePostal: '78210',
     population: '17 000',
     departement: 'Yvelines',
-    description: 'ville militaire historique des Yvelines'
+    description: 'commune historique des Yvelines'
   },
   'bois-d-arcy': {
     name: 'Bois-d\'Arcy',

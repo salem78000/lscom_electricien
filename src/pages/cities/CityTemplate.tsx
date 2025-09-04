@@ -231,13 +231,6 @@ const supportedCities = {
     departement: 'Essonne',
     description: 'ville nouvelle de l\'Essonne'
   },
-  'les-essarts-le-roi': {
-    name: 'Les essarts le roi',
-    codePostal: '78690',
-    population: '7 000',
-    departement: 'Yvelines',
-    description: 'commune des Yvelines'
-  },
   'pecqueuse': {
     name: 'Pecqueuse',
     codePostal: '91470',

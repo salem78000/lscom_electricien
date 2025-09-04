@@ -73,8 +73,7 @@ const ZoneInterventionSection: React.FC = () => {
           { name: 'Gometz-la-Ville', slug: 'gometz-la-ville' },
           { name: 'Bures-sur-Yvette', slug: 'bures-sur-yvette' },
           { name: 'L\'Étang-la-Ville', slug: 'l-etang-la-ville' },
-          { name: 'Mareil-sur-Mauldre', slug: 'mareil-sur-mauldre' },
-          { name: 'Les Essarts-le-Roi', slug: 'les-essarts-le-roi' }
+          { name: 'Mareil-sur-Mauldre', slug: 'mareil-sur-mauldre' }
         ]);
       }
     };

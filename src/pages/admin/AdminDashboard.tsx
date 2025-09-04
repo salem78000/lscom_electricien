@@ -20,7 +20,10 @@ import {
   Download,
   Upload,
   Settings,
-  Activity
+  Activity,
+  Shield,
+  Clock,
+  Lock
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import ProtectedRoute from '../../components/admin/ProtectedRoute';
@@ -47,9 +50,22 @@ const AdminDashboard: React.FC = () => {
   const [saveMessage, setSaveMessage] = useState('');
   const [isExporting, setIsExporting] = useState(false);
   const [lastBackup, setLastBackup] = useState<string | null>(null);
+  const [sessionInfo, setSessionInfo] = useState<any>(null);
 
   const citiesPerPage = 10;
 
+  // Charger les informations de session
+  useEffect(() => {
+    const authData = localStorage.getItem('admin_auth');
+    if (authData) {
+      try {
+        const parsed = JSON.parse(authData);
+        setSessionInfo(parsed);
+      } catch (error) {
+        console.error('Erreur parsing session:', error);
+      }
+    }
+  }, []);
   // Initialiser les données au chargement
   useEffect(() => {
     const initializeData = () => {
@@ -78,6 +94,14 @@ const AdminDashboard: React.FC = () => {
     initializeData();
   }, []);
 
+  // Fonction de déconnexion sécurisée
+  const handleSecureLogout = () => {
+    if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+      // Log de sécurité
+      console.log(`[SECURITY] Déconnexion manuelle: ${user?.username} à ${new Date().toISOString()}`);
+      logout();
+    }
+  };
   // Fonction d'export des données
   const exportData = () => {
     setIsExporting(true);
@@ -86,7 +110,12 @@ const AdminDashboard: React.FC = () => {
         cities: cities,
         stats: stats,
         exportDate: new Date().toISOString(),
-        version: '1.0'
+        version: '1.0',
+        exportedBy: user?.username,
+        securityInfo: {
+          sessionStart: sessionInfo?.timestamp,
+          exportTime: Date.now()
+        }
       };
       
       const blob = new Blob([JSON.stringify(dataToExport, null, 2)], {
@@ -96,7 +125,7 @@ const AdminDashboard: React.FC = () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `lscom-backup-${new Date().toISOString().split('T')[0]}.json`;
+      a.download = `lscom-backup-${new Date().toISOString().split('T')[0]}-${user?.username}.json`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -104,6 +133,10 @@ const AdminDashboard: React.FC = () => {
       
       setLastBackup(new Date().toISOString());
       setSaveMessage('✅ Export réussi !');
+      
+      // Log de sécurité
+      console.log(`[SECURITY] Export données: ${user?.username} à ${new Date().toISOString()}`);
+      
       setTimeout(() => setSaveMessage(''), 3000);
     } catch (error) {
       console.error('Erreur lors de l\'export:', error);
@@ -128,6 +161,10 @@ const AdminDashboard: React.FC = () => {
       localStorage.setItem('admin_cities', JSON.stringify(resetCities));
       calculateStats(resetCities);
       setSaveMessage('✅ Statistiques remises à zéro !');
+      
+      // Log de sécurité
+      console.log(`[SECURITY] Reset statistiques: ${user?.username} à ${new Date().toISOString()}`);
+      
       setTimeout(() => setSaveMessage(''), 3000);
     }
   };
@@ -146,6 +183,10 @@ const AdminDashboard: React.FC = () => {
       localStorage.setItem('admin_cities', JSON.stringify(simulatedCities));
       calculateStats(simulatedCities);
       setSaveMessage('✅ Trafic simulé généré !');
+      
+      // Log de sécurité
+      console.log(`[SECURITY] Simulation trafic: ${user?.username} à ${new Date().toISOString()}`);
+      
       setTimeout(() => setSaveMessage(''), 3000);
     }
   };
@@ -314,9 +355,16 @@ const AdminDashboard: React.FC = () => {
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
                   LS COM Électricien
                 </span>
+                <div className="flex items-center space-x-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                  <Shield className="h-4 w-4" />
+                  <span>Sécurisé</span>
+                </div>
               </div>
               <div className="flex items-center space-x-4">
-                <span className="text-gray-600">Bonjour, {user?.username}</span>
+                <div className="flex items-center space-x-2 text-gray-600">
+                  <Lock className="h-4 w-4" />
+                  <span>Bonjour, <strong>{user?.username}</strong></span>
+                </div>
                 {saveMessage && (
                   <span className="text-sm font-medium text-green-600">{saveMessage}</span>
                 )}
@@ -360,7 +408,7 @@ const AdminDashboard: React.FC = () => {
                 </button>
                 
                 <button
-                  onClick={logout}
+                  onClick={handleSecureLogout}
                   className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
                 >
                   <LogOut className="h-4 w-4" />
@@ -372,6 +420,24 @@ const AdminDashboard: React.FC = () => {
         </header>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Informations de session */}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <Clock className="h-5 w-5 text-blue-600" />
+                <div>
+                  <p className="font-medium text-blue-800">Session active</p>
+                  <p className="text-blue-700 text-sm">
+                    Connecté depuis: {sessionInfo?.timestamp ? new Date(sessionInfo.timestamp).toLocaleString('fr-FR') : 'N/A'}
+                  </p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-blue-800 font-medium">Rôle: {sessionInfo?.role || 'admin'}</p>
+                <p className="text-blue-700 text-sm">Session expire dans 24h</p>
+              </div>
+            </div>
+          </div>
           {/* Statistiques */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
@@ -443,11 +509,11 @@ const AdminDashboard: React.FC = () => {
                 Informations Système
               </h3>
               <div className="text-sm text-gray-500">
-                Dernière sauvegarde: {new Date().toLocaleString('fr-FR')}
+                Dernière sauvegarde: {lastBackup ? new Date(lastBackup).toLocaleString('fr-FR') : 'Aucune'}
               </div>
             </div>
             
-            <div className="grid md:grid-cols-4 gap-4">
+            <div className="grid md:grid-cols-5 gap-4">
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm font-medium text-gray-600">Environnement</p>
                 <p className="text-lg font-bold text-green-600">Production</p>
@@ -459,6 +525,10 @@ const AdminDashboard: React.FC = () => {
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm font-medium text-gray-600">Stockage</p>
                 <p className="text-lg font-bold text-blue-600">LocalStorage</p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm font-medium text-gray-600">Sécurité</p>
+                <p className="text-lg font-bold text-green-600">✅ Activée</p>
               </div>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm font-medium text-gray-600">Statut</p>

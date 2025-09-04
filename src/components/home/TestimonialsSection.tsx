@@ -28,7 +28,6 @@ const TestimonialsSection: React.FC = () => {
       service: "Installation plafonniers",
       text: "Nous avons fait appel à cet électricien pour l'installation de plafonniers dans notre domicile, qui en était initialement dépourvu, et nous sommes pleinement satisfaits de son intervention. Il s'est montré particulièrement disponible, intervenant en un temps record suite au premier contact. Nous avons également beaucoup apprécié sa réactivité ainsi que sa capacité à proposer des solutions efficaces afin de limiter au maximum les travaux de gros œuvre.",
       verified: true
-    }
     },
     {
       name: "Philippe Gaucher",
@@ -182,6 +181,7 @@ const TestimonialsSection: React.FC = () => {
       text: "Travail sérieux, rapide et en plus... dans la bonne humeur. Je recommande!",
       verified: true,
       location: "Yvelines"
+    }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);

@@ -3,7 +3,7 @@ import { Star, Quote, ChevronLeft, ChevronRight, Calendar, User, MapPin } from '
 import SecurePhone from '../SecurePhone';
 
 const TestimonialsSection: React.FC = () => {
-  // Vrais avis clients extraits de Trustindex.io
+  // Top 3 avis clients authentiques de Trustindex.io
   const testimonials = [
     {
       name: "Floriane DENTU",
@@ -27,78 +27,6 @@ const TestimonialsSection: React.FC = () => {
       rating: 5,
       service: "Installation plafonniers",
       text: "Nous avons fait appel à cet électricien pour l'installation de plafonniers dans notre domicile, qui en était initialement dépourvu, et nous sommes pleinement satisfaits de son intervention. Il s'est montré particulièrement disponible, intervenant en un temps record suite au premier contact. Nous avons également beaucoup apprécié sa réactivité ainsi que sa capacité à proposer des solutions efficaces afin de limiter au maximum les travaux de gros œuvre.",
-      verified: true
-    },
-    {
-      name: "Philippe Gaucher",
-      date: "28 juin 2025",
-      rating: 5,
-      service: "Rénovation tableau + prise Green'Up",
-      text: "Excellent électricien qui a rénové un tableau électrique et une prise green up dans une très vieille maison. Ce n'était pas facile! Je le recommande vivement pour sa réactivité, son honnêteté et sa compétence.",
-      verified: true
-    },
-    {
-      name: "Stephanie Villard",
-      date: "04 juin 2025",
-      rating: 5,
-      service: "Installation borne IRVE",
-      text: "Après recherche d'un électricien IRVE certifié pour la pose d'une prise pour voiture électrique je rentre en contact avec Salem et la réactivité des réponses et les précieux conseils m'ont incité à demander un devis. J'ai obtenu le rdv pour la pose dans la foulée...rdv et pose super bien passée...à l'écoute pour comprendre les besoins, ultra professionnel..service de grande qualité... je ne peux que recommander ses services !",
-      verified: true
-    },
-    {
-      name: "Gilles COCHET",
-      date: "20 mai 2025",
-      rating: 5,
-      service: "Installation prise de terre",
-      text: "Les travaux demandés concernaient l'installation de prise de terre à la suite d'un diagnostic électrique, le résultat est probant et les artisans ont été très performants. A conseiller sans hésitation !",
-      verified: true
-    },
-    {
-      name: "NelloB",
-      date: "29 avril 2025",
-      rating: 5,
-      service: "Installation prises + tableau garage",
-      text: "Nous avons fait appel à cette entreprise pour l'installation de prises électriques, dont une prise renforcée destinée à la recharge d'un véhicule électrique, ainsi que pour la pose d'un nouveau tableau électrique dans notre garage. Dès les premiers échanges en vue de l'établissement du devis, l'entreprise s'est montrée très réactive et flexible, répondant à mes messages en un temps record. L'installation a été réalisée seulement quatre jours après notre premier contact, avec un travail soigné, rapide et irréprochable.",
-      verified: true
-    },
-    {
-      name: "Isabelle Le Nouail",
-      date: "05 mai 2025",
-      rating: 5,
-      service: "Changement compteur à fusible",
-      text: "J'ai fait changer mon vieux compteur à fusible. Très satisfaite de l'entreprise LS COM. Très réactif dès le premier contact, travail satisfaisant et prix correct. Je recommande.",
-      verified: true
-    },
-    {
-      name: "Violaine Billot",
-      date: "24 mars 2025",
-      rating: 5,
-      service: "Dépannage cuisine",
-      text: "Ravie du dépannage pour l'électricité de ma cuisine. Rapide et efficace et surtout qui a su s'arranger en fonction de mes disponibilités!",
-      verified: true
-    },
-    {
-      name: "Jean-Roch Constans",
-      date: "16 mars 2025",
-      rating: 5,
-      service: "Installation prise 32A véhicule électrique",
-      text: "Installation d'une prise 32 A pour le véhicule électrique, travail bien et vite fait (et bien moins cher qu'une wall box).",
-      verified: true
-    },
-    {
-      name: "Bertrand Delacroix",
-      date: "20 février 2025",
-      rating: 5,
-      service: "Travaux électriques divers",
-      text: "J'ai fait appel à LS Com (que je ne connaissais pas) pour divers travaux électriques. L'intervention a été parfaite tant pour le délai que pour la qualité du travail. Je recommande donc",
-      verified: true
-    },
-    {
-      name: "Guy Benzadon",
-      date: "12 février 2025",
-      rating: 5,
-      service: "Travaux électriques",
-      text: "Travail sérieux, rapide et en plus... dans la bonne humeur. Je recommande!",
       verified: true
     }
   ];

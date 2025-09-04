@@ -26,7 +26,7 @@ const SecureContact: React.FC<SecureContactProps> = ({
       const encoded = [54, 50, 50, 50, 53, 50, 51, 57, 48, 50];
       const parts = encoded.map(code => String.fromCharCode(code));
       const display = parts.join(' ');
-      const tel = '+336' + parts.join('').substring(1);
+      const tel = '+33' + parts.join('');
       
       setDisplayData(display);
       setContactData(tel);

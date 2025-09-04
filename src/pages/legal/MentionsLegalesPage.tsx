@@ -45,7 +45,7 @@ const MentionsLegalesPage: React.FC = () => {
                   
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-2">Forme juridique</h3>
-                    <p className="text-gray-700">Entreprise individuelle</p>
+                    <p className="text-gray-700">SARL</p>
                   </div>
                   
                   <div>
@@ -65,6 +65,18 @@ const MentionsLegalesPage: React.FC = () => {
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-2">Adresse du siège social</h3>
                       <p className="text-gray-700">
+                        36 allée des érables<br />
+                        78114 Magny-les-Hameaux<br />
+                        France
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <MapPin className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Adresse du bureau</h3>
+                      <p className="text-gray-700">
                         24 Avenue de Chevincourt<br />
                         78114 Magny-les-Hameaux<br />
                         France
@@ -78,11 +90,7 @@ const MentionsLegalesPage: React.FC = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-2">Téléphone</h3>
-                      <SecurePhone 
-                        className="text-blue-600 hover:text-blue-700"
-                        variant="link"
-                        showIcon={false}
-                      />
+                      <p className="text-blue-600 font-medium">0622523902</p>
                     </div>
                   </div>
                   
@@ -225,11 +233,7 @@ const MentionsLegalesPage: React.FC = () => {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <p className="font-medium text-gray-900">Par téléphone :</p>
-                    <SecurePhone 
-                      className="text-orange-600 hover:text-orange-700 font-medium"
-                      variant="link"
-                      showIcon={false}
-                    />
+                    <p className="text-orange-600 font-medium">0622523902</p>
                   </div>
                   
                   <div className="space-y-2">

@@ -51,11 +51,27 @@ const AdminDashboard: React.FC = () => {
   const [isExporting, setIsExporting] = useState(false);
   const [lastBackup, setLastBackup] = useState<string | null>(null);
   const [sessionInfo, setSessionInfo] = useState<any>(null);
+  const [showIRVEPrices, setShowIRVEPrices] = useState(false);
+  const [irvePrices, setIrvePrices] = useState({
+    greenup: { price: 710, label: 'Prise Green\'UP Legrand' },
+    borne7kw: { price: 1280, label: 'Borne Murale 7,4kW' },
+    borne22kw: { price: 1990, label: 'Borne Professionnelle 22kW' }
+  });
 
   const citiesPerPage = 10;
 
   // Charger les informations de session
   useEffect(() => {
+    // Charger les prix IRVE depuis le localStorage
+    const savedPrices = localStorage.getItem('irve_prices');
+    if (savedPrices) {
+      try {
+        setIrvePrices(JSON.parse(savedPrices));
+      } catch (error) {
+        console.error('Erreur chargement prix IRVE:', error);
+      }
+    }
+    
     const authData = localStorage.getItem('admin_auth');
     if (authData) {
       try {
@@ -246,6 +262,7 @@ const AdminDashboard: React.FC = () => {
       );
       
       localStorage.setItem('admin_cities', JSON.stringify(cities));
+      localStorage.setItem('irve_prices', JSON.stringify(irvePrices));
       calculateStats(cities);
       setSaveMessage('✅ Données sauvegardées avec succès !');
       setTimeout(() => setSaveMessage(''), 3000);
@@ -396,6 +413,14 @@ const AdminDashboard: React.FC = () => {
                   >
                     <Activity className="h-4 w-4" />
                     <span>Simuler</span>
+                  </button>
+                  
+                  <button
+                    onClick={() => setShowIRVEPrices(true)}
+                    className="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 text-sm"
+                  >
+                    <Euro className="h-4 w-4" />
+                    <span>Prix IRVE</span>
                   </button>
                 </div>
                 
@@ -779,6 +804,23 @@ const AdminDashboard: React.FC = () => {
             title="Modifier la ville"
           />
         )}
+
+        {/* Modal Prix IRVE */}
+        {showIRVEPrices && (
+          <IRVEPricesModal
+            prices={irvePrices}
+            onClose={() => setShowIRVEPrices(false)}
+            onSave={(newPrices) => {
+              setIrvePrices(newPrices);
+              localStorage.setItem('irve_prices', JSON.stringify(newPrices));
+              setSaveMessage('✅ Prix IRVE mis à jour !');
+              setTimeout(() => setSaveMessage(''), 3000);
+              setShowIRVEPrices(false);
+              // Force un rechargement des données dans les autres composants
+              window.dispatchEvent(new Event('storage'));
+            }}
+          />
+        )}
       </div>
     </ProtectedRoute>
   );
@@ -978,6 +1020,139 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
             >
               <Save className="h-4 w-4" />
               <span>{city ? 'Modifier' : 'Créer'}</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+// Composant Modal pour gérer les prix IRVE
+interface IRVEPricesModalProps {
+  prices: any;
+  onClose: () => void;
+  onSave: (prices: any) => void;
+}
+
+const IRVEPricesModal: React.FC<IRVEPricesModalProps> = ({ prices, onClose, onSave }) => {
+  const [formData, setFormData] = useState(prices);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSave(formData);
+  };
+
+  const updatePrice = (key: string, price: number) => {
+    setFormData({
+      ...formData,
+      [key]: {
+        ...formData[key],
+        price: price
+      }
+    });
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-2xl font-semibold text-gray-900">Gestion des Prix IRVE</h3>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Prise Green'UP */}
+          <div className="bg-green-50 p-6 rounded-lg border border-green-200">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-lg font-semibold text-gray-900">
+                {formData.greenup.label}
+              </h4>
+              <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                3,7 kW
+              </span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <label className="font-medium text-gray-700">Prix (€ HT) :</label>
+              <input
+                type="number"
+                min="0"
+                step="10"
+                value={formData.greenup.price}
+                onChange={(e) => updatePrice('greenup', parseInt(e.target.value) || 0)}
+                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+              <span className="text-gray-600">€ HT</span>
+            </div>
+          </div>
+
+          {/* Borne 7kW */}
+          <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-lg font-semibold text-gray-900">
+                {formData.borne7kw.label}
+              </h4>
+              <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                7,4 kW
+              </span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <label className="font-medium text-gray-700">Prix (€ HT) :</label>
+              <input
+                type="number"
+                min="0"
+                step="10"
+                value={formData.borne7kw.price}
+                onChange={(e) => updatePrice('borne7kw', parseInt(e.target.value) || 0)}
+                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <span className="text-gray-600">€ HT</span>
+            </div>
+          </div>
+
+          {/* Borne 22kW */}
+          <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-lg font-semibold text-gray-900">
+                {formData.borne22kw.label}
+              </h4>
+              <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">
+                22 kW
+              </span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <label className="font-medium text-gray-700">Prix (€ HT) :</label>
+              <input
+                type="number"
+                min="0"
+                step="10"
+                value={formData.borne22kw.price}
+                onChange={(e) => updatePrice('borne22kw', parseInt(e.target.value) || 0)}
+                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+              <span className="text-gray-600">€ HT</span>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-end space-x-3 pt-6 border-t border-gray-200">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-6 py-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors"
+            >
+              Annuler
+            </button>
+            <button
+              type="submit"
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors flex items-center space-x-2"
+            >
+              <Save className="h-4 w-4" />
+              <span>Sauvegarder les prix</span>
             </button>
           </div>
         </form>

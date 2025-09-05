@@ -7,6 +7,39 @@ import ServiceProcess from '../../components/services/ServiceProcess';
 import ServiceCTA from '../../components/services/ServiceCTA';
 
 const BorneRechargeIRVEPage: React.FC = () => {
+  const [irvePrices, setIrvePrices] = useState({
+    greenup: { price: 710, label: 'Prise Green\'UP Legrand' },
+    borne7kw: { price: 1280, label: 'Borne Murale 7,4kW' },
+    borne22kw: { price: 1990, label: 'Borne Professionnelle 22kW' }
+  });
+
+  // Charger les prix depuis le localStorage
+  useEffect(() => {
+    const loadPrices = () => {
+      const savedPrices = localStorage.getItem('irve_prices');
+      if (savedPrices) {
+        try {
+          setIrvePrices(JSON.parse(savedPrices));
+        } catch (error) {
+          console.error('Erreur chargement prix IRVE:', error);
+        }
+      }
+    };
+
+    loadPrices();
+
+    // Écouter les changements du localStorage
+    const handleStorageChange = () => {
+      loadPrices();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
   const serviceData = {
     title: 'Installation de bornes de recharge IRVE',
     subtitle: 'Installateur certifié QUALIFELEC IRVE pour véhicules électriques',
@@ -236,7 +269,7 @@ const BorneRechargeIRVEPage: React.FC = () => {
                 </ul>
                 
                 <div className="pt-4 border-t border-gray-100">
-                  <p className="text-lg font-bold text-green-600">À partir de 710€ HT</p>
+                  <p className="text-lg font-bold text-green-600">À partir de {irvePrices.greenup.price}€ HT</p>
                   <p className="text-xs text-gray-500">Installation comprise avec protection différentielle</p>
                 </div>
               </div>
@@ -280,7 +313,7 @@ const BorneRechargeIRVEPage: React.FC = () => {
                 </ul>
                 
                 <div className="pt-4 border-t border-gray-100">
-                  <p className="text-lg font-bold text-blue-600">À partir de 1 280€ HT</p>
+                  <p className="text-lg font-bold text-blue-600">À partir de {irvePrices.borne7kw.price}€ HT</p>
                   <p className="text-xs text-gray-500">Installation comprise</p>
                 </div>
               </div>
@@ -321,7 +354,7 @@ const BorneRechargeIRVEPage: React.FC = () => {
                 </ul>
                 
                 <div className="pt-4 border-t border-gray-100">
-                  <p className="text-lg font-bold text-purple-600">À partir de 1 990€ HT</p>
+                  <p className="text-lg font-bold text-purple-600">À partir de {irvePrices.borne22kw.price}€ HT</p>
                   <p className="text-xs text-gray-500">Installation comprise</p>
                 </div>
               </div>

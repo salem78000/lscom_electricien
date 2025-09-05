@@ -154,8 +154,18 @@ const TableauElectriquePage: React.FC = () => {
                 
                 <div className="p-8">
                   <div className="text-center mb-6">
-                    <div className="bg-blue-100 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <Shield className="h-8 w-8 text-blue-600" />
+                    <div className="mx-auto mb-4 flex items-center justify-center">
+                      {index === 0 ? (
+                        <img 
+                          src="/Tableau 1 rangée.png" 
+                          alt="Tableau électrique 1 rangée"
+                          className="w-20 h-20 object-contain"
+                        />
+                      ) : (
+                        <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center">
+                          <Shield className="h-8 w-8 text-blue-600" />
+                        </div>
+                      )}
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       Tableau {tableau.rangees}

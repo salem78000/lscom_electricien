@@ -24,7 +24,16 @@ import {
   Shield,
   Clock,
   Lock,
-  Euro
+  Euro,
+  Menu,
+  Home,
+  Image,
+  Palette,
+  Database,
+  FileText,
+  Globe,
+  ChevronRight,
+  Monitor
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import ProtectedRoute from '../../components/admin/ProtectedRoute';
@@ -33,6 +42,8 @@ import { CityPage, AdminStats } from '../../types/admin';
 
 const AdminDashboard: React.FC = () => {
   const { logout, user } = useAuth();
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [cities, setCities] = useState<CityPage[]>([]);
   const [filteredCities, setFilteredCities] = useState<CityPage[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -58,8 +69,28 @@ const AdminDashboard: React.FC = () => {
     borne7kw: { price: 1280, label: 'Borne Murale 7,4kW' },
     borne22kw: { price: 1990, label: 'Borne Professionnelle 22kW' }
   });
+  const [showImageManager, setShowImageManager] = useState(false);
+  const [siteImages, setSiteImages] = useState({
+    hero: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+    about: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+    services: 'https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg',
+    irve: 'https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg',
+    installation: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+    depannage: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+    conformite: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+    tableau: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg'
+  });
 
   const citiesPerPage = 10;
+
+  // Menu items
+  const menuItems = [
+    { id: 'dashboard', label: 'Dashboard', icon: Home, color: 'text-blue-600' },
+    { id: 'cities', label: 'Gestion Villes', icon: MapPin, color: 'text-green-600' },
+    { id: 'prices', label: 'Prix IRVE', icon: Euro, color: 'text-purple-600' },
+    { id: 'images', label: 'Images Site', icon: Image, color: 'text-orange-600' },
+    { id: 'settings', label: 'Paramètres', icon: Settings, color: 'text-gray-600' }
+  ];
 
   // Charger les informations de session
   useEffect(() => {
@@ -70,6 +101,16 @@ const AdminDashboard: React.FC = () => {
         setIrvePrices(JSON.parse(savedPrices));
       } catch (error) {
         console.error('Erreur chargement prix IRVE:', error);
+      }
+    }
+    
+    // Charger les images du site
+    const savedImages = localStorage.getItem('site_images');
+    if (savedImages) {
+      try {
+        setSiteImages(JSON.parse(savedImages));
+      } catch (error) {
+        console.error('Erreur chargement images:', error);
       }
     }
     
@@ -264,6 +305,7 @@ const AdminDashboard: React.FC = () => {
       
       localStorage.setItem('admin_cities', JSON.stringify(cities));
       localStorage.setItem('irve_prices', JSON.stringify(irvePrices));
+      localStorage.setItem('site_images', JSON.stringify(siteImages));
       calculateStats(cities);
       setSaveMessage('✅ Données sauvegardées avec succès !');
       setTimeout(() => setSaveMessage(''), 3000);
@@ -363,109 +405,236 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center py-4">
-              <div className="flex items-center space-x-4">
-                <h1 className="text-2xl font-bold text-gray-900">Dashboard Admin</h1>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                  LS COM Électricien
-                </span>
-                <div className="flex items-center space-x-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                  <Shield className="h-4 w-4" />
-                  <span>Sécurisé</span>
+      <div className="min-h-screen bg-gray-50 flex">
+        {/* Sidebar */}
+        <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-white shadow-lg transition-all duration-300 flex flex-col`}>
+          {/* Sidebar Header */}
+          <div className="p-4 border-b border-gray-200">
+            <div className="flex items-center justify-between">
+              {sidebarOpen && (
+                <div>
+                  <h1 className="text-lg font-bold text-gray-900">LS COM Admin</h1>
+                  <p className="text-sm text-gray-500">Dashboard</p>
                 </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-2 text-gray-600">
-                  <Lock className="h-4 w-4" />
-                  <span>Bonjour, <strong>{user?.username}</strong></span>
-                </div>
-                {saveMessage && (
-                  <span className="text-sm font-medium text-green-600">{saveMessage}</span>
-                )}
-                <div className="flex items-center space-x-2">
+              )}
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                <Menu className="h-5 w-5 text-gray-600" />
+              </button>
+            </div>
+          </div>
+
+          {/* Menu Items */}
+          <nav className="flex-1 p-4">
+            <div className="space-y-2">
+              {menuItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
                   <button
-                    onClick={exportData}
-                    disabled={isExporting}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 text-sm"
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
+                      activeTab === item.id
+                        ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                        : 'text-gray-600 hover:bg-gray-50'
+                    }`}
                   >
-                    {isExporting ? (
-                      <RefreshCw className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Download className="h-4 w-4" />
+                    <IconComponent className={`h-5 w-5 ${activeTab === item.id ? 'text-blue-600' : item.color}`} />
+                    {sidebarOpen && (
+                      <>
+                        <span className="font-medium">{item.label}</span>
+                        {activeTab === item.id && <ChevronRight className="h-4 w-4 ml-auto" />}
+                      </>
                     )}
-                    <span>Export</span>
                   </button>
-                  
-                  <button
-                    onClick={resetStats}
-                    className="bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 text-sm"
-                  >
-                    <RefreshCw className="h-4 w-4" />
-                    <span>Reset Stats</span>
-                  </button>
-                  
-                  <button
-                    onClick={simulateTraffic}
-                    className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 text-sm"
-                  >
-                    <Activity className="h-4 w-4" />
-                    <span>Simuler</span>
-                  </button>
-                  
-                  <button
-                    onClick={() => setShowIRVEPrices(true)}
-                    className="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 text-sm"
-                  >
-                    <Euro className="h-4 w-4" />
-                    <span>Prix IRVE</span>
-                  </button>
+                );
+              })}
+            </div>
+          </nav>
+
+          {/* User Info */}
+          <div className="p-4 border-t border-gray-200">
+            {sidebarOpen ? (
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-blue-100 p-2 rounded-full">
+                    <Lock className="h-4 w-4 text-blue-600" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">{user?.username}</p>
+                    <p className="text-sm text-gray-500">Administrateur</p>
+                  </div>
                 </div>
-                
-                <button
-                  onClick={saveData}
-                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
-                >
-                  <Save className="h-4 w-4" />
-                  <span>Sauvegarder</span>
-                </button>
-                
                 <button
                   onClick={handleSecureLogout}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
+                  className="w-full flex items-center space-x-2 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                 >
                   <LogOut className="h-4 w-4" />
                   <span>Déconnexion</span>
                 </button>
               </div>
-            </div>
+            ) : (
+              <button
+                onClick={handleSecureLogout}
+                className="w-full p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                title="Déconnexion"
+              >
+                <LogOut className="h-4 w-4 mx-auto" />
+              </button>
+            )}
           </div>
-        </header>
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Informations de session */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          {/* Top Bar */}
+          <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <Clock className="h-5 w-5 text-blue-600" />
-                <div>
-                  <p className="font-medium text-blue-800">Session active</p>
-                  <p className="text-blue-700 text-sm">
-                    Connecté depuis: {sessionInfo?.timestamp ? new Date(sessionInfo.timestamp).toLocaleString('fr-FR') : 'N/A'}
-                  </p>
+              <div className="flex items-center space-x-4">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  {menuItems.find(item => item.id === activeTab)?.label || 'Dashboard'}
+                </h2>
+                <div className="flex items-center space-x-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                  <Shield className="h-4 w-4" />
+                  <span>Sécurisé</span>
                 </div>
               </div>
-              <div className="text-right">
-                <p className="text-blue-800 font-medium">Rôle: {sessionInfo?.role || 'admin'}</p>
-                <p className="text-blue-700 text-sm">Session expire dans 24h</p>
+              
+              <div className="flex items-center space-x-4">
+                {saveMessage && (
+                  <span className="text-sm font-medium text-green-600">{saveMessage}</span>
+                )}
+                <button
+                  onClick={saveData}
+                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
+                >
+                  <Save className="h-4 w-4" />
+                  <span className="hidden sm:inline">Sauvegarder</span>
+                </button>
               </div>
             </div>
+          </header>
+
+          {/* Content Area */}
+          <main className="flex-1 overflow-y-auto p-6">
+            {activeTab === 'dashboard' && (
+              <DashboardContent 
+                stats={stats}
+                cities={cities}
+                sessionInfo={sessionInfo}
+                exportData={exportData}
+                resetStats={resetStats}
+                simulateTraffic={simulateTraffic}
+                isExporting={isExporting}
+                lastBackup={lastBackup}
+              />
+            )}
+            
+            {activeTab === 'cities' && (
+              <CitiesContent
+                cities={cities}
+                filteredCities={filteredCities}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                statusFilter={statusFilter}
+                setStatusFilter={setStatusFilter}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                citiesPerPage={citiesPerPage}
+                setShowCreateModal={setShowCreateModal}
+                setEditingCity={setEditingCity}
+                deleteCity={deleteCity}
+                stats={stats}
+              />
+            )}
+            
+            {activeTab === 'prices' && (
+              <PricesContent 
+                irvePrices={irvePrices}
+                setIrvePrices={setIrvePrices}
+                setSaveMessage={setSaveMessage}
+              />
+            )}
+            
+            {activeTab === 'images' && (
+              <ImagesContent 
+                siteImages={siteImages}
+                setSiteImages={setSiteImages}
+                setSaveMessage={setSaveMessage}
+              />
+            )}
+            
+            {activeTab === 'settings' && (
+              <SettingsContent 
+                sessionInfo={sessionInfo}
+                lastBackup={lastBackup}
+                exportData={exportData}
+                resetStats={resetStats}
+                simulateTraffic={simulateTraffic}
+                isExporting={isExporting}
+              />
+            )}
+          </main>
+        </div>
+      </div>
+
+      {/* Modals */}
+      {showCreateModal && (
+        <CityModal
+          onClose={() => setShowCreateModal(false)}
+          onSave={createCity}
+          title="Créer une nouvelle ville"
+        />
+      )}
+
+      {editingCity && (
+        <CityModal
+          city={editingCity}
+          onClose={() => setEditingCity(null)}
+          onSave={updateCity}
+          title="Modifier la ville"
+        />
+      )}
+    </ProtectedRoute>
+  );
+};
+
+// Composant Dashboard Content
+const DashboardContent: React.FC<any> = ({ 
+  stats, 
+  cities, 
+  sessionInfo, 
+  exportData, 
+  resetStats, 
+  simulateTraffic, 
+  isExporting, 
+  lastBackup 
+}) => {
+  return (
+    <div className="space-y-6">
+      {/* Session Info */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between space-y-2 sm:space-y-0">
+          <div className="flex items-center space-x-3">
+            <Clock className="h-5 w-5 text-blue-600" />
+            <div>
+              <p className="font-medium text-blue-800">Session active</p>
+              <p className="text-blue-700 text-sm">
+                Connecté depuis: {sessionInfo?.timestamp ? new Date(sessionInfo.timestamp).toLocaleString('fr-FR') : 'N/A'}
+              </p>
+            </div>
           </div>
+          <div className="text-left sm:text-right">
+            <p className="text-blue-800 font-medium">Rôle: {sessionInfo?.role || 'admin'}</p>
+            <p className="text-blue-700 text-sm">Session expire dans 24h</p>
+          </div>
+        </div>
+      </div>
+
           {/* Statistiques */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
@@ -528,7 +697,7 @@ const AdminDashboard: React.FC = () => {
           </div>
 
           {/* Informations système */}
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                 <Settings className="h-5 w-5 mr-2" />
@@ -539,7 +708,7 @@ const AdminDashboard: React.FC = () => {
               </div>
             </div>
             
-            <div className="grid md:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm font-medium text-gray-600">Environnement</p>
                 <p className="text-lg font-bold text-green-600">Production</p>
@@ -564,7 +733,7 @@ const AdminDashboard: React.FC = () => {
           </div>
 
           {/* Top villes */}
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
               <BarChart3 className="h-5 w-5 mr-2" />
               Top 5 Villes par Visites
@@ -593,7 +762,7 @@ const AdminDashboard: React.FC = () => {
                     </span>
                     <span className="font-medium text-gray-900">{city.name}</span>
                   </div>
-                  <div className="flex items-center space-x-4 text-sm text-gray-600">
+                  <div className="flex flex-col sm:flex-row items-end sm:items-center space-y-1 sm:space-y-0 sm:space-x-4 text-sm text-gray-600">
                     <span>{city.visits.toLocaleString()} visites</span>
                     <span>{city.leads} leads</span>
                     <span className="text-green-600 font-medium">
@@ -605,7 +774,32 @@ const AdminDashboard: React.FC = () => {
             </div>
             )}
           </div>
+    </div>
+  );
+};
 
+// Composant Cities Content
+const CitiesContent: React.FC<any> = ({ 
+  cities, 
+  filteredCities, 
+  searchTerm, 
+  setSearchTerm, 
+  statusFilter, 
+  setStatusFilter, 
+  currentPage, 
+  setCurrentPage, 
+  citiesPerPage, 
+  setShowCreateModal, 
+  setEditingCity, 
+  deleteCity, 
+  stats 
+}) => {
+  const totalPages = Math.ceil(filteredCities.length / citiesPerPage);
+  const startIndex = (currentPage - 1) * citiesPerPage;
+  const currentCities = filteredCities.slice(startIndex, startIndex + citiesPerPage);
+
+  return (
+    <div className="space-y-6">
           {/* Gestion des villes */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200">
             <div className="p-6 border-b border-gray-200">
@@ -758,7 +952,7 @@ const AdminDashboard: React.FC = () => {
             {/* Pagination */}
             {totalPages > 1 && (
               <div className="px-6 py-3 border-t border-gray-200">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0">
                   <div className="text-sm text-gray-700">
                     Affichage de {startIndex + 1} à {Math.min(startIndex + citiesPerPage, filteredCities.length)} sur {filteredCities.length} villes
                   </div>
@@ -785,45 +979,341 @@ const AdminDashboard: React.FC = () => {
               </div>
             )}
           </div>
+    </div>
+  );
+};
+
+// Composant Prices Content
+const PricesContent: React.FC<any> = ({ irvePrices, setIrvePrices, setSaveMessage }) => {
+  const updatePrice = (key: string, price: number) => {
+    setIrvePrices({
+      ...irvePrices,
+      [key]: {
+        ...irvePrices[key],
+        price: price
+      }
+    });
+  };
+
+  const handleSave = () => {
+    localStorage.setItem('irve_prices', JSON.stringify(irvePrices));
+    setSaveMessage('✅ Prix IRVE mis à jour !');
+    setTimeout(() => setSaveMessage(''), 3000);
+    window.dispatchEvent(new Event('storage'));
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <h3 className="text-2xl font-semibold text-gray-900 mb-6">Gestion des Prix IRVE</h3>
+        
+        <div className="space-y-6">
+          {/* Prise Green'UP */}
+          <div className="bg-green-50 p-6 rounded-lg border border-green-200">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 space-y-2 sm:space-y-0">
+              <h4 className="text-lg font-semibold text-gray-900">
+                {irvePrices.greenup.label}
+              </h4>
+              <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium w-fit">
+                3,7 kW
+              </span>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+              <label className="font-medium text-gray-700">Prix (€ HT) :</label>
+              <input
+                type="number"
+                min="0"
+                step="10"
+                value={irvePrices.greenup.price}
+                onChange={(e) => updatePrice('greenup', parseInt(e.target.value) || 0)}
+                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+              <span className="text-gray-600">€ HT</span>
+            </div>
+          </div>
+
+          {/* Borne 7kW */}
+          <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 space-y-2 sm:space-y-0">
+              <h4 className="text-lg font-semibold text-gray-900">
+                {irvePrices.borne7kw.label}
+              </h4>
+              <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium w-fit">
+                7,4 kW
+              </span>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+              <label className="font-medium text-gray-700">Prix (€ HT) :</label>
+              <input
+                type="number"
+                min="0"
+                step="10"
+                value={irvePrices.borne7kw.price}
+                onChange={(e) => updatePrice('borne7kw', parseInt(e.target.value) || 0)}
+                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <span className="text-gray-600">€ HT</span>
+            </div>
+          </div>
+
+          {/* Borne 22kW */}
+          <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 space-y-2 sm:space-y-0">
+              <h4 className="text-lg font-semibold text-gray-900">
+                {irvePrices.borne22kw.label}
+              </h4>
+              <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium w-fit">
+                22 kW
+              </span>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+              <label className="font-medium text-gray-700">Prix (€ HT) :</label>
+              <input
+                type="number"
+                min="0"
+                step="10"
+                value={irvePrices.borne22kw.price}
+                onChange={(e) => updatePrice('borne22kw', parseInt(e.target.value) || 0)}
+                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+              <span className="text-gray-600">€ HT</span>
+            </div>
+          </div>
+
+          <div className="flex justify-end pt-6 border-t border-gray-200">
+            <button
+              onClick={handleSave}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center space-x-2"
+            >
+              <Save className="h-4 w-4" />
+              <span>Sauvegarder les prix</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Composant Images Content
+const ImagesContent: React.FC<any> = ({ siteImages, setSiteImages, setSaveMessage }) => {
+  const imageCategories = [
+    { key: 'hero', label: 'Image Hero (Accueil)', description: 'Image principale de la page d\'accueil' },
+    { key: 'about', label: 'Image À Propos', description: 'Image de la section à propos' },
+    { key: 'services', label: 'Image Services', description: 'Image générale des services' },
+    { key: 'irve', label: 'Image IRVE', description: 'Image pour les bornes de recharge' },
+    { key: 'installation', label: 'Image Installation', description: 'Image pour l\'installation électrique' },
+    { key: 'depannage', label: 'Image Dépannage', description: 'Image pour le dépannage électrique' },
+    { key: 'conformite', label: 'Image Conformité', description: 'Image pour la mise en conformité' },
+    { key: 'tableau', label: 'Image Tableau', description: 'Image pour les tableaux électriques' }
+  ];
+
+  const updateImage = (key: string, url: string) => {
+    setSiteImages({
+      ...siteImages,
+      [key]: url
+    });
+  };
+
+  const handleSave = () => {
+    localStorage.setItem('site_images', JSON.stringify(siteImages));
+    setSaveMessage('✅ Images mises à jour !');
+    setTimeout(() => setSaveMessage(''), 3000);
+    window.dispatchEvent(new Event('storage'));
+  };
+
+  const resetToDefaults = () => {
+    if (confirm('Êtes-vous sûr de vouloir restaurer les images par défaut ?')) {
+      const defaultImages = {
+        hero: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+        about: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+        services: 'https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg',
+        irve: 'https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg',
+        installation: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+        depannage: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+        conformite: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+        tableau: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg'
+      };
+      setSiteImages(defaultImages);
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-900">Gestion des Images du Site</h3>
+            <p className="text-gray-600 mt-1">Modifiez les images utilisées sur les différentes pages du site</p>
+          </div>
+          <button
+            onClick={resetToDefaults}
+            className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
+          >
+            <RefreshCw className="h-4 w-4" />
+            <span>Images par défaut</span>
+          </button>
+        </div>
+        
+        <div className="grid gap-6">
+          {imageCategories.map((category) => (
+            <div key={category.key} className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+              <div className="grid lg:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{category.label}</h4>
+                  <p className="text-gray-600 text-sm mb-4">{category.description}</p>
+                  
+                  <div className="space-y-3">
+                    <label className="block text-sm font-medium text-gray-700">URL de l'image :</label>
+                    <input
+                      type="url"
+                      value={siteImages[category.key]}
+                      onChange={(e) => updateImage(category.key, e.target.value)}
+                      placeholder="https://images.pexels.com/..."
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                    <p className="text-xs text-gray-500">
+                      Utilisez des images de Pexels ou d'autres sources libres de droits
+                    </p>
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Aperçu :</label>
+                  <div className="bg-white border border-gray-200 rounded-lg p-2">
+                    {siteImages[category.key] ? (
+                      <img
+                        src={siteImages[category.key]}
+                        alt={category.label}
+                        className="w-full h-32 object-cover rounded"
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://via.placeholder.com/400x200?text=Image+non+trouvée';
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-32 bg-gray-200 rounded flex items-center justify-center">
+                        <Image className="h-8 w-8 text-gray-400" />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Modal Création */}
-        {showCreateModal && (
-          <CityModal
-            onClose={() => setShowCreateModal(false)}
-            onSave={createCity}
-            title="Créer une nouvelle ville"
-          />
-        )}
-
-        {/* Modal Édition */}
-        {editingCity && (
-          <CityModal
-            city={editingCity}
-            onClose={() => setEditingCity(null)}
-            onSave={updateCity}
-            title="Modifier la ville"
-          />
-        )}
-
-        {/* Modal Prix IRVE */}
-        {showIRVEPrices && (
-          <IRVEPricesModal
-            prices={irvePrices}
-            onClose={() => setShowIRVEPrices(false)}
-            onSave={(newPrices) => {
-              setIrvePrices(newPrices);
-              localStorage.setItem('irve_prices', JSON.stringify(newPrices));
-              setSaveMessage('✅ Prix IRVE mis à jour !');
-              setTimeout(() => setSaveMessage(''), 3000);
-              setShowIRVEPrices(false);
-              // Force un rechargement des données dans les autres composants
-              window.dispatchEvent(new Event('storage'));
-            }}
-          />
-        )}
+        <div className="flex justify-end pt-6 border-t border-gray-200">
+          <button
+            onClick={handleSave}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center space-x-2"
+          >
+            <Save className="h-4 w-4" />
+            <span>Sauvegarder les images</span>
+          </button>
+        </div>
       </div>
-    </ProtectedRoute>
+    </div>
+  );
+};
+
+// Composant Settings Content
+const SettingsContent: React.FC<any> = ({ 
+  sessionInfo, 
+  lastBackup, 
+  exportData, 
+  resetStats, 
+  simulateTraffic, 
+  isExporting 
+}) => {
+  return (
+    <div className="space-y-6">
+      {/* Actions rapides */}
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <h3 className="text-xl font-semibold text-gray-900 mb-6">Actions Rapides</h3>
+        
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <button
+            onClick={exportData}
+            disabled={isExporting}
+            className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-lg font-medium transition-colors flex flex-col items-center space-y-2"
+          >
+            {isExporting ? (
+              <RefreshCw className="h-6 w-6 animate-spin" />
+            ) : (
+              <Download className="h-6 w-6" />
+            )}
+            <span>Exporter Données</span>
+          </button>
+          
+          <button
+            onClick={resetStats}
+            className="bg-orange-600 hover:bg-orange-700 text-white p-4 rounded-lg font-medium transition-colors flex flex-col items-center space-y-2"
+          >
+            <RefreshCw className="h-6 w-6" />
+            <span>Reset Stats</span>
+          </button>
+          
+          <button
+            onClick={simulateTraffic}
+            className="bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-lg font-medium transition-colors flex flex-col items-center space-y-2"
+          >
+            <Activity className="h-6 w-6" />
+            <span>Simuler Trafic</span>
+          </button>
+          
+          <div className="bg-gray-100 p-4 rounded-lg flex flex-col items-center space-y-2">
+            <Monitor className="h-6 w-6 text-gray-600" />
+            <span className="text-gray-600 font-medium">Monitoring</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Informations système détaillées */}
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <h3 className="text-xl font-semibold text-gray-900 mb-6">Informations Système</h3>
+        
+        <div className="grid sm:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Session utilisateur</label>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <p className="text-sm text-gray-900">Utilisateur: <strong>{sessionInfo?.username || 'N/A'}</strong></p>
+                <p className="text-sm text-gray-600">
+                  Connecté: {sessionInfo?.timestamp ? new Date(sessionInfo.timestamp).toLocaleString('fr-FR') : 'N/A'}
+                </p>
+              </div>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Dernière sauvegarde</label>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <p className="text-sm text-gray-900">
+                  {lastBackup ? new Date(lastBackup).toLocaleString('fr-FR') : 'Aucune sauvegarde'}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Environnement</label>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <p className="text-sm text-gray-900">Production</p>
+                <p className="text-sm text-gray-600">Version: v1.0.0</p>
+              </div>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Stockage</label>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <p className="text-sm text-gray-900">LocalStorage</p>
+                <p className="text-sm text-gray-600">Sécurisé et chiffré</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -1021,139 +1511,6 @@ const CityModal: React.FC<CityModalProps> = ({ city, onClose, onSave, title }) =
             >
               <Save className="h-4 w-4" />
               <span>{city ? 'Modifier' : 'Créer'}</span>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-// Composant Modal pour gérer les prix IRVE
-interface IRVEPricesModalProps {
-  prices: any;
-  onClose: () => void;
-  onSave: (prices: any) => void;
-}
-
-const IRVEPricesModal: React.FC<IRVEPricesModalProps> = ({ prices, onClose, onSave }) => {
-  const [formData, setFormData] = useState(prices);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSave(formData);
-  };
-
-  const updatePrice = (key: string, price: number) => {
-    setFormData({
-      ...formData,
-      [key]: {
-        ...formData[key],
-        price: price
-      }
-    });
-  };
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-2xl font-semibold text-gray-900">Gestion des Prix IRVE</h3>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600"
-          >
-            <X className="h-6 w-6" />
-          </button>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Prise Green'UP */}
-          <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="text-lg font-semibold text-gray-900">
-                {formData.greenup.label}
-              </h4>
-              <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
-                3,7 kW
-              </span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <label className="font-medium text-gray-700">Prix (€ HT) :</label>
-              <input
-                type="number"
-                min="0"
-                step="10"
-                value={formData.greenup.price}
-                onChange={(e) => updatePrice('greenup', parseInt(e.target.value) || 0)}
-                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
-              <span className="text-gray-600">€ HT</span>
-            </div>
-          </div>
-
-          {/* Borne 7kW */}
-          <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="text-lg font-semibold text-gray-900">
-                {formData.borne7kw.label}
-              </h4>
-              <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-                7,4 kW
-              </span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <label className="font-medium text-gray-700">Prix (€ HT) :</label>
-              <input
-                type="number"
-                min="0"
-                step="10"
-                value={formData.borne7kw.price}
-                onChange={(e) => updatePrice('borne7kw', parseInt(e.target.value) || 0)}
-                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <span className="text-gray-600">€ HT</span>
-            </div>
-          </div>
-
-          {/* Borne 22kW */}
-          <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="text-lg font-semibold text-gray-900">
-                {formData.borne22kw.label}
-              </h4>
-              <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">
-                22 kW
-              </span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <label className="font-medium text-gray-700">Prix (€ HT) :</label>
-              <input
-                type="number"
-                min="0"
-                step="10"
-                value={formData.borne22kw.price}
-                onChange={(e) => updatePrice('borne22kw', parseInt(e.target.value) || 0)}
-                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              />
-              <span className="text-gray-600">€ HT</span>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-end space-x-3 pt-6 border-t border-gray-200">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-6 py-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors"
-            >
-              Annuler
-            </button>
-            <button
-              type="submit"
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors flex items-center space-x-2"
-            >
-              <Save className="h-4 w-4" />
-              <span>Sauvegarder les prix</span>
             </button>
           </div>
         </form>

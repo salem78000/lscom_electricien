@@ -135,6 +135,11 @@ const AdminDashboard: React.FC = () => {
     const updatedImages = { ...siteImages, [key]: url };
     setSiteImages(updatedImages);
     localStorage.setItem('site_images', JSON.stringify(updatedImages));
+    
+    // Forcer le rechargement de la page pour appliquer les changements
+    setTimeout(() => {
+      window.dispatchEvent(new Event('storage'));
+    }, 100);
   };
 
   const resetImages = () => {
@@ -151,6 +156,13 @@ const AdminDashboard: React.FC = () => {
       };
       setSiteImages(defaultImages);
       localStorage.setItem('site_images', JSON.stringify(defaultImages));
+      
+      // Forcer le rechargement
+      setTimeout(() => {
+        window.dispatchEvent(new Event('storage'));
+      }, 100);
+      
+      alert('Images restaurées par défaut !');
     }
   };
 
@@ -467,21 +479,41 @@ const AdminDashboard: React.FC = () => {
                         src={url} 
                         alt={key}
                         className="w-full h-full object-cover"
+                        key={url} // Force le rechargement quand l'URL change
                         onError={(e) => {
-                          e.currentTarget.src = 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg';
+                          const target = e.currentTarget;
+                          if (target.src !== 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg') {
+                            target.src = 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg';
+                          }
+                        }}
+                        onLoad={() => {
+                          // Image chargée avec succès
+                          console.log(`Image ${key} chargée: ${url}`);
                         }}
                       />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium mb-1">URL de l'image</label>
-                      <input
-                        type="url"
-                        value={url}
-                        onChange={(e) => updateImage(key, e.target.value)}
-                        className="w-full p-2 border rounded-md text-sm"
-                        placeholder="https://..."
-                      />
+                      <div className="flex space-x-2">
+                        <input
+                          type="url"
+                          value={url}
+                          onChange={(e) => updateImage(key, e.target.value)}
+                          className="flex-1 p-2 border rounded-md text-sm"
+                          placeholder="https://images.pexels.com/..."
+                        />
+                        <button
+                          onClick={() => updateImage(key, url)}
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm"
+                          title="Appliquer l'image"
+                        >
+                          ✓
+                        </button>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Utilisez des URLs d'images valides (Pexels, Unsplash, etc.)
+                      </p>
                     </div>
                   </div>
                 </div>

@@ -4,6 +4,38 @@ import { CheckCircle, Clock, Shield, Award } from 'lucide-react';
 import SecurePhone from '../SecurePhone';
 
 const HeroSection: React.FC = () => {
+  // Charger les images depuis le localStorage
+  const [heroImage, setHeroImage] = React.useState('https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg');
+  
+  React.useEffect(() => {
+    const loadImages = () => {
+      const stored = localStorage.getItem('site_images');
+      if (stored) {
+        try {
+          const images = JSON.parse(stored);
+          if (images.hero) {
+            setHeroImage(images.hero);
+          }
+        } catch (error) {
+          console.error('Erreur chargement images:', error);
+        }
+      }
+    };
+    
+    loadImages();
+    
+    // Écouter les changements
+    const handleStorageChange = () => {
+      loadImages();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
   return (
     <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white overflow-hidden">
       <div className="absolute inset-0 bg-black bg-opacity-20"></div>
@@ -91,12 +123,15 @@ const HeroSection: React.FC = () => {
           <div className="relative">
             <div className="relative z-10">
               <img
-                src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg"
+                src={heroImage}
                 alt="Électricien professionnel au travail"
                 className="w-full h-auto rounded-xl shadow-2xl"
                 loading="lazy"
                 width="800"
                 height="500"
+                onError={(e) => {
+                  e.currentTarget.src = 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg';
+                }}
               />
               
               {/* Floating Card */}

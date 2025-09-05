@@ -117,29 +117,54 @@ const AdminDashboard: React.FC = () => {
   };
 
   const deleteCity = (cityId: string) => {
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette ville ?')) {
+    if (confirm('Supprimer cette ville ?')) {
       const updatedCities = cities.filter(city => city.id !== cityId);
       setCities(updatedCities);
       localStorage.setItem('admin_cities', JSON.stringify(updatedCities));
     }
   };
 
-  // Fonctions pour les prix IRVE
   const saveIrvePrices = () => {
     localStorage.setItem('irve_prices', JSON.stringify(irvePrices));
-    alert('Prix IRVE sauvegardés avec succès !');
+    alert('Prix IRVE sauvegardés !');
   };
 
-  // Fonctions pour les images
+  const convertGoogleDriveUrl = (url: string) => {
+    if (url.includes('drive.google.com')) {
+      const fileId = url.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+      if (fileId) {
+        return `https://drive.google.com/uc?export=view&id=${fileId}`;
+      }
+    }
+    return url;
+  };
+
   const updateImage = (key: string, url: string) => {
-    const updatedImages = { ...siteImages, [key]: url };
+    if (!url.trim()) {
+      alert('Veuillez saisir une URL');
+      return;
+    }
+
+    // Convertir l'URL si c'est Google Drive
+    const finalUrl = convertGoogleDriveUrl(url.trim());
+    
+    // Sauvegarder immédiatement
+    const updatedImages = { ...siteImages, [key]: finalUrl };
     setSiteImages(updatedImages);
     localStorage.setItem('site_images', JSON.stringify(updatedImages));
     
-    // Forcer le rechargement de la page pour appliquer les changements
+    // Déclencher l'événement pour les autres composants
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'site_images',
+      newValue: JSON.stringify(updatedImages)
+    }));
+    
+    alert('Image mise à jour ! La page va se recharger.');
+    
+    // Recharger la page
     setTimeout(() => {
-      window.dispatchEvent(new Event('storage'));
-    }, 100);
+      window.location.reload();
+    }, 1000);
   };
 
   const resetImages = () => {
@@ -157,12 +182,10 @@ const AdminDashboard: React.FC = () => {
       setSiteImages(defaultImages);
       localStorage.setItem('site_images', JSON.stringify(defaultImages));
       
-      // Forcer le rechargement
+      alert('Images restaurées par défaut ! La page va se recharger.');
       setTimeout(() => {
-        window.dispatchEvent(new Event('storage'));
-      }, 100);
-      
-      alert('Images restaurées par défaut !');
+        window.location.reload();
+      }, 1000);
     }
   };
 

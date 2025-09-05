@@ -7,6 +7,43 @@ import ServiceProcess from '../../components/services/ServiceProcess';
 import ServiceCTA from '../../components/services/ServiceCTA';
 
 const BorneRechargeIRVEPage: React.FC = () => {
+  // État pour l'image IRVE
+  const [irveImage, setIrveImage] = React.useState('https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg');
+  
+  // Charger l'image IRVE depuis le localStorage
+  React.useEffect(() => {
+    const loadIrveImage = () => {
+      const stored = localStorage.getItem('site_images');
+      if (stored) {
+        try {
+          const images = JSON.parse(stored);
+          if (images.irve && images.irve.trim()) {
+            setIrveImage(images.irve);
+            console.log('✅ IRVE image loaded:', images.irve);
+          }
+        } catch (error) {
+          console.error('Erreur chargement image IRVE:', error);
+        }
+      }
+    };
+    
+    loadIrveImage();
+    
+    // Écouter les changements
+    const handleStorageChange = () => {
+      console.log('🔄 IRVE image storage change detected');
+      loadIrveImage();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('focus', loadIrveImage);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('focus', loadIrveImage);
+    };
+  }, []);
+
   const [irvePrices, setIrvePrices] = useState({
     greenup: { price: 710, label: 'Prise Green\'UP Legrand' },
     borne7kw: { price: 1280, label: 'Borne Murale 7,4kW' },
@@ -44,7 +81,7 @@ const BorneRechargeIRVEPage: React.FC = () => {
     title: 'Installation de bornes de recharge IRVE',
     subtitle: 'Installateur certifié QUALIFELEC IRVE pour véhicules électriques',
     description: 'LS COM, installateur certifié QUALIFELEC IRVE, vous accompagne dans l\'installation de bornes de recharge et prises Green\'UP pour véhicules électriques. Bénéficiez des aides financières et d\'une installation conforme aux normes.',
-    image: 'https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: irveImage,
     features: [
       {
         title: 'Certification QUALIFELEC IRVE',

@@ -176,17 +176,12 @@ const AdminDashboard: React.FC = () => {
     setSiteImages(updatedImages);
     localStorage.setItem('site_images', JSON.stringify(updatedImages));
     
-    // Déclencher l'événement pour les autres composants
-    window.dispatchEvent(new StorageEvent('storage', {
-      key: 'site_images',
-      newValue: JSON.stringify(updatedImages)
-    }));
+    // Forcer le rechargement de la page pour propager les changements
+    alert('✅ Image sauvegardée ! La page va se recharger pour appliquer les changements.');
     
-    alert('✅ Image sauvegardée ! La page va se recharger.');
-    
-    // Recharger la page
-    setTimeout(() => { 
-      window.location.reload();
+    // Recharger la page complète pour s'assurer que tous les composants voient les nouvelles images
+    setTimeout(() => {
+      window.location.href = '/';
     }, 1000);
   };
 

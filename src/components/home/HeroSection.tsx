@@ -13,26 +13,36 @@ const HeroSection: React.FC = () => {
       if (stored) {
         try {
           const images = JSON.parse(stored);
-          if (images.hero) {
+          if (images.hero && images.hero.trim()) {
             setHeroImage(images.hero);
+            console.log('✅ Hero image loaded:', images.hero);
+          } else {
+            console.log('❌ No hero image found in localStorage');
           }
         } catch (error) {
           console.error('Erreur chargement images:', error);
         }
+      } else {
+        console.log('❌ No site_images in localStorage');
       }
     };
     
     loadImages();
     
-    // Écouter les changements
+    // Écouter les changements du localStorage
     const handleStorageChange = () => {
+      console.log('🔄 Storage change detected, reloading images...');
       loadImages();
     };
     
     window.addEventListener('storage', handleStorageChange);
     
+    // Écouter aussi les changements de focus (quand on revient sur l'onglet)
+    window.addEventListener('focus', loadImages);
+    
     return () => {
       window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('focus', loadImages);
     };
   }, []);
 

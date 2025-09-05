@@ -132,13 +132,19 @@ const AdminDashboard: React.FC = () => {
 
   // Fonction pour convertir les URLs Google Drive
   const convertGoogleDriveUrl = (url: string): string => {
-    // Pattern pour Google Drive: https://drive.google.com/file/d/FILE_ID/view?usp=sharing
-    const drivePattern = /https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\/view/;
+    // Pattern pour Google Drive: https://drive.google.com/file/d/FILE_ID/view ou avec paramètres
+    const drivePattern = /https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/;
     const match = url.match(drivePattern);
     
     if (match) {
       const fileId = match[1];
       return `https://drive.google.com/uc?export=view&id=${fileId}`;
+    }
+    
+    // Pattern alternatif pour les URLs uc déjà converties
+    const ucPattern = /https:\/\/drive\.google\.com\/uc\?export=view&id=([a-zA-Z0-9_-]+)/;
+    if (ucPattern.test(url)) {
+      return url; // Déjà au bon format
     }
     
     return url;
@@ -152,6 +158,9 @@ const AdminDashboard: React.FC = () => {
 
     // Convertir Google Drive si nécessaire
     const convertedUrl = convertGoogleDriveUrl(url);
+    
+    console.log('URL originale:', url);
+    console.log('URL convertie:', convertedUrl);
     
     // Vérifier si c'est une URL valide
     try {
@@ -168,7 +177,8 @@ const AdminDashboard: React.FC = () => {
       'imgur.com',
       'i.imgur.com',
       'cdn.pixabay.com',
-      'images.stockvault.net'
+      'images.stockvault.net',
+      'lh3.googleusercontent.com' // Parfois Google Drive redirige vers ce domaine
     ];
 
     const urlObj = new URL(convertedUrl);
@@ -178,7 +188,7 @@ const AdminDashboard: React.FC = () => {
       return { 
         isValid: false, 
         convertedUrl, 
-        message: `Domaine non autorisé. Utilisez: ${allowedDomains.join(', ')}` 
+        message: `Domaine "${urlObj.hostname}" non autorisé. Utilisez: Pexels, Unsplash, Google Drive, Imgur, Pixabay` 
       };
     }
 
@@ -194,16 +204,20 @@ const AdminDashboard: React.FC = () => {
       return;
     }
 
-    const updatedImages = { ...siteImages, [key]: validation.convertedUrl };
+    // Utiliser l'URL convertie
+    const finalUrl = validation.convertedUrl;
+    const updatedImages = { ...siteImages, [key]: finalUrl };
     setSiteImages(updatedImages);
     localStorage.setItem('site_images', JSON.stringify(updatedImages));
+    
+    console.log('Image mise à jour:', key, finalUrl);
     
     // Forcer le rechargement de la page pour appliquer les changements
     setTimeout(() => {
       window.dispatchEvent(new Event('storage'));
     }, 100);
     
-    alert('Image mise à jour avec succès !');
+    alert(`Image mise à jour avec succès !\nURL finale: ${finalUrl}`);
   };
 
   const resetImages = () => {
@@ -565,41 +579,52 @@ const AdminDashboard: React.FC = () => {
                           value={url}
                           onChange={(e) => {
                             const newUrl = e.target.value;
-                            const validation = validateImageUrl(newUrl);
                             setSiteImages({...siteImages, [key]: newUrl});
                           }}
                           className="flex-1 p-2 border rounded-md text-sm"
-                          placeholder="https://images.pexels.com/... ou https://drive.google.com/file/d/.../view"
+                          placeholder="https://drive.google.com/file/d/ID_FICHIER/view?usp=sharing"
                         />
                         <button
                           onClick={() => updateImage(key, url)}
                           className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm"
                           title="Appliquer l'image"
                         >
-                          ✓
+                          Appliquer
                         </button>
                       </div>
                       <div className="mt-2 space-y-1">
                         <p className="text-xs text-gray-500">
-                          Domaines autorisés: Pexels, Unsplash, Google Drive, Imgur, Pixabay
+                          <strong>Domaines autorisés:</strong> Pexels, Unsplash, Google Drive, Imgur, Pixabay
                         </p>
                         <div className="text-xs">
                           {(() => {
                             const validation = validateImageUrl(url);
                             return (
-                              <span className={validation.isValid ? 'text-green-600' : 'text-red-600'}>
-                                {validation.message}
+                              <span className={validation.isValid ? 'text-green-600 font-medium' : 'text-red-600 font-medium'}>
+                                ● {validation.message}
+                                {validation.convertedUrl !== url && validation.isValid && (
+                                  <div className="text-blue-600 mt-1">
+                                    → Sera converti en: {validation.convertedUrl.substring(0, 60)}...
+                                  </div>
+                                )}
                               </span>
                             );
                           })()}
                         </div>
                         <details className="text-xs text-gray-500">
                           <summary className="cursor-pointer hover:text-gray-700">Aide Google Drive</summary>
-                          <p className="mt-1 pl-2 border-l-2 border-gray-200">
-                            Pour Google Drive: Partagez votre image → "Obtenir le lien" → Copiez l'URL complète
+                          <div className="mt-2 p-2 bg-gray-50 rounded border-l-2 border-blue-200">
+                            <p className="font-medium text-gray-700">Pour Google Drive :</p>
+                            <ol className="mt-1 space-y-1 text-gray-600">
+                              <li>1. Clic droit sur votre image → "Partager"</li>
+                              <li>2. "Obtenir le lien" → "Toute personne disposant du lien"</li>
+                              <li>3. Copiez l'URL complète ici</li>
+                            </ol>
                             <br />
-                            Exemple: https://drive.google.com/file/d/ID_DU_FICHIER/view?usp=sharing
-                          </p>
+                            <p className="text-blue-600 font-mono text-xs mt-2">
+                              Exemple: https://drive.google.com/file/d/16ZWRP48x.../view?usp=sharing
+                            </p>
+                          </div>
                         </details>
                       </div>
                     </div>

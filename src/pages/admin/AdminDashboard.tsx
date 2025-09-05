@@ -212,10 +212,14 @@ const AdminDashboard: React.FC = () => {
     
     console.log('Image mise à jour:', key, finalUrl);
     
-    // Forcer le rechargement de la page pour appliquer les changements
-    setTimeout(() => {
-      window.dispatchEvent(new Event('storage'));
-    }, 100);
+    // Forcer le rechargement immédiat de l'image
+    const imgElement = document.querySelector(`img[alt="${key}"]`) as HTMLImageElement;
+    if (imgElement) {
+      imgElement.src = finalUrl + '?t=' + Date.now(); // Cache busting
+    }
+    
+    // Déclencher l'événement storage pour les autres composants
+    window.dispatchEvent(new Event('storage'));
     
     alert(`Image mise à jour avec succès !\nURL finale: ${finalUrl}`);
   };
@@ -557,17 +561,7 @@ const AdminDashboard: React.FC = () => {
                         src={url} 
                         alt={key}
                         className="w-full h-full object-cover"
-                        key={url} // Force le rechargement quand l'URL change
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          if (target.src !== 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg') {
-                            target.src = 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg';
-                          }
-                        }}
-                        onLoad={() => {
-                          // Image chargée avec succès
-                          console.log(`Image ${key} chargée: ${url}`);
-                        }}
+                        key={`${key}-${Date.now()}`} // Force le rechargement à chaque fois
                       />
                     </div>
                     

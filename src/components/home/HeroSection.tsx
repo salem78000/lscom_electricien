@@ -129,9 +129,7 @@ const HeroSection: React.FC = () => {
                 loading="lazy"
                 width="800"
                 height="500"
-                onError={(e) => {
-                  e.currentTarget.src = 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg';
-                }}
+                key={heroImage} // Force le rechargement quand l'URL change
               />
               
               {/* Floating Card */}

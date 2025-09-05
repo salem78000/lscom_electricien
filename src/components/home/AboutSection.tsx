@@ -2,37 +2,6 @@ import React from 'react';
 import { Shield, Award, Users, MapPin } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
-  // Charger les images depuis le localStorage
-  const [aboutImage, setAboutImage] = React.useState('https://images.pexels.com/photos/8092/pexels-photo.jpg');
-  
-  React.useEffect(() => {
-    const loadImages = () => {
-      const stored = localStorage.getItem('site_images');
-      if (stored) {
-        try {
-          const images = JSON.parse(stored);
-          if (images.about) {
-            setAboutImage(images.about);
-          }
-        } catch (error) {
-          console.error('Erreur chargement images:', error);
-        }
-      }
-    };
-    
-    loadImages();
-    
-    // Écouter les changements
-    const handleStorageChange = () => {
-      loadImages();
-    };
-    
-    window.addEventListener('storage', handleStorageChange);
-    
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
 
   const stats = [
     {

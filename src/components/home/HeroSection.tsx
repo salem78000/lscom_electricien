@@ -4,48 +4,6 @@ import { CheckCircle, Clock, Shield, Award } from 'lucide-react';
 import SecurePhone from '../SecurePhone';
 
 const HeroSection: React.FC = () => {
-  // Charger les images depuis le localStorage
-  const [heroImage, setHeroImage] = React.useState('');
-  
-  React.useEffect(() => {
-    const loadImages = () => {
-      const stored = localStorage.getItem('site_images');
-      if (stored) {
-        try {
-          const images = JSON.parse(stored);
-          if (images.hero && images.hero.trim()) {
-            setHeroImage(images.hero);
-            console.log('✅ Hero image loaded:', images.hero);
-          } else {
-            console.log('❌ No hero image found in localStorage');
-          }
-        } catch (error) {
-          console.error('Erreur chargement images:', error);
-        }
-      } else {
-        console.log('❌ No site_images in localStorage');
-      }
-    };
-    
-    loadImages();
-    
-    // Écouter les changements du localStorage
-    const handleStorageChange = () => {
-      console.log('🔄 Storage change detected, reloading images...');
-      loadImages();
-    };
-    
-    window.addEventListener('storage', handleStorageChange);
-    
-    // Écouter aussi les changements de focus (quand on revient sur l'onglet)
-    window.addEventListener('focus', loadImages);
-    
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('focus', loadImages);
-    };
-  }, []);
-
   return (
     <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white overflow-hidden">
       <div className="absolute inset-0 bg-black bg-opacity-20"></div>
@@ -133,13 +91,12 @@ const HeroSection: React.FC = () => {
           <div className="relative">
             <div className="relative z-10">
               <img
-                src={heroImage}
+                src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg"
                 alt="Électricien professionnel au travail"
                 className="w-full h-auto rounded-xl shadow-2xl"
                 loading="lazy"
                 width="800"
                 height="500"
-                key={heroImage} // Force le rechargement quand l'URL change
               />
               
               {/* Floating Card */}

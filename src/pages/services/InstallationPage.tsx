@@ -12,7 +12,7 @@ const InstallationPage: React.FC = () => {
     title: 'Installation électrique complète',
     subtitle: 'Conception et réalisation d\'installations électriques neuves ou en rénovation',
     description: 'LS COM réalise vos installations électriques complètes avec expertise et professionnalisme. De la conception à la mise en service, nous vous accompagnons dans tous vos projets résidentiels et tertiaires.',
-    image: '',
+    image: 'https://images.pexels.com/photos/8092/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800',
     features: [
       {
         title: 'Étude personnalisée',

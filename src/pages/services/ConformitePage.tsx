@@ -9,6 +9,7 @@ const ConformitePage: React.FC = () => {
     title: 'Mise en conformité électrique',
     subtitle: 'Modernisation et mise aux normes de vos installations électriques',
     description: 'LS COM assure la mise en conformité de vos installations électriques selon les normes NF C 15-100. Nos électriciens certifiés garantissent la sécurité et la performance de vos équipements électriques.',
+    image: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=800',
     features: [
       {
         title: 'Diagnostic complet',

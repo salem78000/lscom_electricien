@@ -9,6 +9,7 @@ const DepannagePage: React.FC = () => {
     title: 'Dépannage électrique',
     subtitle: 'Intervention rapide pour tous vos problèmes électriques avec tarif fixe',
     description: 'LS COM assure un service de dépannage électrique à partir de 110€ HT selon zone. Nos électriciens certifiés interviennent rapidement pour résoudre tous vos problèmes électriques et rétablir votre installation en toute sécurité.',
+    image: 'https://images.pexels.com/photos/8092/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800',
     features: [
       {
         title: 'À partir de 110€ HT',

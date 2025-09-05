@@ -40,14 +40,14 @@ const AdminDashboard: React.FC = () => {
   
   // États pour la gestion des images
   const [siteImages, setSiteImages] = useState({
-    hero: '',
-    about: '',
-    services: '',
-    irve: '',
-    installation: '',
-    depannage: '',
-    conformite: '',
-    tableau: ''
+    hero: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+    about: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+    services: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+    irve: 'https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg',
+    installation: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+    depannage: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+    conformite: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+    tableau: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg'
   });
 
   // Menu items
@@ -67,28 +67,13 @@ const AdminDashboard: React.FC = () => {
   }, []);
 
   const loadCities = () => {
-    try {
-      const stored = localStorage.getItem('admin_cities');
-      let loadedCities = [];
-      
-      if (stored) {
-        loadedCities = JSON.parse(stored);
+    const stored = localStorage.getItem('admin_cities');
+    if (stored) {
+      try {
+        setCities(JSON.parse(stored));
+      } catch (error) {
+        console.error('Erreur chargement villes:', error);
       }
-      
-      // Si pas de villes ou très peu, restaurer depuis les données CSV
-      if (!loadedCities || loadedCities.length < 10) {
-        console.log('Restauration des villes depuis les données CSV...');
-        loadedCities = restoreCitiesFromCSV();
-        localStorage.setItem('admin_cities', JSON.stringify(loadedCities));
-      }
-      
-      setCities(loadedCities);
-    } catch (error) {
-      console.error('Erreur chargement villes:', error);
-      // En cas d'erreur, restaurer depuis CSV
-      const restoredCities = restoreCitiesFromCSV();
-      setCities(restoredCities);
-      localStorage.setItem('admin_cities', JSON.stringify(restoredCities));
     }
   };
 
@@ -145,65 +130,27 @@ const AdminDashboard: React.FC = () => {
     alert('Prix IRVE sauvegardés avec succès !');
   };
 
-  // Fonction pour convertir les URLs Google Drive
-  const convertGoogleDriveUrl = (url: string): string => {
-    if (!url || typeof url !== 'string') return url;
-    
-    // Pattern pour Google Drive: https://drive.google.com/file/d/FILE_ID/view
-    const drivePattern = /https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)(?:\/view)?/;
-    const match = url.match(drivePattern);
-    
-    if (match) {
-      const fileId = match[1];
-      const convertedUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
-      return convertedUrl;
-    }
-    
-    return url;
-  };
-
-  // Fonction pour valider les URLs d'images
+  // Fonctions pour les images
   const updateImage = (key: string, url: string) => {
-    if (!url.trim()) {
-      alert('Veuillez saisir une URL');
-      return;
-    }
-
-    const finalUrl = url.trim();
-    
-    // Sauvegarder immédiatement
-    const updatedImages = { ...siteImages, [key]: finalUrl };
+    const updatedImages = { ...siteImages, [key]: url };
     setSiteImages(updatedImages);
     localStorage.setItem('site_images', JSON.stringify(updatedImages));
-    
-    // Forcer le rechargement de la page pour propager les changements
-    alert('✅ Image sauvegardée ! La page va se recharger pour appliquer les changements.');
-    
-    // Recharger la page complète pour s'assurer que tous les composants voient les nouvelles images
-    setTimeout(() => {
-      window.location.href = '/';
-    }, 1000);
   };
 
   const resetImages = () => {
     if (confirm('Restaurer toutes les images par défaut ?')) {
       const defaultImages = {
-        hero: '',
-        about: '',
-        services: '',
-        irve: '',
-        installation: '',
-        depannage: '',
-        conformite: '',
-        tableau: ''
+        hero: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+        about: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+        services: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+        irve: 'https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg',
+        installation: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+        depannage: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
+        conformite: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
+        tableau: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg'
       };
       setSiteImages(defaultImages);
       localStorage.setItem('site_images', JSON.stringify(defaultImages));
-      
-      alert('Images supprimées ! La page va se recharger.');
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
     }
   };
 
@@ -389,27 +336,13 @@ const AdminDashboard: React.FC = () => {
           <div className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold text-gray-900">Gestion des Villes</h2>
-              <div className="flex space-x-3">
-                <button
-                  onClick={() => {
-                    const restoredCities = restoreCitiesFromCSV();
-                    setCities(restoredCities);
-                    localStorage.setItem('admin_cities', JSON.stringify(restoredCities));
-                    alert(`${restoredCities.length} villes restaurées !`);
-                  }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
-                >
-                  <RefreshCw className="h-4 w-4" />
-                  <span>Restaurer les 54 villes</span>
-                </button>
-                <button
-                  onClick={() => setShowCityForm(true)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
-                >
-                  <Plus className="h-4 w-4" />
-                  <span>Nouvelle ville</span>
-                </button>
-              </div>
+              <button
+                onClick={() => setShowCityForm(true)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+              >
+                <Plus className="h-4 w-4" />
+                <span>Nouvelle ville</span>
+              </button>
             </div>
 
             {showCityForm && <CityForm />}
@@ -513,10 +446,10 @@ const AdminDashboard: React.FC = () => {
               <h2 className="text-2xl font-bold text-gray-900">Gestion des Images</h2>
               <button
                 onClick={resetImages}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
               >
                 <RefreshCw className="h-4 w-4" />
-                <span>Supprimer toutes les images</span>
+                <span>Restaurer par défaut</span>
               </button>
             </div>
             
@@ -530,79 +463,29 @@ const AdminDashboard: React.FC = () => {
                   
                   <div className="space-y-3">
                     <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                      {url ? (
-                        <img 
-                          src={url} 
-                          alt={key}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            console.error(`❌ Erreur chargement image ${key}:`, url);
-                            e.currentTarget.src = '/api/placeholder/400/225';
-                          }}
-                          onLoad={() => {
-                            console.log(`✅ Image ${key} chargée:`, url);
-                          }}
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-400">
-                          <Camera className="h-12 w-12" />
-                        </div>
-                      )}
+                      <img 
+                        src={url} 
+                        alt={key}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg';
+                        }}
+                      />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium mb-1">URL de l'image</label>
-                      <div className="flex space-x-2">
-                        <input
-                          type="url"
-                          value={url}
-                          onChange={(e) => {
-                            const newUrl = e.target.value;
-                            setSiteImages({...siteImages, [key]: newUrl});
-                          }}
-                          className="flex-1 p-2 border rounded-md text-sm"
-                          placeholder="https://lh3.googleusercontent.com/d/VOTRE_ID"
-                        />
-                        <button
-                          onClick={() => updateImage(key, url)}
-                          disabled={!url.trim()}
-                          className={`px-3 py-2 rounded-md flex items-center space-x-1 ${
-                            url.trim() 
-                              ? 'bg-blue-600 hover:bg-blue-700 text-white' 
-                              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                          }`}
-                        >
-                          <Save className="h-4 w-4" />
-                          <span>Sauver</span>
-                        </button>
-                      </div>
-                      <div className="text-xs text-gray-500 mt-2">
-                        <div className="bg-gray-50 p-2 rounded border">
-                          <p><strong>📋 Format Google Drive :</strong></p>
-                          <code className="text-xs bg-white px-1 rounded">https://lh3.googleusercontent.com/d/VOTRE_ID</code>
-                          <p className="text-blue-600 mt-1 text-xs">Ou URL directe d'image (Pexels, Unsplash, etc.)</p>
-                          {url && (
-                            <p className="text-green-600 mt-1 text-xs">
-                              ✅ URL détectée : {url.length > 50 ? url.substring(0, 50) + '...' : url}
-                            </p>
-                          )}
-                        </div>
-                      </div>
+                      <input
+                        type="url"
+                        value={url}
+                        onChange={(e) => updateImage(key, e.target.value)}
+                        className="w-full p-2 border rounded-md text-sm"
+                        placeholder="https://..."
+                      />
                     </div>
                   </div>
                 </div>
               ))}
-            </div>
-            
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <h4 className="font-medium text-blue-800 mb-2">📋 Comment obtenir l'URL directe :</h4>
-              <p className="text-sm text-blue-700">
-                <strong>Google Drive :</strong><br/>
-                1. Partagez votre image (accès public)<br/>
-                2. Copiez l'ID depuis l'URL de partage<br/>
-                3. Utilisez : https://lh3.googleusercontent.com/d/VOTRE_ID<br/><br/>
-                <strong>Autres sources :</strong> Pexels, Unsplash, Imgur (URL directe)
-              </p>
             </div>
           </div>
         );

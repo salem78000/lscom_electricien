@@ -2,7 +2,6 @@ import React from 'react';
 import { Shield, Award, Users, MapPin } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
-
   const stats = [
     {
       icon: Users,

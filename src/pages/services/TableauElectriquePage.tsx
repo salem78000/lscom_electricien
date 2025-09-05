@@ -8,48 +8,11 @@ import ServiceCTA from '../../components/services/ServiceCTA';
 import SecurePhone from '../../components/SecurePhone';
 
 const TableauElectriquePage: React.FC = () => {
-  // État pour l'image tableau
-  const [tableauImage, setTableauImage] = React.useState('');
-  
-  // Charger l'image tableau depuis le localStorage
-  React.useEffect(() => {
-    const loadTableauImage = () => {
-      const stored = localStorage.getItem('site_images');
-      if (stored) {
-        try {
-          const images = JSON.parse(stored);
-          if (images.tableau && images.tableau.trim()) {
-            setTableauImage(images.tableau);
-            console.log('✅ Tableau image loaded:', images.tableau);
-          }
-        } catch (error) {
-          console.error('Erreur chargement image tableau:', error);
-        }
-      }
-    };
-    
-    loadTableauImage();
-    
-    // Écouter les changements
-    const handleStorageChange = () => {
-      console.log('🔄 Tableau image storage change detected');
-      loadTableauImage();
-    };
-    
-    window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('focus', loadTableauImage);
-    
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('focus', loadTableauImage);
-    };
-  }, []);
-
   const serviceData = {
     title: 'Mise en sécurité tableau électrique',
     subtitle: 'Remplacement de tableau électrique avec tarifs fixes transparents',
     description: 'LS COM assure le remplacement complet de votre tableau électrique avec des tarifs fixes selon le nombre de rangées. Installation conforme aux normes NF C 15-100 pour votre sécurité.',
-    image: tableauImage,
+    image: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=800',
     features: [
       {
         title: 'Tarifs fixes transparents',
@@ -192,19 +155,17 @@ const TableauElectriquePage: React.FC = () => {
                 <div className="p-8">
                   <div className="text-center mb-6">
                     <div className="mx-auto mb-4 flex items-center justify-center">
-                      <img 
-                        src={`/Tableau ${index + 1} rangée${index > 0 ? 's' : ''}.png`}
-                        alt={`Tableau électrique ${tableau.rangees}`}
-                        className="w-20 h-20 object-contain"
-                        onError={(e) => {
-                          // Fallback vers l'icône en cas d'erreur de chargement
-                          e.currentTarget.style.display = 'none';
-                          e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                        }}
-                      />
-                      <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center hidden">
-                        <Shield className="h-8 w-8 text-blue-600" />
-                      </div>
+                      {index === 0 ? (
+                        <img 
+                          src="/Tableau 1 rangée.png" 
+                          alt="Tableau électrique 1 rangée"
+                          className="w-20 h-20 object-contain"
+                        />
+                      ) : (
+                        <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center">
+                          <Shield className="h-8 w-8 text-blue-600" />
+                        </div>
+                      )}
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       Tableau {tableau.rangees}

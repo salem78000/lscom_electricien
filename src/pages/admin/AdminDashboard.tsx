@@ -530,11 +530,24 @@ const AdminDashboard: React.FC = () => {
                   
                   <div className="space-y-3">
                     <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                      <img 
-                        src={url || '/api/placeholder/400/225'} 
-                        alt={key}
-                        className="w-full h-full object-cover"
-                      />
+                      {url ? (
+                        <img 
+                          src={url} 
+                          alt={key}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            console.error(`❌ Erreur chargement image ${key}:`, url);
+                            e.currentTarget.src = '/api/placeholder/400/225';
+                          }}
+                          onLoad={() => {
+                            console.log(`✅ Image ${key} chargée:`, url);
+                          }}
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-400">
+                          <Camera className="h-12 w-12" />
+                        </div>
+                      )}
                     </div>
                     
                     <div>
@@ -552,16 +565,28 @@ const AdminDashboard: React.FC = () => {
                         />
                         <button
                           onClick={() => updateImage(key, url)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md flex items-center space-x-1"
+                          disabled={!url.trim()}
+                          className={`px-3 py-2 rounded-md flex items-center space-x-1 ${
+                            url.trim() 
+                              ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                          }`}
                         >
                           <Save className="h-4 w-4" />
                           <span>Sauver</span>
                         </button>
                       </div>
                       <div className="text-xs text-gray-500 mt-2">
-                        <p><strong>📋 URL directe recommandée :</strong></p>
-                        <p>https://lh3.googleusercontent.com/d/VOTRE_ID_GOOGLE_DRIVE</p>
-                        <p className="text-blue-600 mt-1">Ou toute URL d'image directe (Pexels, Unsplash, etc.)</p>
+                        <div className="bg-gray-50 p-2 rounded border">
+                          <p><strong>📋 Format Google Drive :</strong></p>
+                          <code className="text-xs bg-white px-1 rounded">https://lh3.googleusercontent.com/d/VOTRE_ID</code>
+                          <p className="text-blue-600 mt-1 text-xs">Ou URL directe d'image (Pexels, Unsplash, etc.)</p>
+                          {url && (
+                            <p className="text-green-600 mt-1 text-xs">
+                              ✅ URL détectée : {url.length > 50 ? url.substring(0, 50) + '...' : url}
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>

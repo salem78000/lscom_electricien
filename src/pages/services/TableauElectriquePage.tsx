@@ -8,10 +8,48 @@ import ServiceCTA from '../../components/services/ServiceCTA';
 import SecurePhone from '../../components/SecurePhone';
 
 const TableauElectriquePage: React.FC = () => {
+  // État pour l'image tableau
+  const [tableauImage, setTableauImage] = React.useState('');
+  
+  // Charger l'image tableau depuis le localStorage
+  React.useEffect(() => {
+    const loadTableauImage = () => {
+      const stored = localStorage.getItem('site_images');
+      if (stored) {
+        try {
+          const images = JSON.parse(stored);
+          if (images.tableau && images.tableau.trim()) {
+            setTableauImage(images.tableau);
+            console.log('✅ Tableau image loaded:', images.tableau);
+          }
+        } catch (error) {
+          console.error('Erreur chargement image tableau:', error);
+        }
+      }
+    };
+    
+    loadTableauImage();
+    
+    // Écouter les changements
+    const handleStorageChange = () => {
+      console.log('🔄 Tableau image storage change detected');
+      loadTableauImage();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('focus', loadTableauImage);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('focus', loadTableauImage);
+    };
+  }, []);
+
   const serviceData = {
     title: 'Mise en sécurité tableau électrique',
     subtitle: 'Remplacement de tableau électrique avec tarifs fixes transparents',
     description: 'LS COM assure le remplacement complet de votre tableau électrique avec des tarifs fixes selon le nombre de rangées. Installation conforme aux normes NF C 15-100 pour votre sécurité.',
+    image: tableauImage,
     features: [
       {
         title: 'Tarifs fixes transparents',

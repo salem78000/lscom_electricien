@@ -16,12 +16,12 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const ADMIN_CREDENTIALS = [
   {
     username: 'admin',
-    passwordHash: 'a8f5f167f44f4964e6c998dee827110c', // MD5 de 'lscom2025!'
+    passwordHash: 'lscom2025!', // Mot de passe en clair temporairement
     role: 'admin'
   },
   {
     username: 'lscom',
-    passwordHash: '5d41402abc4b2a76b9719d911017c592', // MD5 de 'hello'
+    passwordHash: 'hello', // Mot de passe en clair temporairement
     role: 'super_admin'
   }
 ];
@@ -129,9 +129,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
 
     // Vérifier les credentials
-    const hashedPassword = simpleHash(password);
     const validUser = ADMIN_CREDENTIALS.find(
-      cred => cred.username === username && cred.passwordHash === hashedPassword
+      cred => cred.username === username && cred.passwordHash === password
     );
 
     if (validUser) {

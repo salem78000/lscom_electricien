@@ -440,13 +440,27 @@ const AdminDashboard: React.FC = () => {
           <div className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold text-gray-900">Gestion des Villes</h2>
-              <button
-                onClick={() => setShowCityForm(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
-              >
-                <Plus className="h-4 w-4" />
-                <span>Nouvelle ville</span>
-              </button>
+              <div className="flex space-x-3">
+                <button
+                  onClick={() => {
+                    const restoredCities = restoreCitiesFromCSV();
+                    setCities(restoredCities);
+                    localStorage.setItem('admin_cities', JSON.stringify(restoredCities));
+                    alert(`${restoredCities.length} villes restaurées !`);
+                  }}
+                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+                >
+                  <RefreshCw className="h-4 w-4" />
+                  <span>Restaurer les 54 villes</span>
+                </button>
+                <button
+                  onClick={() => setShowCityForm(true)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  <span>Nouvelle ville</span>
+                </button>
+              </div>
             </div>
 
             {showCityForm && <CityForm />}

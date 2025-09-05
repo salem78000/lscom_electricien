@@ -67,13 +67,28 @@ const AdminDashboard: React.FC = () => {
   }, []);
 
   const loadCities = () => {
-    const stored = localStorage.getItem('admin_cities');
-    if (stored) {
-      try {
-        setCities(JSON.parse(stored));
-      } catch (error) {
-        console.error('Erreur chargement villes:', error);
+    try {
+      const stored = localStorage.getItem('admin_cities');
+      let loadedCities = [];
+      
+      if (stored) {
+        loadedCities = JSON.parse(stored);
       }
+      
+      // Si pas de villes ou très peu, restaurer depuis les données CSV
+      if (!loadedCities || loadedCities.length < 10) {
+        console.log('Restauration des villes depuis les données CSV...');
+        loadedCities = restoreCitiesFromCSV();
+        localStorage.setItem('admin_cities', JSON.stringify(loadedCities));
+      }
+      
+      setCities(loadedCities);
+    } catch (error) {
+      console.error('Erreur chargement villes:', error);
+      // En cas d'erreur, restaurer depuis CSV
+      const restoredCities = restoreCitiesFromCSV();
+      setCities(restoredCities);
+      localStorage.setItem('admin_cities', JSON.stringify(restoredCities));
     }
   };
 

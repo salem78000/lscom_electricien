@@ -132,21 +132,20 @@ const AdminDashboard: React.FC = () => {
 
   // Fonction pour convertir les URLs Google Drive
   const convertGoogleDriveUrl = (url: string): string => {
-    // Pattern pour Google Drive: https://drive.google.com/file/d/FILE_ID/view ou avec paramètres
-    const drivePattern = /https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/;
+    if (!url || typeof url !== 'string') return url;
+    
+    // Pattern pour Google Drive: https://drive.google.com/file/d/FILE_ID/view
+    const drivePattern = /https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)(?:\/view)?/;
     const match = url.match(drivePattern);
     
     if (match) {
       const fileId = match[1];
-      return `https://drive.google.com/uc?export=view&id=${fileId}`;
+      const convertedUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+      console.log('🔄 Conversion Google Drive:', url, '→', convertedUrl);
+      return convertedUrl;
     }
     
-    // Pattern alternatif pour les URLs uc déjà converties
-    const ucPattern = /https:\/\/drive\.google\.com\/uc\?export=view&id=([a-zA-Z0-9_-]+)/;
-    if (ucPattern.test(url)) {
-      return url; // Déjà au bon format
-    }
-    
+    console.log('ℹ️ URL non Google Drive, pas de conversion:', url);
     return url;
   };
 
@@ -158,9 +157,6 @@ const AdminDashboard: React.FC = () => {
 
     // Convertir Google Drive si nécessaire
     const convertedUrl = convertGoogleDriveUrl(url);
-    
-    console.log('URL originale:', url);
-    console.log('URL convertie:', convertedUrl);
     
     // Vérifier si c'est une URL valide
     try {
@@ -178,7 +174,10 @@ const AdminDashboard: React.FC = () => {
       'i.imgur.com',
       'cdn.pixabay.com',
       'images.stockvault.net',
-      'lh3.googleusercontent.com' // Parfois Google Drive redirige vers ce domaine
+      'lh3.googleusercontent.com',
+      'lh4.googleusercontent.com',
+      'lh5.googleusercontent.com',
+      'lh6.googleusercontent.com'
     ];
 
     const urlObj = new URL(convertedUrl);
@@ -188,7 +187,7 @@ const AdminDashboard: React.FC = () => {
       return { 
         isValid: false, 
         convertedUrl, 
-        message: `Domaine "${urlObj.hostname}" non autorisé. Utilisez: Pexels, Unsplash, Google Drive, Imgur, Pixabay` 
+        message: `Domaine "${urlObj.hostname}" non autorisé` 
       };
     }
 
@@ -197,31 +196,34 @@ const AdminDashboard: React.FC = () => {
 
   // Fonctions pour les images
   const updateImage = (key: string, url: string) => {
+    console.log('🖼️ Mise à jour image:', key, url);
+    
     const validation = validateImageUrl(url);
     
     if (!validation.isValid) {
-      alert(`Erreur: ${validation.message}`);
+      console.error('❌ Validation échouée:', validation.message);
+      alert(`❌ Erreur: ${validation.message}`);
       return;
     }
 
     // Utiliser l'URL convertie
     const finalUrl = validation.convertedUrl;
+    console.log('✅ URL finale:', finalUrl);
+    
     const updatedImages = { ...siteImages, [key]: finalUrl };
     setSiteImages(updatedImages);
     localStorage.setItem('site_images', JSON.stringify(updatedImages));
     
-    console.log('Image mise à jour:', key, finalUrl);
-    
-    // Forcer le rechargement immédiat de l'image
-    const imgElement = document.querySelector(`img[alt="${key}"]`) as HTMLImageElement;
-    if (imgElement) {
-      imgElement.src = finalUrl + '?t=' + Date.now(); // Cache busting
-    }
+    console.log('💾 Image sauvegardée dans localStorage');
     
     // Déclencher l'événement storage pour les autres composants
     window.dispatchEvent(new Event('storage'));
+    console.log('📡 Événement storage déclenché');
     
-    alert(`Image mise à jour avec succès !\nURL finale: ${finalUrl}`);
+    // Forcer le rechargement de la page après un court délai
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   };
 
   const resetImages = () => {
@@ -557,12 +559,22 @@ const AdminDashboard: React.FC = () => {
                   
                   <div className="space-y-3">
                     <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                      <img 
-                        src={url} 
-                        alt={key}
-                        className="w-full h-full object-cover"
-                        key={`${key}-${Date.now()}`} // Force le rechargement à chaque fois
-                      />
+                      {url ? (
+                        <img 
+                          src={url} 
+                          alt={key}
+                          className="w-full h-full object-cover"
+                          onLoad={() => console.log('✅ Image chargée:', key)}
+                          onError={(e) => {
+                            console.error('❌ Erreur chargement image:', key, url);
+                            e.currentTarget.style.display = 'block';
+                          }}
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-400">
+                          <Camera className="h-12 w-12" />
+                        </div>
+                      )}
                     </div>
                     
                     <div>
@@ -576,55 +588,53 @@ const AdminDashboard: React.FC = () => {
                             setSiteImages({...siteImages, [key]: newUrl});
                           }}
                           className="flex-1 p-2 border rounded-md text-sm"
-                          placeholder="https://drive.google.com/file/d/ID_FICHIER/view?usp=sharing"
+                          placeholder="https://drive.google.com/file/d/VOTRE_ID/view?usp=sharing"
                         />
                         <button
                           onClick={() => updateImage(key, url)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm"
-                          title="Appliquer l'image"
+                          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                          title="Sauvegarder et appliquer"
                         >
-                          Appliquer
+                          ✅ Sauvegarder
                         </button>
                       </div>
                       <div className="mt-2 space-y-1">
                         <p className="text-xs text-gray-500">
-                          <strong>Domaines autorisés:</strong> Pexels, Unsplash, Google Drive, Imgur, Pixabay
+                          <strong>Domaines autorisés:</strong> Google Drive, Pexels, Unsplash, Imgur, Pixabay
                         </p>
                         <div className="text-xs">
                           {(() => {
                             const validation = validateImageUrl(url);
                             return (
-                              <span className={validation.isValid ? 'text-green-600 font-medium' : 'text-red-600 font-medium'}>
-                                ● {validation.message}
+                              <div className={validation.isValid ? 'text-green-600' : 'text-red-600'}>
+                                <span className="font-medium">
+                                  {validation.isValid ? '✅' : '❌'} {validation.message}
+                                </span>
                                 {validation.convertedUrl !== url && validation.isValid && (
-                                  <div className="text-blue-600 mt-1">
-                                    → Sera converti en: {validation.convertedUrl.substring(0, 60)}...
+                                  <div className="text-blue-600 mt-1 text-xs">
+                                    🔄 Sera converti: {validation.convertedUrl.substring(0, 50)}...
                                   </div>
                                 )}
-                              </span>
+                              </div>
                             );
                           })()}
                         </div>
-                        <details className="text-xs text-gray-500">
-                          <summary className="cursor-pointer hover:text-gray-700">Aide Google Drive</summary>
-                          <div className="mt-2 p-2 bg-gray-50 rounded border-l-2 border-blue-200">
-                            <p className="font-medium text-gray-700">Pour Google Drive :</p>
-                            <ol className="mt-1 space-y-1 text-gray-600">
-                              <li>1. Clic droit sur votre image → "Partager"</li>
-                              <li>2. "Obtenir le lien" → "Toute personne disposant du lien"</li>
-                              <li>3. Copiez l'URL complète ici</li>
-                            </ol>
-                            <br />
-                            <p className="text-blue-600 font-mono text-xs mt-2">
-                              Exemple: https://drive.google.com/file/d/16ZWRP48x.../view?usp=sharing
-                            </p>
-                          </div>
-                        </details>
                       </div>
                     </div>
                   </div>
                 </div>
               ))}
+            </div>
+            
+            <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <h4 className="font-medium text-blue-800 mb-2">📋 Guide Google Drive :</h4>
+              <ol className="text-sm text-blue-700 space-y-1">
+                <li><strong>1.</strong> Clic droit sur votre image → "Partager"</li>
+                <li><strong>2.</strong> "Obtenir le lien" → "Toute personne disposant du lien"</li>
+                <li><strong>3.</strong> Copiez l'URL complète dans le champ</li>
+                <li><strong>4.</strong> Cliquez sur "✅ Sauvegarder"</li>
+                <li><strong>5.</strong> La page se rechargera automatiquement</li>
+              </ol>
             </div>
           </div>
         );

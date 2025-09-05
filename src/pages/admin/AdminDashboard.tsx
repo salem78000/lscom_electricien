@@ -130,9 +130,71 @@ const AdminDashboard: React.FC = () => {
     alert('Prix IRVE sauvegardés avec succès !');
   };
 
+  // Fonction pour convertir les URLs Google Drive
+  const convertGoogleDriveUrl = (url: string): string => {
+    // Pattern pour Google Drive: https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+    const drivePattern = /https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\/view/;
+    const match = url.match(drivePattern);
+    
+    if (match) {
+      const fileId = match[1];
+      return `https://drive.google.com/uc?export=view&id=${fileId}`;
+    }
+    
+    return url;
+  };
+
+  // Fonction pour valider les URLs d'images
+  const validateImageUrl = (url: string): { isValid: boolean; convertedUrl: string; message: string } => {
+    if (!url.trim()) {
+      return { isValid: false, convertedUrl: url, message: 'URL vide' };
+    }
+
+    // Convertir Google Drive si nécessaire
+    const convertedUrl = convertGoogleDriveUrl(url);
+    
+    // Vérifier si c'est une URL valide
+    try {
+      new URL(convertedUrl);
+    } catch {
+      return { isValid: false, convertedUrl: url, message: 'URL invalide' };
+    }
+
+    // Vérifier les domaines autorisés
+    const allowedDomains = [
+      'images.pexels.com',
+      'images.unsplash.com',
+      'drive.google.com',
+      'imgur.com',
+      'i.imgur.com',
+      'cdn.pixabay.com',
+      'images.stockvault.net'
+    ];
+
+    const urlObj = new URL(convertedUrl);
+    const isAllowedDomain = allowedDomains.some(domain => urlObj.hostname.includes(domain));
+
+    if (!isAllowedDomain) {
+      return { 
+        isValid: false, 
+        convertedUrl, 
+        message: `Domaine non autorisé. Utilisez: ${allowedDomains.join(', ')}` 
+      };
+    }
+
+    return { isValid: true, convertedUrl, message: 'URL valide' };
+  };
+
   // Fonctions pour les images
   const updateImage = (key: string, url: string) => {
-    const updatedImages = { ...siteImages, [key]: url };
+    const validation = validateImageUrl(url);
+    
+    if (!validation.isValid) {
+      alert(`Erreur: ${validation.message}`);
+      return;
+    }
+
+    const updatedImages = { ...siteImages, [key]: validation.convertedUrl };
     setSiteImages(updatedImages);
     localStorage.setItem('site_images', JSON.stringify(updatedImages));
     
@@ -140,6 +202,8 @@ const AdminDashboard: React.FC = () => {
     setTimeout(() => {
       window.dispatchEvent(new Event('storage'));
     }, 100);
+    
+    alert('Image mise à jour avec succès !');
   };
 
   const resetImages = () => {
@@ -499,9 +563,13 @@ const AdminDashboard: React.FC = () => {
                         <input
                           type="url"
                           value={url}
-                          onChange={(e) => updateImage(key, e.target.value)}
+                          onChange={(e) => {
+                            const newUrl = e.target.value;
+                            const validation = validateImageUrl(newUrl);
+                            setSiteImages({...siteImages, [key]: newUrl});
+                          }}
                           className="flex-1 p-2 border rounded-md text-sm"
-                          placeholder="https://images.pexels.com/..."
+                          placeholder="https://images.pexels.com/... ou https://drive.google.com/file/d/.../view"
                         />
                         <button
                           onClick={() => updateImage(key, url)}
@@ -511,9 +579,29 @@ const AdminDashboard: React.FC = () => {
                           ✓
                         </button>
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">
-                        Utilisez des URLs d'images valides (Pexels, Unsplash, etc.)
-                      </p>
+                      <div className="mt-2 space-y-1">
+                        <p className="text-xs text-gray-500">
+                          Domaines autorisés: Pexels, Unsplash, Google Drive, Imgur, Pixabay
+                        </p>
+                        <div className="text-xs">
+                          {(() => {
+                            const validation = validateImageUrl(url);
+                            return (
+                              <span className={validation.isValid ? 'text-green-600' : 'text-red-600'}>
+                                {validation.message}
+                              </span>
+                            );
+                          })()}
+                        </div>
+                        <details className="text-xs text-gray-500">
+                          <summary className="cursor-pointer hover:text-gray-700">Aide Google Drive</summary>
+                          <p className="mt-1 pl-2 border-l-2 border-gray-200">
+                            Pour Google Drive: Partagez votre image → "Obtenir le lien" → Copiez l'URL complète
+                            <br />
+                            Exemple: https://drive.google.com/file/d/ID_DU_FICHIER/view?usp=sharing
+                          </p>
+                        </details>
+                      </div>
                     </div>
                   </div>
                 </div>

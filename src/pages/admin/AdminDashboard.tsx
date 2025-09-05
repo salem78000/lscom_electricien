@@ -555,10 +555,21 @@ const AdminDashboard: React.FC = () => {
                           className="flex-1 p-2 border rounded-md text-sm"
                           placeholder="https://lh3.googleusercontent.com/d/VOTRE_ID"
                         />
+                        <button
+                          onClick={() => updateImage(key, url)}
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+                        >
+                          <Save className="h-4 w-4" />
+                          <span>Appliquer</span>
+                        </button>
+                      </div>
                       <div className="text-xs text-gray-500 mt-2">
                         <p><strong>📋 URL directe recommandée :</strong></p>
                         <p>https://lh3.googleusercontent.com/d/VOTRE_ID_GOOGLE_DRIVE</p>
                         <p className="text-blue-600 mt-1">Ou toute URL d'image directe (Pexels, Unsplash, etc.)</p>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-2">
+                        Collez votre lien Google Drive et cliquez sur "Appliquer"
                       </p>
                     </div>
                   </div>
@@ -573,7 +584,6 @@ const AdminDashboard: React.FC = () => {
                 1. Partagez votre image (accès public)<br/>
                 2. Copiez l'ID depuis l'URL de partage<br/>
                 3. Utilisez : https://lh3.googleusercontent.com/d/VOTRE_ID<br/><br/>
-                <strong>Autres sources :</strong> Pexels, Unsplash, Imgur (URL directe)
                 <strong>Autres sources :</strong> Pexels, Unsplash, Imgur (URL directe)
               </p>
             </div>

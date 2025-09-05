@@ -559,9 +559,6 @@ const AdminDashboard: React.FC = () => {
                         <p><strong>📋 URL directe recommandée :</strong></p>
                         <p>https://lh3.googleusercontent.com/d/VOTRE_ID_GOOGLE_DRIVE</p>
                         <p className="text-blue-600 mt-1">Ou toute URL d'image directe (Pexels, Unsplash, etc.)</p>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-2">
-                        Collez votre lien Google Drive et cliquez sur "Appliquer"
                       </p>
                     </div>
                   </div>
@@ -576,6 +573,7 @@ const AdminDashboard: React.FC = () => {
                 1. Partagez votre image (accès public)<br/>
                 2. Copiez l'ID depuis l'URL de partage<br/>
                 3. Utilisez : https://lh3.googleusercontent.com/d/VOTRE_ID<br/><br/>
+                <strong>Autres sources :</strong> Pexels, Unsplash, Imgur (URL directe)
                 <strong>Autres sources :</strong> Pexels, Unsplash, Imgur (URL directe)
               </p>
             </div>

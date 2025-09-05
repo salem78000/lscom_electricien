@@ -66,11 +66,11 @@ const TableauElectriquePage: React.FC = () => {
       description: 'Tableau électrique 1 rangée - Idéal pour petits logements',
       image: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=400',
       features: [
-        'Tableau 1 rangée 13 modules',
-        'Disjoncteur de branchement',
-        'Dispositifs différentiels',
-        'Disjoncteurs divisionnaires',
-        'Borniers de raccordement'
+        'Tableau électrique neuf (coffret, peignes de connexion)',
+        '1 interrupteur différentiel de type A',
+        'Disjoncteurs de protection (selon équipements électriques du logement)',
+        'Identification des circuits en amont fait par le client',
+        'Matériel de marque Legrand ou équivalent'
       ]
     },
     {
@@ -79,11 +79,12 @@ const TableauElectriquePage: React.FC = () => {
       description: 'Tableau électrique 2 rangées - Configuration standard',
       image: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=400',
       features: [
-        'Tableau 2 rangées 26 modules',
-        'Disjoncteur de branchement',
-        'Dispositifs différentiels 30mA',
-        'Disjoncteurs divisionnaires',
-        'Parafoudre inclus'
+        'Tableau électrique neuf (coffret, peignes de connexion)',
+        '1 interrupteur différentiel de type AC',
+        '1 interrupteur différentiel de type A',
+        'Disjoncteurs de protection (selon équipements électriques du logement)',
+        'Identification des circuits en amont fait par le client',
+        'Matériel de marque Legrand ou équivalent'
       ],
       popular: true
     },
@@ -93,11 +94,12 @@ const TableauElectriquePage: React.FC = () => {
       description: 'Tableau électrique 3 rangées - Pour grandes installations',
       image: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=400',
       features: [
-        'Tableau 3 rangées 39 modules',
-        'Disjoncteur de branchement',
-        'Dispositifs différentiels multiples',
-        'Disjoncteurs spécialisés',
-        'Gestion circuits spéciaux'
+        'Tableau électrique neuf (coffret, peignes de connexion)',
+        '2 interrupteurs différentiels de type AC',
+        '1 interrupteur différentiel de type A',
+        'Disjoncteurs de protection (selon équipements électriques du logement)',
+        'Identification des circuits en amont fait par le client',
+        'Matériel de marque Legrand ou équivalent'
       ]
     },
     {
@@ -106,11 +108,12 @@ const TableauElectriquePage: React.FC = () => {
       description: 'Tableau électrique 4 rangées - Installation complète',
       image: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=400',
       features: [
-        'Tableau 4 rangées 52 modules',
-        'Disjoncteur de branchement',
-        'Protection différentielle optimisée',
-        'Circuits spécialisés multiples',
-        'Préparation domotique'
+        'Tableau électrique neuf (coffret, peignes de connexion)',
+        '3 interrupteurs différentiels de type AC',
+        '1 interrupteur différentiel de type A',
+        'Disjoncteurs de protection (selon équipements électriques du logement)',
+        'Identification des circuits en amont fait par le client',
+        'Matériel de marque Legrand ou équivalent'
       ]
     }
   ];

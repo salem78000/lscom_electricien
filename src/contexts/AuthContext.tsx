@@ -15,11 +15,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 // Credentials sécurisés avec hash
 const ADMIN_CREDENTIALS = [
   {
-    username: 'admin',
-    passwordHash: 'lscom2025!', // Mot de passe en clair temporairement
-    role: 'admin'
-  },
-  {
     username: 'lscom',
     passwordHash: 'hello', // Mot de passe en clair temporairement
     role: 'super_admin'

@@ -12,7 +12,6 @@ const TableauElectriquePage: React.FC = () => {
     title: 'Mise en sécurité tableau électrique',
     subtitle: 'Remplacement de tableau électrique avec tarifs fixes transparents',
     description: 'LS COM assure le remplacement complet de votre tableau électrique avec des tarifs fixes selon le nombre de rangées. Installation conforme aux normes NF C 15-100 pour votre sécurité.',
-    image: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=800',
     features: [
       {
         title: 'Tarifs fixes transparents',

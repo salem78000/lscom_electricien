@@ -8,7 +8,7 @@ import ServiceCTA from '../../components/services/ServiceCTA';
 
 const BorneRechargeIRVEPage: React.FC = () => {
   // État pour l'image IRVE
-  const [irveImage, setIrveImage] = React.useState('https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg');
+  const [irveImage, setIrveImage] = React.useState('');
   
   // Charger l'image IRVE depuis le localStorage
   React.useEffect(() => {

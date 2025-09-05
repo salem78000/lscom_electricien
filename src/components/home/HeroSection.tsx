@@ -5,7 +5,7 @@ import SecurePhone from '../SecurePhone';
 
 const HeroSection: React.FC = () => {
   // Charger les images depuis le localStorage
-  const [heroImage, setHeroImage] = React.useState('https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg');
+  const [heroImage, setHeroImage] = React.useState('');
   
   React.useEffect(() => {
     const loadImages = () => {

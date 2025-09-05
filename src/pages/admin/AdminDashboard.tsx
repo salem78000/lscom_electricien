@@ -40,14 +40,14 @@ const AdminDashboard: React.FC = () => {
   
   // États pour la gestion des images
   const [siteImages, setSiteImages] = useState({
-    hero: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
-    about: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
-    services: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
-    irve: 'https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg',
-    installation: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
-    depannage: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
-    conformite: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
-    tableau: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg'
+    hero: '',
+    about: '',
+    services: '',
+    irve: '',
+    installation: '',
+    depannage: '',
+    conformite: '',
+    tableau: ''
   });
 
   // Menu items
@@ -188,19 +188,19 @@ const AdminDashboard: React.FC = () => {
   const resetImages = () => {
     if (confirm('Restaurer toutes les images par défaut ?')) {
       const defaultImages = {
-        hero: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
-        about: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
-        services: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
-        irve: 'https://images.pexels.com/photos/7869258/pexels-photo-7869258.jpeg',
-        installation: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
-        depannage: 'https://images.pexels.com/photos/8092/pexels-photo.jpg',
-        conformite: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg',
-        tableau: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg'
+        hero: '',
+        about: '',
+        services: '',
+        irve: '',
+        installation: '',
+        depannage: '',
+        conformite: '',
+        tableau: ''
       };
       setSiteImages(defaultImages);
       localStorage.setItem('site_images', JSON.stringify(defaultImages));
       
-      alert('Images restaurées par défaut ! La page va se recharger.');
+      alert('Images supprimées ! La page va se recharger.');
       setTimeout(() => {
         window.location.reload();
       }, 1000);
@@ -513,10 +513,10 @@ const AdminDashboard: React.FC = () => {
               <h2 className="text-2xl font-bold text-gray-900">Gestion des Images</h2>
               <button
                 onClick={resetImages}
-                className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
               >
                 <RefreshCw className="h-4 w-4" />
-                <span>Restaurer par défaut</span>
+                <span>Supprimer toutes les images</span>
               </button>
             </div>
             
@@ -531,7 +531,7 @@ const AdminDashboard: React.FC = () => {
                   <div className="space-y-3">
                     <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
                       <img 
-                        src={url || 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg'} 
+                        src={url || '/api/placeholder/400/225'} 
                         alt={key}
                         className="w-full h-full object-cover"
                       />

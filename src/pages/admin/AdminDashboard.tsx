@@ -163,59 +163,13 @@ const AdminDashboard: React.FC = () => {
   };
 
   // Fonction pour valider les URLs d'images
-  const validateImageUrl = (url: string): { isValid: boolean; convertedUrl: string; message: string } => {
-    if (!url.trim()) {
-      return { isValid: false, convertedUrl: url, message: 'URL vide' };
-    }
-
-    // Convertir Google Drive si nécessaire
-    const convertedUrl = convertGoogleDriveUrl(url);
-    
-    // Vérifier si c'est une URL valide
-    try {
-      new URL(convertedUrl);
-    } catch {
-      return { isValid: false, convertedUrl: url, message: 'URL invalide' };
-    }
-
-    // Vérifier les domaines autorisés
-    const allowedDomains = [
-      'images.pexels.com',
-      'images.unsplash.com',
-      'drive.google.com',
-      'imgur.com',
-      'i.imgur.com',
-      'cdn.pixabay.com',
-      'images.stockvault.net',
-      'lh3.googleusercontent.com',
-      'lh4.googleusercontent.com',
-      'lh5.googleusercontent.com',
-      'lh6.googleusercontent.com'
-    ];
-
-    const urlObj = new URL(convertedUrl);
-    const isAllowedDomain = allowedDomains.some(domain => urlObj.hostname.includes(domain));
-
-    if (!isAllowedDomain) {
-      return { 
-        isValid: false, 
-        convertedUrl, 
-        message: `Domaine "${urlObj.hostname}" non autorisé` 
-      };
-    }
-
-    return { isValid: true, convertedUrl, message: 'URL valide' };
-  };
-
-  // Fonctions pour les images
   const updateImage = (key: string, url: string) => {
     if (!url.trim()) {
       alert('Veuillez saisir une URL');
       return;
     }
 
-    // Convertir l'URL si c'est Google Drive
-    const finalUrl = convertGoogleDriveUrl(url.trim());
+    const finalUrl = url.trim();
     
     // Sauvegarder immédiatement
     const updatedImages = { ...siteImages, [key]: finalUrl };
@@ -228,10 +182,10 @@ const AdminDashboard: React.FC = () => {
       newValue: JSON.stringify(updatedImages)
     }));
     
-    alert('Image mise à jour ! La page va se recharger.');
+    alert('✅ Image sauvegardée ! La page va se recharger.');
     
     // Recharger la page
-    setTimeout(() => {
+    setTimeout(() => { 
       window.location.reload();
     }, 1000);
   };
@@ -603,9 +557,10 @@ const AdminDashboard: React.FC = () => {
                         />
                         <button
                           onClick={() => updateImage(key, url)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm"
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md flex items-center space-x-1"
                         >
-                          Appliquer
+                          <Save className="h-4 w-4" />
+                          <span>Sauver</span>
                         </button>
                       </div>
                       <div className="text-xs text-gray-500 mt-2">
@@ -613,9 +568,6 @@ const AdminDashboard: React.FC = () => {
                         <p>https://lh3.googleusercontent.com/d/VOTRE_ID_GOOGLE_DRIVE</p>
                         <p className="text-blue-600 mt-1">Ou toute URL d'image directe (Pexels, Unsplash, etc.)</p>
                       </div>
-                      <p className="text-xs text-gray-500 mt-2">
-                        Collez votre lien Google Drive et cliquez sur "Appliquer"
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -623,12 +575,13 @@ const AdminDashboard: React.FC = () => {
             </div>
             
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <h4 className="font-medium text-blue-800 mb-2">📋 Comment utiliser :</h4>
+              <h4 className="font-medium text-blue-800 mb-2">📋 Comment obtenir l'URL directe :</h4>
               <p className="text-sm text-blue-700">
-                1. Partagez votre image Google Drive (lien public)<br/>
-                2. Collez l'URL dans le champ<br/>
-                3. Cliquez sur "Appliquer"<br/>
-                4. La page se recharge avec la nouvelle image
+                <strong>Google Drive :</strong><br/>
+                1. Partagez votre image (accès public)<br/>
+                2. Copiez l'ID depuis l'URL de partage<br/>
+                3. Utilisez : https://lh3.googleusercontent.com/d/VOTRE_ID<br/><br/>
+                <strong>Autres sources :</strong> Pexels, Unsplash, Imgur (URL directe)
               </p>
             </div>
           </div>

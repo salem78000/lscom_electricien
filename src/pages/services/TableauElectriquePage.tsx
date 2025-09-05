@@ -155,17 +155,19 @@ const TableauElectriquePage: React.FC = () => {
                 <div className="p-8">
                   <div className="text-center mb-6">
                     <div className="mx-auto mb-4 flex items-center justify-center">
-                      {index === 0 ? (
-                        <img 
-                          src="/Tableau 1 rangée.png" 
-                          alt="Tableau électrique 1 rangée"
-                          className="w-20 h-20 object-contain"
-                        />
-                      ) : (
-                        <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center">
-                          <Shield className="h-8 w-8 text-blue-600" />
-                        </div>
-                      )}
+                      <img 
+                        src={`/Tableau ${index + 1} rangée${index > 0 ? 's' : ''}.png`}
+                        alt={`Tableau électrique ${tableau.rangees}`}
+                        className="w-20 h-20 object-contain"
+                        onError={(e) => {
+                          // Fallback vers l'icône en cas d'erreur de chargement
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                      <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center hidden">
+                        <Shield className="h-8 w-8 text-blue-600" />
+                      </div>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       Tableau {tableau.rangees}

@@ -23,7 +23,8 @@ import {
   Activity,
   Shield,
   Clock,
-  Lock
+  Lock,
+  Euro
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import ProtectedRoute from '../../components/admin/ProtectedRoute';

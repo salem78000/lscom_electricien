@@ -565,9 +565,8 @@ const AdminDashboard: React.FC = () => {
                           alt={key}
                           className="w-full h-full object-cover"
                           onLoad={() => console.log('✅ Image chargée:', key)}
-                          onError={(e) => {
-                            console.error('❌ Erreur chargement image:', key, url);
-                            e.currentTarget.style.display = 'block';
+                          onError={() => {
+                            console.warn('⚠️ Image non accessible:', key, url);
                           }}
                         />
                       ) : (
